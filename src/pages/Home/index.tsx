@@ -493,10 +493,10 @@ const HomePage: React.FC = () => {
 
         {/* Contact Section */}
         <div className="w-full bg-global-background5 border-b border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] mt-[90px] sm:mt-[105px] md:mt-[113px] lg:mt-[120px] py-[38px] sm:px-[43px] md:px-[47px] lg:px-[50px]">
-          <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-[38px] sm:gap-[43px] md:gap-[47px] lg:gap-[50px] justify-start items-center w-[98%] mt-[2px] sm:mt-[3px] md:mt-[3px] lg:mt-[4px]">
+          <div className="w-full max-w-[1378px] mx-auto">
+            <div className="flex flex-col gap-[38px] sm:gap-[43px] md:gap-[47px] lg:gap-[50px] justify-start items-center w-full mt-[2px] sm:mt-[3px] md:mt-[3px] lg:mt-[4px]">
               {/* Contact Header */}
-              <div className="flex flex-col gap-[15px] sm:gap-[17px] md:gap-[18px] lg:gap-[20px] justify-start items-center w-[96%]">
+              <div className="flex flex-col gap-[15px] sm:gap-[17px] md:gap-[18px] lg:gap-[20px] justify-start items-center w-full">
                 <div className="flex flex-col gap-[9px] sm:gap-[10px] md:gap-[11px] lg:gap-[12px] justify-start items-start w-full">
                   <div className="flex flex-row justify-start items-center w-full px-[3px] sm:px-[4px] md:px-[5px] lg:px-[6px]">
                     <span className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1">
@@ -516,42 +516,42 @@ const HomePage: React.FC = () => {
                 <div className="flex flex-col lg:flex-row justify-start items-center w-full gap-[20px] lg:gap-0">
                   {/* Phone */}
                   <div className="flex flex-row justify-start items-center w-full lg:w-[30%]">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[18px] sm:p-[20px] md:p-[22px] lg:p-[24px]">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
                       <img 
                         src="/images/img_mingcute_phone_call_fill.png" 
                         alt="Phone" 
-                        className="w-[53px] sm:w-[60px] md:w-[65px] lg:w-[70px] h-[53px] sm:h-[60px] md:h-[65px] lg:h-[70px]"
+                        className="w-[32px] sm:w-[36px] md:w-[40px] lg:w-[44px] h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px]"
                       />
                     </div>
-                    <div className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-kanit font-light leading-[28px] sm:leading-[32px] md:leading-[35px] lg:leading-[37px] text-left text-global-text1 w-[40%] ml-[20px] sm:ml-[22px] md:ml-[24px] lg:ml-[26px]">
+                    <div className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-kanit font-light leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text1 w-[40%] ml-[12px] sm:ml-[14px] md:ml-[16px] lg:ml-[18px]">
                       +221 6666666<br />+221 6666666
                     </div>
                   </div>
 
                   {/* Email */}
                   <div className="flex flex-row gap-[20px] sm:gap-[22px] md:gap-[24px] lg:gap-[26px] justify-center items-center w-full lg:w-auto px-[42px] sm:px-[48px] md:px-[52px] lg:px-[56px]">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[18px] sm:p-[20px] md:p-[22px] lg:p-[24px]">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
                       <img 
                         src="/images/img_ic_baseline_email.png" 
                         alt="Email" 
-                        className="w-[53px] sm:w-[60px] md:w-[65px] lg:w-[70px] h-[53px] sm:h-[60px] md:h-[65px] lg:h-[70px]"
+                        className="w-[32px] sm:w-[36px] md:w-[40px] lg:w-[44px] h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px]"
                       />
                     </div>
-                    <span className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-kanit font-light leading-[29px] sm:leading-[33px] md:leading-[36px] lg:leading-[38px] text-left text-global-text1">
+                    <span className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-kanit font-light leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text1">
                       info@email.com
                     </span>
                   </div>
 
                   {/* Location */}
                   <div className="flex flex-row justify-end items-center w-full lg:w-[30%]">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[18px] sm:p-[20px] md:p-[22px] lg:p-[24px]">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
                       <img 
                         src="/images/img_mdi_google_maps.png" 
                         alt="Location" 
-                        className="w-[53px] sm:w-[60px] md:w-[65px] lg:w-[70px] h-[53px] sm:h-[60px] md:h-[65px] lg:h-[70px]"
+                        className="w-[32px] sm:w-[36px] md:w-[40px] lg:w-[44px] h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px]"
                       />
                     </div>
-                    <div className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-kanit font-light leading-[28px] sm:leading-[32px] md:leading-[35px] lg:leading-[37px] text-left text-global-text1 w-[40%] self-end mb-[9px] sm:mb-[10px] md:mb-[11px] lg:mb-[12px] ml-[20px] sm:ml-[22px] md:ml-[24px] lg:ml-[26px]">
+                    <div className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-kanit font-light leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text1 w-[40%] self-end mb-[6px] sm:mb-[7px] md:mb-[8px] lg:mb-[9px] ml-[12px] sm:ml-[14px] md:ml-[16px] lg:ml-[18px]">
                       Sénégal<br />rue 12B Dakar
                     </div>
                   </div>
@@ -564,62 +564,62 @@ const HomePage: React.FC = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-[26px] sm:gap-[29px] md:gap-[32px] lg:gap-[34px] w-full">
                     {/* Name Field */}
                     <div className="flex flex-col gap-[2px] sm:gap-[3px] md:gap-[3px] lg:gap-[4px] justify-start items-start w-full">
-                      <label className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
                         Nom complet
                       </label>
                       <input 
                         type="text"
                         placeholder="Entrez votre nom"
-                        className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[26px] sm:px-[29px] md:px-[32px] lg:px-[34px] py-[20px] sm:py-[22px] md:py-[24px] lg:py-[26px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
                       />
                     </div>
 
                     {/* Phone Field */}
                     <div className="flex flex-col gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-start items-start w-full">
-                      <label className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
                         Numéro de telephone
                       </label>
                       <input 
                         type="tel"
                         placeholder="Entrez votre numéro de telephone"
-                        className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[26px] sm:px-[29px] md:px-[32px] lg:px-[34px] py-[18px] sm:py-[20px] md:py-[22px] lg:py-[24px] pt-[21px] sm:pt-[24px] md:pt-[26px] lg:pt-[28px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
                       />
                     </div>
 
                     {/* Email Field */}
                     <div className="flex flex-col gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-start items-start w-full">
-                      <label className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
                         Adresse mail
                       </label>
                       <input 
                         type="email"
                         placeholder="Entrez votre Adresse mail"
-                        className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[26px] sm:px-[29px] md:px-[32px] lg:px-[34px] py-[20px] sm:py-[22px] md:py-[24px] lg:py-[26px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
                       />
                     </div>
 
                     {/* Subject Field */}
                     <div className="flex flex-col gap-[2px] sm:gap-[3px] md:gap-[3px] lg:gap-[4px] justify-start items-start w-full">
-                      <label className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
                         Sujet
                       </label>
                       <input 
                         type="text"
                         placeholder="Entrez le sujet"
-                        className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[26px] sm:px-[29px] md:px-[32px] lg:px-[34px] py-[17px] sm:py-[19px] md:py-[21px] lg:py-[22px] pt-[23px] sm:pt-[26px] md:pt-[28px] lg:pt-[30px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
                       />
                     </div>
                   </div>
 
                   {/* Message Field */}
-                  <label className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text1 mt-[35px] sm:mt-[39px] md:mt-[42px] lg:mt-[46px] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
+                  <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 mt-[20px] sm:mt-[22px] md:mt-[24px] lg:mt-[26px] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
                     Message
                   </label>
-                  <div className="flex flex-row justify-start items-start w-full bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] mt-[2px] sm:mt-[3px] md:mt-[3px] lg:mt-[4px] p-[21px] sm:p-[23px] md:p-[25px] lg:p-[26px] pt-[21px] sm:pt-[24px] md:pt-[26px] lg:pt-[28px] pb-[21px] sm:pb-[24px] md:pb-[26px] lg:pb-[28px]">
+                  <div className="flex flex-row justify-start items-start w-full bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] mt-[2px] sm:mt-[3px] md:mt-[3px] lg:mt-[4px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
                     <textarea 
-                      placeholder="Entrez votre Adresse mail"
-                      rows={8}
-                      className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-justify text-global-text4 w-full border-0 bg-transparent resize-none focus:outline-none mb-[134px] sm:mb-[154px] md:mb-[166px] lg:mb-[178px]"
+                      placeholder="Entrez votre message"
+                      rows={6}
+                      className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 w-full border-0 bg-transparent resize-none focus:outline-none"
                     />
                   </div>
                 </div>
@@ -629,7 +629,7 @@ const HomePage: React.FC = () => {
               <div className="flex flex-row justify-center items-center w-full">
                 <Button 
                   variant="primary"
-                  className="text-[19px] sm:text-[22px] md:text-[24px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[27px] md:leading-[29px] lg:leading-[31px] text-left text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[26px] sm:px-[29px] md:px-[32px] lg:px-[34px] py-[26px] sm:py-[29px] md:px-[32px] lg:py-[34px] self-end hover:opacity-90 transition-opacity"
+                  className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[16px] sm:px-[18px] md:px-[20px] lg:px-[22px] py-[12px] sm:py-[14px] md:py-[16px] lg:py-[18px] self-end hover:opacity-90 transition-opacity"
                 >
                   Envoyez votre Message
                 </Button>
@@ -680,10 +680,10 @@ const HomePage: React.FC = () => {
                   {/* Contact and Newsletter */}
                   <div className="flex flex-col gap-[8px] sm:gap-[9px] md:gap-[9px] lg:gap-[10px] justify-start items-center w-full lg:w-auto mt-[23px] sm:mt-[26px] md:mt-[28px] lg:mt-[30px]">
                     <div className="flex flex-row justify-between items-center w-full px-[38px] sm:px-[43px] md:px-[47px] lg:px-[50px]">
-                      <h3 className="text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-bahnschrift font-normal leading-[28px] sm:leading-[32px] md:leading-[35px] lg:leading-[37px] text-left text-global-text1">
+                      <h3 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-left text-global-text1">
                         Contact
                       </h3>
-                      <h3 className="text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-bahnschrift font-normal leading-[28px] sm:leading-[32px] md:leading-[35px] lg:leading-[37px] text-left text-global-text1 mr-[230px] sm:mr-[264px] md:mr-[285px] lg:mr-[306px]">
+                      <h3 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-left text-global-text1 mr-[230px] sm:mr-[264px] md:mr-[285px] lg:mr-[306px]">
                         Newsletter
                       </h3>
                     </div>
@@ -699,7 +699,7 @@ const HomePage: React.FC = () => {
                               className="w-full h-full object-contain"
                             />
                           </button>
-                          <span className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-kanit font-light leading-[20px] sm:leading-[23px] md:leading-[25px] lg:leading-[27px] text-left text-global-text1 ml-[14px] sm:ml-[15px] md:ml-[16px] lg:ml-[18px]">
+                          <span className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-kanit font-light leading-[14px] sm:leading-[16px] md:leading-[18px] lg:leading-[20px] text-left text-global-text1 ml-[8px] sm:ml-[9px] md:ml-[10px] lg:ml-[11px]">
                             +221 66 66 66 66
                           </span>
                         </div>
@@ -712,7 +712,7 @@ const HomePage: React.FC = () => {
                               className="w-full h-full object-contain"
                             />
                           </button>
-                          <span className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-kanit font-light leading-[20px] sm:leading-[23px] md:leading-[25px] lg:leading-[27px] text-left text-global-text1 ml-[14px] sm:ml-[15px] md:ml-[16px] lg:ml-[18px]">
+                          <span className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-kanit font-light leading-[14px] sm:leading-[16px] md:leading-[18px] lg:leading-[20px] text-left text-global-text1 ml-[8px] sm:ml-[9px] md:ml-[10px] lg:ml-[11px]">
                             info@email.com
                           </span>
                         </div>
@@ -725,7 +725,7 @@ const HomePage: React.FC = () => {
                               className="w-full h-full object-contain"
                             />
                           </button>
-                          <div className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-kanit font-light leading-[20px] sm:leading-[23px] md:leading-[25px] lg:leading-[26px] text-left text-global-text1 w-[32%] ml-[14px] sm:ml-[15px] md:ml-[16px] lg:ml-[18px]">
+                          <div className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-kanit font-light leading-[14px] sm:leading-[16px] md:leading-[18px] lg:leading-[20px] text-left text-global-text1 w-[32%] ml-[8px] sm:ml-[9px] md:ml-[10px] lg:ml-[11px]">
                             Sénégal Dakar<br />rue 12o
                           </div>
                         </div>
@@ -733,20 +733,20 @@ const HomePage: React.FC = () => {
 
                       {/* Newsletter */}
                       <div className="flex flex-col gap-[15px] sm:gap-[17px] md:gap-[18px] lg:gap-[20px] justify-start items-center w-full lg:w-[54%]">
-                        <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[21px] text-left text-global-text3 w-full">
+                        <p className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-bahnschrift font-normal leading-[12px] sm:leading-[14px] md:leading-[16px] lg:leading-[18px] text-left text-global-text3 w-full">
                           Ne manquez aucune actualité, offre exclusive ou conseil coaching de votre centre de fitness préféré ! En vous abonnant, vous recevrez directement dans votre boîte mail .
                         </p>
                         <div className="flex flex-row items-center w-full">
                           <input 
                             type="email" 
                             placeholder="Votre adresse email"
-                            className="w-[220px] sm:w-[250px] md:w-[270px] lg:w-[290px] h-[40px] sm:h-[45px] md:h-[48px] lg:h-[46px] bg-global-background3 border border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-l-[5px] px-[12px] sm:px-[14px] md:px-[15px] lg:px-[16px] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift text-global-text1 placeholder:text-global-text1 placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                            className="w-[220px] sm:w-[250px] md:w-[270px] lg:w-[290px] h-[32px] sm:h-[36px] md:h-[38px] lg:h-[40px] bg-global-background3 border border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-l-[5px] px-[6px] sm:px-[8px] md:px-[9px] lg:px-[10px] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-bahnschrift text-global-text1 placeholder:text-global-text1 placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
                           />
-                          <div className="flex flex-row items-center bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-r-[5px] px-[6px] sm:px-[7px] md:px-[8px] lg:px-[9px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px]">
+                          <div className="flex flex-row items-center bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-r-[5px] px-[4px] sm:px-[5px] md:px-[6px] lg:px-[7px] py-[4px] sm:py-[5px] md:py-[6px] lg:py-[7px]">
                             <img 
                               src="/images/img_tabler_send.svg" 
                               alt="Send" 
-                              className="w-[24px] sm:w-[28px] md:w-[30px] lg:w-[32px] h-[24px] sm:h-[28px] md:h-[30px] lg:h-[32px]"
+                              className="w-[18px] sm:w-[20px] md:w-[22px] lg:w-[24px] h-[18px] sm:h-[20px] md:h-[22px] lg:h-[24px]"
                             />
                           </div>
                         </div>
@@ -761,7 +761,7 @@ const HomePage: React.FC = () => {
 
         {/* Copyright */}
         <div className="w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] px-[26px] sm:px-[29px] md:px-[32px] lg:px-[34px] py-[8px] sm:py-[9px] md:py-[9px] lg:py-[10px] mt-[-32px] sm:mt-[-36px] md:mt-[-39px] lg:mt-[-42px]">
-          <p className="text-[15px] sm:text-[17px] md:text-[19px] lg:text-[20px] font-kanit font-normal leading-[20px] sm:leading-[23px] md:leading-[25px] lg:leading-[27px] text-center text-global-text5">
+          <p className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-kanit font-normal leading-[14px] sm:leading-[16px] md:leading-[18px] lg:leading-[20px] text-center text-global-text5">
             <span className="text-global-text5">© 2025 nom du site. Tous droits réservés | Design By </span>
             <span className="text-global-text5 underline">Maisoft.</span>
           </p>
