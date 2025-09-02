@@ -241,8 +241,8 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Services Cards */}
-              <div className="flex flex-col justify-start items-center w-full">
-                <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full max-w-[1378px] px-[34px] sm:px-[47px] md:px-[57px] lg:px-[67px]">
+              <div className="flex flex-col justify-start items-center w-full relative">
+                <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full max-w-[1378px] px-[34px] sm:px-[47px] md:px-[57px] lg:px-[67px] absolute top-[160px] sm:top-[200px] md:top-[240px] lg:top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
                   {/* Musculation Card */}
                   <div className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
                     <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
@@ -327,23 +327,23 @@ const HomePage: React.FC = () => {
 
                 {/* CTA Section with Background */}
                 <div 
-                  className="w-full h-[229px] sm:h-[320px] md:h-[389px] lg:h-[458px] bg-cover bg-center mt-[-111px] sm:mt-[-155px] md:mt-[-189px] lg:lg-[-222px] relative"
+                  className="w-full h-[229px] sm:h-[320px] md:h-[389px] lg:h-[458px] bg-cover bg-center relative mt-[150px] sm:mt-[200px] md:mt-[250px] lg:mt-[300px]"
                   style={{ backgroundImage: "url('/images/img_rectangle_20.png')" }}
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(104deg,#5dcd62e5_0%,_#000000e5_100%)]"></div>
-                  <div className="relative z-10 flex flex-col gap-[30px] sm:gap-[35px] md:gap-[38px] lg:gap-[40px] justify-start items-center w-full h-full px-[30px] sm:px-[35px] md:px-[38px] lg:px-[40px] pt-[165px] sm:pt-[231px] md:pt-[281px] lg:pt-[330px]">
-                    <p className="text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-comic-sans font-normal leading-[31px] sm:leading-[36px] md:leading-[39px] lg:leading-[42px] text-left text-global-text5 text-center max-w-[900px]">
+                  <div className="relative z-10 flex flex-col gap-[20px] sm:gap-[25px] md:gap-[28px] lg:gap-[30px] justify-start items-center w-full h-full px-[30px] sm:px-[35px] md:px-[38px] lg:px-[40px] pt-[170px] sm:pt-[210px] md:pt-[250px] lg:pt-[290px]">
+                    <p className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-comic-sans font-normal leading-[26px] sm:leading-[28px] md:leading-[30px] lg:leading-[32px] text-left text-global-text5 text-center max-w-[900px]">
                       Vous ne rejoignez pas seulement un centre de Fitness, vous intégrez une seconde famille
                     </p>
                     <div className="flex justify-center items-center w-auto">
-                      <button className="flex gap-[9px] sm:gap-[10px] md:gap-[11px] lg:gap-[12px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[12px] sm:px-[14px] md:px-[15px] lg:px-[16px] py-[12px] sm:py-[14px] md:py-[15px] lg:px-[16px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all">
-                        <span className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-global-text5">
+                      <button className="flex gap-[6px] sm:gap-[7px] md:gap-[8px] lg:gap-[9px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[10px] sm:px-[12px] md:px-[14px] lg:px-[16px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all">
+                        <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[18px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-global-text5">
                           Réservez maintenant
                         </span>
                         <img 
                           src="/images/img_solararrowuplinear.svg" 
                           alt="Arrow" 
-                          className="w-[32px] sm:w-[36px] md:w-[39px] lg:w-[42px] h-[32px] sm:h-[36px] md:h-[39px] lg:h-[42px]"
+                          className="w-[24px] sm:w-[26px] md:w-[28px] lg:w-[30px] h-[24px] sm:h-[26px] md:h-[28px] lg:h-[30px]"
                         />
                       </button>
                     </div>
