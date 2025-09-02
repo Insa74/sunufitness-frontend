@@ -7,6 +7,7 @@ const ReservationPage: React.FC = () => {
   const [sessionType, setSessionType] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string>('');
+  const [selectedDuration, setSelectedDuration] = useState<string>('30 min');
   const [selectedCoach, setSelectedCoach] = useState<string>('');
   const [currentCoachSlide, setCurrentCoachSlide] = useState<number>(0);
   
@@ -85,6 +86,7 @@ const ReservationPage: React.FC = () => {
   ];
 
   const timeSlots = ['08:00', '10:00', '08:00', '08:00', '08:00', '08:00'];
+  const durationOptions = ['30 min', '1h', '2h', 'à définir'];
 
   // Payment methods data
   const paymentMethods = [
@@ -522,18 +524,19 @@ const ReservationPage: React.FC = () => {
                   <div className="mb-4">
                     <p className="text-sm text-gray-600 mb-2">De combien de temps avez vous besoin ?</p>
                     <div className="flex space-x-2">
-                      <button className="px-4 py-2 bg-green-100 text-green-600 rounded-md text-sm font-medium">
-                        30 min
-                      </button>
-                      <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-md text-sm font-medium">
-                        1h
-                      </button>
-                      <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-md text-sm font-medium">
-                        2h
-                      </button>
-                      <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-md text-sm font-medium">
-                        à définir
-                      </button>
+                      {durationOptions.map((duration) => (
+                        <button 
+                          key={duration}
+                          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                            selectedDuration === duration
+                              ? 'bg-green-100 text-green-600'
+                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                          }`}
+                          onClick={() => setSelectedDuration(duration)}
+                        >
+                          {duration}
+                        </button>
+                      ))}
                     </div>
                   </div>
                   
