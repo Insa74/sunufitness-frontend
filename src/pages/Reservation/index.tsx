@@ -275,7 +275,7 @@ const ReservationPage: React.FC = () => {
               </svg>
             </button>
           )}
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900">
+          <h2 className="text-sm sm:text-2xl md:text-3xl font-bold text-center text-gray-900">
             Effectuer une réservation
           </h2>
         </div>
