@@ -86,7 +86,14 @@ const Header: React.FC = () => {
           {/* Mobile Navigation Menu */}
           <nav className={`${menuOpen ? 'block' : 'hidden'} lg:hidden absolute top-full left-0 right-0 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] shadow-lg z-50`}>
             <div className="flex flex-col p-4 space-y-4">
-              <button role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
+              <button 
+                role="menuitem" 
+                onClick={() => {
+                  navigate('/');
+                  setMenuOpen(false);
+                }}
+                className="text-left text-global-text5 hover:text-gray-200 transition-colors"
+              >
                 Accueil
               </button>
               <button role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
@@ -95,12 +102,35 @@ const Header: React.FC = () => {
               <button role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
                 Services
               </button>
-              <button role="menuitem" className="text-left text-global-text5 border border-global-text5 rounded-[5px] px-4 py-2 hover:bg-global-text5 hover:text-button-text1 transition-all">
+              <button 
+                role="menuitem" 
+                onClick={() => {
+                  navigate('/reservation');
+                  setMenuOpen(false);
+                }}
+                className="text-left text-global-text5 border border-global-text5 rounded-[5px] px-4 py-2 hover:bg-global-text5 hover:text-button-text1 transition-all"
+              >
                 Réservez
               </button>
-              <Button variant="primary" className="text-left bg-white text-button-text1">
+              <Button 
+                variant="primary" 
+                className="text-left bg-white text-button-text1"
+              >
                 Contact
               </Button>
+              <button 
+                role="menuitem" 
+                onClick={() => {
+                  navigate('/member');
+                  setMenuOpen(false);
+                }}
+                className="flex items-center gap-3 text-left text-global-text5 hover:text-gray-200 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                Espace Membre
+              </button>
             </div>
           </nav>
         </div>

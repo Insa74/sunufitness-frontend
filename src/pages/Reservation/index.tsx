@@ -263,7 +263,7 @@ const ReservationPage: React.FC = () => {
       {/* Main Content */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {/* Back button and Title */}
-        <div className="flex items-center justify-center mb-8 relative">
+        <div className="flex items-center justify-center mb-8 mt-10 relative">
           {currentStep > 1 && (
             <button
               onClick={handleBack}
@@ -423,11 +423,26 @@ const ReservationPage: React.FC = () => {
         {currentStep === 2 && (
           <>
             {/* Date and Time Selection */}
-            <div className="mb-12">
-              <div className="flex items-center mb-6">
-                <div>
-                  <p className="text-sm text-gray-600 mb-2 font-medium">RENDEZ VOUS</p>
-                  <h3 className="text-2xl font-bold text-green-500">SÉLECTIONNER JOUR ET HEURE</h3>
+            <div className="mb-12 mt-20">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2 font-medium">RENDEZ VOUS</p>
+                    <h3 className="text-2xl font-bold text-green-500">SÉLECTIONNER JOUR ET HEURE</h3>
+                  </div>
+                  <div className="ml-6 flex-1 h-px bg-gray-300 max-w-xs"></div>
+                </div>
+                <div className="flex space-x-3">
+                  <button className="w-12 h-12 bg-green-100 hover:bg-green-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button className="w-12 h-12 bg-green-100 hover:bg-green-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
               </div>
 
@@ -620,11 +635,26 @@ const ReservationPage: React.FC = () => {
         {currentStep === 3 && (
           <>
             {/* Personal Information Form */}
-            <div className="mb-12">
-              <div className="flex items-center mb-8">
-                <div>
-                  <p className="text-sm text-gray-600 mb-2 font-medium">Information Personnel</p>
-                  <h3 className="text-2xl font-bold text-green-500">ENTRER VOS INFORMATIONS</h3>
+            <div className="mb-12 mt-20">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2 font-medium">Information Personnel</p>
+                    <h3 className="text-2xl font-bold text-green-500">ENTRER VOS INFORMATIONS</h3>
+                  </div>
+                  <div className="ml-6 flex-1 h-px bg-gray-300 max-w-xs"></div>
+                </div>
+                <div className="flex space-x-3">
+                  <button className="w-12 h-12 bg-green-100 hover:bg-green-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button className="w-12 h-12 bg-green-100 hover:bg-green-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
               </div>
 
@@ -795,11 +825,26 @@ const ReservationPage: React.FC = () => {
         {currentStep === 4 && (
           <>
             {/* Payment Method Selection */}
-            <div className="mb-12">
-              <div className="flex items-center mb-8">
-                <div>
-                  <p className="text-sm text-gray-600 mb-2 font-medium">Effectuez le paiement</p>
-                  <h3 className="text-2xl font-bold text-green-500">CHOISIR LE MODE DE PAIEMENT</h3>
+            <div className="mb-12 mt-20">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2 font-medium">Effectuez le paiement</p>
+                    <h3 className="text-2xl font-bold text-green-500">CHOISIR LE MODE DE PAIEMENT</h3>
+                  </div>
+                  <div className="ml-6 flex-1 h-px bg-gray-300 max-w-xs"></div>
+                </div>
+                <div className="flex space-x-3">
+                  <button className="w-12 h-12 bg-green-100 hover:bg-green-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button className="w-12 h-12 bg-green-100 hover:bg-green-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
               </div>
 
