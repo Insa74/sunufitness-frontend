@@ -222,7 +222,7 @@ const ReservationPage: React.FC = () => {
       {/* Hero Section - Only on step 1 */}
       {currentStep === 1 && (
         <section 
-          className="relative h-80 bg-cover bg-center bg-no-repeat"
+          className="relative h-96 lg:h-[100vh]  bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/images/reservation/bg.png')" }}
         >
           {/* Dark overlay */}
@@ -298,7 +298,7 @@ const ReservationPage: React.FC = () => {
             {/* Connecting Line 1-2 */}
             <div className={`flex-1 h-1 -mx-6 transition-all duration-500 relative z-10 ${
               currentStep >= 2 ? 'bg-green-500' : 'bg-gray-300'
-            }`} style={{ marginTop: '-24px', marginBottom: '24px' }}></div>
+            }`} style={{ marginTop: '-16px', marginBottom: '16px' }}></div>
             
             {/* Step 02 */}
             <div className="flex flex-col items-center relative z-20">
@@ -315,7 +315,7 @@ const ReservationPage: React.FC = () => {
             {/* Connecting Line 2-3 */}
             <div className={`flex-1 h-1 -mx-6 transition-all duration-500 relative z-10 ${
               currentStep >= 3 ? 'bg-green-500' : 'bg-gray-300'
-            }`} style={{ marginTop: '-24px', marginBottom: '24px' }}></div>
+            }`} style={{ marginTop: '-16px', marginBottom: '16px' }}></div>
             
             {/* Step 03 */}
             <div className="flex flex-col items-center relative z-20">
@@ -332,7 +332,7 @@ const ReservationPage: React.FC = () => {
             {/* Connecting Line 3-4 */}
             <div className={`flex-1 h-1 -mx-6 transition-all duration-500 relative z-10 ${
               currentStep >= 4 ? 'bg-green-500' : 'bg-gray-300'
-            }`} style={{ marginTop: '-24px', marginBottom: '24px' }}></div>
+            }`} style={{ marginTop: '-16px', marginBottom: '16px' }}></div>
             
             {/* Step 04 */}
             <div className="flex flex-col items-center relative z-20">
@@ -410,7 +410,7 @@ const ReservationPage: React.FC = () => {
               <select
                 value={sessionType}
                 onChange={(e) => setSessionType(e.target.value)}
-                className="w-full max-w-md px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               >
                 <option value="">Sélectionner le type de séance</option>
                 <option value="individuelle">Séance individuelle</option>

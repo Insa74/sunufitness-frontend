@@ -22,8 +22,8 @@ export class Footer extends Component {
                         Depuis notre création, nous nous engageons à offrir un environnement motivant et inclusif pour tous les passionnés de fitness, où chaque pas vers vos objectifs est célébré et chaque défi devient une occasion de grandir. Notre équipe de coachs certifiés est là pour vous guider avec expertise
                       </p>
                     </div>
-                    <div className="flex flex-row justify-center items-center w-[140px] sm:w-[160px] md:w-[180px] lg:w-[30%] bg-global-background3 rounded-[6px] py-[10px] sm:py-[12px] px-[20px] sm:px-[24px] lg:px-[16px]">
-                      <div className="flex flex-row justify-between items-center w-full">
+                    <div className="flex   flex-row justify-center items-center w-[160px] sm:w-[160px] md:w-[200px] lg:w-[37%] bg-global-background3 rounded-[6px] py-[10px] sm:py-[12px] px-[20px] sm:px-[24px] lg:px-[16px]">
+                      <div className="flex gap-[10px] flex-row justify-between items-center w-full">
                         <img 
                           src="/images/img_ic_baseline_facebook.png" 
                           alt="Facebook" 
@@ -53,13 +53,17 @@ export class Footer extends Component {
                     </div>
                     
                     {/* Desktop Headers - Side by Side */}
-                    <div className="hidden lg:flex flex-row justify-between items-center w-full px-[50px]">
-                      <h3 className="text-[30px] font-bahnschrift font-normal leading-[37px] text-left text-global-text1">
-                        Contact
-                      </h3>
-                      <h3 className="text-[30px] font-bahnschrift font-normal leading-[37px] text-left text-global-text1 mr-[306px]">
-                        Newsletter
-                      </h3>
+                    <div className="hidden lg:flex flex-row w-full px-[50px]">
+                      <div className="w-[38%]">
+                        <h3 className="text-[30px] font-bahnschrift font-normal leading-[37px] text-left text-global-text1">
+                          Contact
+                        </h3>
+                      </div>
+                      <div className="w-[54%]">
+                        <h3 className="text-[30px] ml-[36px] font-bahnschrift font-normal leading-[37px] text-left text-global-text1">
+                          Newsletter
+                        </h3>
+                      </div>
                     </div>
 
                     <div className="flex flex-col lg:flex-row justify-center items-start w-full gap-[40px] sm:gap-[50px] md:gap-[60px] lg:gap-0">
@@ -133,7 +137,7 @@ export class Footer extends Component {
                       </div>
                       
                       {/* Newsletter - Desktop */}
-                      <div className="hidden lg:flex flex-col gap-[20px] justify-start items-center w-full lg:w-[54%]">
+                      <div className="hidden lg:flex flex-col gap-[20px] justify-start items-start w-full lg:w-[54%]">
                         <p className="text-[18px] font-bahnschrift font-normal leading-[21px] text-left text-global-text3 w-full">
                           Ne manquez aucune actualité, offre exclusive ou conseil coaching de votre centre de fitness préféré ! En vous abonnant, vous recevrez directement dans votre boîte mail .
                         </p>

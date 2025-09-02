@@ -151,7 +151,7 @@ const HomePage: React.FC = () => {
               <div className="flex flex-col sm:flex-row justify-center items-center gap-[16px] sm:gap-[20px] md:gap-[24px] w-full max-w-[500px] sm:max-w-[600px] px-4">
                 <button 
                   onClick={handleReservationClick}
-                  className="flex justify-center items-center gap-[8px] bg-global-background10 border border-global-text5 rounded-[8px] px-[20px] sm:px-[24px] md:px-[28px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px] hover:bg-global-text5 hover:text-global-background10 transition-all duration-300"
+                  className="flex justify-center items-center gap-[8px] bg-global-background10 border border-global-text5 rounded-[8px] px-[20px] sm:px-[24px] md:px-[28px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px]  hover:text-global-background10 transition-all duration-300"
                 >
                   <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal text-current">
                     Réservez
@@ -521,7 +521,7 @@ const HomePage: React.FC = () => {
                   style={{ backgroundImage: "url('/images/img_rectangle_20.png')" }}
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(104deg,#5dcd62e5_0%,_#000000e5_100%)]"></div>
-                  <div className="relative z-10 flex flex-col gap-[20px] sm:gap-[25px] md:gap-[28px] lg:gap-[30px] justify-center items-center w-full h-full px-[20px] sm:px-[30px] md:px-[35px] lg:px-[40px]">
+                  <div className="relative z-10 flex flex-col gap-[20px] sm:gap-[25px] md:gap-[28px] lg:gap-[30px] justify-center lg:justify-end items-center w-full h-full px-[20px] sm:px-[30px] md:px-[35px] lg:px-[40px] lg:pb-[60px]">
                     <p className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-comic-sans font-normal leading-[26px] sm:leading-[28px] md:leading-[30px] lg:leading-[32px] text-center text-global-text5 max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] mx-auto">
                       Vous ne rejoignez pas seulement un centre de Fitness, vous intégrez une seconde famille
                     </p>
