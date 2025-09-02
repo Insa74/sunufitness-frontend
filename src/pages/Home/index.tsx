@@ -101,16 +101,14 @@ const HomePage: React.FC = () => {
       <Header />
       <div className="flex flex-col justify-start items-center w-full pt-[60px]">
         {/* Hero Section */}
-        <div className="relative w-full h-screen">
-
-
+        <div className="relative w-full h-screen min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
           {/* Hero Background Image with Overlays */}
           <div 
-            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/images/img_rectangle_4.png')" }}
           >
             {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-global-background1"></div>
+            <div className="absolute inset-0 bg-global-background1 opacity-60"></div>
             
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(91deg,#21ac2899_0%,_#00000099_100%)]"></div>
@@ -119,62 +117,62 @@ const HomePage: React.FC = () => {
             <div className="absolute inset-0 bg-[linear-gradient(90deg,#0000007f_0%,_#0000007f_100%)]"></div>
           </div>
 
-          {/* Decorative Circles */}
-          <div className="absolute top-0 right-[56px] sm:right-[112px] md:right-[168px] lg:right-[224px] w-[200px] sm:w-[280px] md:w-[340px] lg:w-[400px] h-[199px] sm:h-[279px] md:h-[339px] lg:h-[398px] z-10">
+          {/* Decorative Circles - Hidden on mobile, visible on larger screens */}
+          <div className="hidden md:block absolute top-0 right-[20px] md:right-[80px] lg:right-[150px] xl:right-[224px] w-[150px] md:w-[200px] lg:w-[300px] xl:w-[400px] h-[150px] md:h-[200px] lg:h-[300px] xl:h-[398px] z-10">
             <img 
               src="/images/img_ellipse_2.svg" 
               alt="Decorative circle" 
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain opacity-80"
             />
           </div>
 
-          <div className="absolute top-[205px] sm:top-[287px] md:top-[369px] lg:top-[410px] left-0 w-[137px] sm:w-[192px] md:w-[233px] lg:w-[274px] h-[334px] sm:h-[468px] md:h-[568px] lg:h-[668px] z-10">
+          <div className="hidden lg:block absolute top-[150px] lg:top-[250px] xl:top-[410px] left-0 w-[100px] lg:w-[180px] xl:w-[274px] h-[200px] lg:h-[400px] xl:h-[668px] z-10">
             <img 
               src="/images/img_ellipse_1_white_a700.png" 
               alt="Decorative element" 
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain opacity-80"
             />
           </div>
 
           {/* Hero Content */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center z-15 px-4 sm:px-8 md:px-[56px]">
-            <div className="flex flex-col gap-[26px] sm:gap-[36px] md:gap-[46px] lg:gap-[52px] justify-start items-center w-full max-w-[1200px]">
+          <div className="absolute inset-0 flex flex-col justify-center items-center z-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col gap-[20px] sm:gap-[28px] md:gap-[36px] lg:gap-[44px] xl:gap-[52px] justify-center items-center w-full max-w-[1200px] text-center">
               {/* Hero Text */}
-              <div className="flex flex-col gap-[17px] sm:gap-[24px] md:gap-[30px] lg:gap-[34px] justify-start items-start w-full max-w-[900px]">
-                <h1 className="text-[28px] sm:text-[40px] md:text-[52px] lg:text-[68px] font-bahnschrift font-bold leading-[34px] sm:leading-[48px] md:leading-[62px] lg:leading-[82px] text-center text-global-text5 uppercase w-full">
+              <div className="flex flex-col gap-[12px] sm:gap-[16px] md:gap-[20px] lg:gap-[24px] xl:gap-[28px] justify-center items-center w-full">
+                <h1 className="text-[20px] xs:text-[24px] sm:text-[32px] md:text-[42px] lg:text-[56px] xl:text-[68px] font-bahnschrift font-bold leading-[24px] xs:leading-[28px] sm:leading-[38px] md:leading-[50px] lg:leading-[66px] xl:leading-[82px] text-center text-global-text5 uppercase w-full max-w-[900px]">
                   MMT FITNESS AND MORE
                 </h1>
-                <p className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] font-bahnschrift font-normal leading-[18px] sm:leading-[21px] md:leading-[24px] lg:leading-[27px] text-center text-global-text5 w-full ml-[2px]">
+                <p className="text-[12px] xs:text-[13px] sm:text-[14px] md:text-[16px] lg:text-[17px] xl:text-[18px] font-bahnschrift font-normal leading-[16px] xs:leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[24px] xl:leading-[26px] text-center text-global-text5 w-full max-w-[800px] px-2">
                   Bienvenue dans votre centre de fitness ultime, conçu pour vous accompagner dans l'atteinte de vos objectifs sportifs. Que vous soyez débutant ou athlète confirmé, nos coachs experts vous aideront à repousser vos limites.
                 </p>
               </div>
 
               {/* Hero Buttons */}
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-[12px] sm:gap-[16px] md:gap-[20px] lg:gap-[24px] w-full max-w-[600px]">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-[16px] sm:gap-[20px] md:gap-[24px] w-full max-w-[500px] sm:max-w-[600px] px-4">
                 <button 
                   onClick={handleReservationClick}
-                  className="flex justify-center items-center gap-[6px] bg-global-background10 border border-global-text5 rounded-[5px] px-[28px] py-[14px] w-full sm:w-auto hover:text-button-text1 transition-all"
+                  className="flex justify-center items-center gap-[8px] bg-global-background10 border border-global-text5 rounded-[8px] px-[20px] sm:px-[24px] md:px-[28px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px] hover:bg-global-text5 hover:text-global-background10 transition-all duration-300"
                 >
-                  <span className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-global-text5">
+                  <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal text-current">
                     Réservez
                   </span>
                   <img 
                     src="/images/img_basil_arrow_up_outline.svg" 
                     alt="Arrow" 
-                    className="w-[20px] h-[20px] self-center"
+                    className="w-[16px] sm:w-[18px] md:w-[20px] h-[16px] sm:h-[18px] md:h-[20px]"
                   />
                 </button>
                 
-                <button className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] border border-[#5dcd62] rounded-[5px] px-[28px] py-[14px] w-full sm:w-auto hover:opacity-90 transition-opacity">
+                <button className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] border border-[#5dcd62] rounded-[8px] px-[20px] sm:px-[24px] md:px-[28px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px] hover:opacity-90 transition-opacity duration-300">
                   Contact
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Service Cards - Positioned absolutely */}
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full max-w-[1200px] px-4 sm:px-8 z-20">
-            <div className="flex flex-col lg:flex-row gap-[20px] sm:gap-[24px] md:gap-[30px] lg:gap-[34px] w-full">
+          {/* Service Cards - Desktop only absolute positioning */}
+          <div className="hidden lg:block absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full max-w-[1200px] px-4 sm:px-6 md:px-8 z-20">
+            <div className="flex flex-row gap-[30px] w-full">
               {/* Excellence Card */}
               <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
                 <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[8px]">
@@ -229,58 +227,121 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
+        {/* Service Cards - Mobile/Tablet Section */}
+        <div className="block lg:hidden w-full mt-[40px] sm:mt-[60px] md:mt-[80px] px-4 sm:px-6 md:px-8">
+          <div className="w-full max-w-[1200px] mx-auto">
+            <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] w-full">
+              {/* Excellence Card */}
+              <div className="flex flex-col justify-start items-start w-full bg-global-background8 rounded-[8px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] p-[8px] sm:p-[10px]">
+                  <img 
+                    src="/images/img_game_icons_sport_medal.svg" 
+                    alt="Sport medal" 
+                    className="w-[28px] sm:w-[32px] md:w-[36px] h-[28px] sm:h-[32px] md:h-[36px]"
+                  />
+                </div>
+                <h3 className="text-[16px] sm:text-[17px] md:text-[18px] font-bahnschrift font-semibold leading-[20px] sm:leading-[21px] md:leading-[22px] text-center text-global-text1 mt-[16px] sm:mt-[18px] md:mt-[20px]">
+                  Excellence & Tradition Sportive
+                </h3>
+                <p className="text-[13px] sm:text-[14px] md:text-[15px] font-bahnschrift font-light leading-[17px] sm:leading-[18px] md:leading-[19px] text-center text-global-text1 mt-[10px] sm:mt-[12px] w-full">
+                  Nous combinons les méthodes d'entraînement modernes avec l'énergie et la passion pour vous offrir une expérience unique.
+                </p>
+              </div>
+
+              {/* Community Card */}
+              <div className="flex flex-col justify-start items-start w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-global-background8 rounded-[8px] p-[8px] sm:p-[10px]">
+                  <img 
+                    src="/images/img_fa_solid_users.png" 
+                    alt="Users" 
+                    className="w-full h-[24px] sm:h-[26px] md:h-[30px]"
+                  />
+                </div>
+                <h3 className="text-[16px] sm:text-[17px] md:text-[18px] font-bahnschrift font-semibold leading-[20px] sm:leading-[21px] md:leading-[22px] text-center text-global-text5 mt-[16px] sm:mt-[18px] md:mt-[20px]">
+                  Communauté & Solidarité
+                </h3>
+                <p className="text-[13px] sm:text-[14px] md:text-[15px] font-bahnschrift font-light leading-[17px] sm:leading-[18px] md:leading-[19px] text-center text-global-text5 mt-[10px] sm:mt-[12px] w-full">
+                  Plus qu'une salle de sport, nous sommes une famille ! Chez nous, l'entraide et la bonne humeur sont aussi importantes que la performance.
+                </p>
+              </div>
+
+              {/* Accessibility Card */}
+              <div className="flex flex-col justify-start items-start w-full bg-global-background8 rounded-[8px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] p-[8px] sm:p-[10px]">
+                  <img 
+                    src="/images/img_material_symbol.svg" 
+                    alt="Material symbol" 
+                    className="w-[28px] sm:w-[32px] md:w-[36px] h-[28px] sm:h-[32px] md:h-[36px]"
+                  />
+                </div>
+                <h3 className="text-[16px] sm:text-[17px] md:text-[18px] font-bahnschrift font-semibold leading-[20px] sm:leading-[21px] md:leading-[22px] text-center text-global-text1 mt-[16px] sm:mt-[18px] md:mt-[20px]">
+                  Accessibilité & Bien-être pour Tous
+                </h3>
+                <p className="text-[13px] sm:text-[14px] md:text-[15px] font-bahnschrift font-light leading-[17px] sm:leading-[18px] md:leading-[19px] text-center text-global-text1 mt-[10px] sm:mt-[12px] w-full">
+                  Nous croyons que le fitness doit être accessible à tous, quel que soit le niveau ou le budget. Nos tarifs adaptés et nos programmes variés permettent à chacun de progresser à son rythme.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* About Section */}
-        <div className="w-full bg-global-background4 mt-[120px] sm:mt-[140px] md:mt-[160px] lg:mt-[180px]">
-          <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row justify-between items-center py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px] gap-[40px] lg:gap-0">
+        <div className="w-full bg-global-background4 mt-[60px] sm:mt-[80px] md:mt-[100px] lg:mt-[180px]">
+          <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
+            <div className="flex flex-col lg:flex-row justify-between items-center py-[40px] sm:py-[50px] md:py-[60px] lg:py-[80px] gap-[32px] sm:gap-[40px] lg:gap-[60px]">
               {/* Left Image Section */}
-              <div className="relative w-full lg:w-[42%] flex justify-center lg:justify-start">
-                <div className="relative w-[270px] sm:w-[350px] md:w-[440px] lg:w-[580px] h-[320px] sm:h-[410px] md:h-[510px] lg:h-[670px]">
+              <div className="relative w-full lg:w-[45%] flex justify-center lg:justify-start mb-8 lg:mb-0">
+                <div className="relative w-[280px] sm:w-[320px] md:w-[380px] lg:w-[480px] xl:w-[580px] h-[300px] sm:h-[350px] md:h-[420px] lg:h-[530px] xl:h-[670px]">
                   <img 
                     src="/images/img_02_1.png" 
                     alt="Fitness training" 
-                    className="absolute top-[10px] sm:top-[15px] md:top-[18px] lg:top-[20px] left-[32px] sm:left-[40px] md:left-[50px] lg:left-[62px] w-[240px] sm:w-[310px] md:w-[390px] lg:w-[518px] h-[300px] sm:h-[380px] md:h-[470px] lg:h-[630px] object-cover"
+                    className="absolute top-[8px] sm:top-[12px] md:top-[15px] lg:top-[18px] xl:top-[20px] left-[20px] sm:left-[25px] md:left-[30px] lg:left-[40px] xl:left-[62px] w-[240px] sm:w-[270px] md:w-[320px] lg:w-[400px] xl:w-[518px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[480px] xl:h-[630px] object-cover rounded-[8px] shadow-lg"
                   />
                   <img 
                     src="/images/img_cercle.png" 
                     alt="Decorative circle" 
-                    className="absolute top-0 left-0 w-[40px] sm:w-[54px] md:w-[67px] lg:w-[80px] h-[49px] sm:h-[66px] md:h-[82px] lg:h-[98px] object-contain"
+                    className="absolute top-0 left-0 w-[32px] sm:w-[40px] md:w-[50px] lg:w-[65px] xl:w-[80px] h-[38px] sm:h-[48px] md:h-[60px] lg:h-[78px] xl:h-[98px] object-contain"
                   />
                 </div>
               </div>
 
               {/* Right Content Section */}
-              <div className="flex flex-col justify-start items-start w-full lg:w-[50%] self-end">
-                <div className="flex flex-row justify-start items-center w-full mb-[8px] sm:mb-[10px] md:mb-[12px] lg:mb-[14px] px-[3px] sm:px-[4px] md:px-[5px] lg:px-[6px]">
-                  <span className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1">
+              <div className="flex flex-col justify-start items-start w-full lg:w-[50%] text-center lg:text-left">
+                <div className="flex flex-row justify-center lg:justify-start items-center w-full mb-[12px] sm:mb-[16px] md:mb-[18px] lg:mb-[20px]">
+                  <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal uppercase text-global-text1">
                     A PROPOS DE NOUS
                   </span>
-                  <div className="h-[1px] w-[111px] sm:w-[155px] md:w-[189px] lg:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px] mb-[4px] sm:mb-[6px] md:mb-[8px] lg:mb-[10px] self-end"></div>
+                  <div className="h-[1px] w-[80px] sm:w-[100px] md:w-[140px] lg:w-[180px] xl:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[8px] sm:ml-[12px] md:ml-[16px] lg:ml-[20px] mb-[2px] self-end"></div>
                 </div>
 
-                <h2 className="text-[30px] sm:text-[36px] md:text-[43px] lg:text-[50px] font-bahnschrift font-bold leading-[37px] sm:leading-[44px] md:leading-[52px] lg:leading-[61px] text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent mt-[7px] sm:mt-[9px] md:mt-[12px] lg:mt-[14px]">
+                <h2 className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] xl:text-[50px] font-bahnschrift font-bold leading-[28px] sm:leading-[34px] md:leading-[42px] lg:leading-[52px] xl:leading-[61px] text-center lg:text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent mt-[8px] sm:mt-[12px] md:mt-[16px] lg:mt-[20px] w-full">
                   TAGGATYARAM FITNESS
                 </h2>
 
-                <p className="text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify lowercase text-global-text1 w-[92%] mt-[6px] sm:mt-[7px] md:mt-[8px] lg:mt-[10px] ml-[2px] sm:ml-[3px] md:ml-[3px] lg:ml-[4px]">
-                  Depuis notre création, nous nous engageons à offrir un environnement motivant et inclusif pour tous les passionnés de fitness, où chaque pas vers vos objectifs est célébré et chaque défi devient une occasion de grandir. Notre équipe de coachs certifiés est là pour vous guider avec expertise, vous challenger avec bienveillance et vous faire progresser durablement, quel que soit votre niveau, que vous soyez débutant cherchant les bases solides ou athlète confirmé visant des performances optimisées. Ensemble, nous bâtissons une communauté dynamique et solidaire, où l'énergie collective et l'esprit sénégalais de persévérance et de convivialité nourrissent votre motivation au quotidien.
+                <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full mt-[16px] sm:mt-[20px] md:mt-[24px] lg:mt-[28px] px-2 lg:px-0">
+                  Depuis notre création, nous nous engageons à offrir un environnement motivant et inclusif pour tous les passionnés de fitness, où chaque pas vers vos objectifs est célébré et chaque défi devient une occasion de grandir. Notre équipe de coachs certifiés est là pour vous guider avec expertise, vous challenger avec bienveillance et vous faire progresser durablement, quel que soit votre niveau, que vous soyez débutant cherchant les bases solides ou athlète confirmé visant des performances optimisées.
                 </p>
 
-                <div className="flex flex-row justify-center items-start w-[94%] bg-[linear-gradient(90deg,#5dcd6219_0%,_#21ac2819_100%)] mt-[16px] sm:mt-[18px] md:mt-[20px] lg:mt-[22px] ml-[2px] sm:ml-[3px] md:ml-[3px] lg:ml-[4px]">
-                  <div className="w-[3px] sm:w-[3px] md:w-[4px] lg:w-[4px] h-[75px] sm:h-[85px] md:h-[90px] lg:h-[100px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] self-center"></div>
-                  <p className="text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify lowercase text-global-text1 w-[96%] mt-[6px] sm:mt-[7px] md:mt-[8px] lg:mt-[10px] ml-[6px] sm:ml-[7px] md:ml-[8px] lg:ml-[10px]">
+                <div className="flex flex-row justify-start items-start w-full bg-[linear-gradient(90deg,#5dcd6219_0%,_#21ac2819_100%)] mt-[24px] sm:mt-[28px] md:mt-[32px] lg:mt-[36px] p-[16px] sm:p-[18px] md:p-[20px] lg:p-[24px] rounded-[8px]">
+                  <div className="w-[4px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[90px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] flex-shrink-0 mt-[4px]"></div>
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 ml-[12px] sm:ml-[16px] md:ml-[18px] lg:ml-[20px]">
                     Rejoignez-nous pour transformer votre entraînement en une expérience inspirante, adaptée à vos besoins, votre rythme et vos rêves, et découvrez comment chaque séance peut devenir une étape vers une meilleure version de vous-même.
                   </p>
                 </div>
 
-                <button className="flex justify-center items-center gap-[8px] text-[16px] font-bahnschrift font-normal leading-[20px] text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[28px] py-[14px] mt-[32px] ml-[4px] hover:opacity-90 transition-opacity">
-                  Réservez maintenant
-                  <img 
-                    src="/images/img_solararrowuplinear.svg" 
-                    alt="Arrow" 
-                    className="w-[20px] h-[20px]"
-                  />
-                </button>
+                <div className="flex justify-center lg:justify-start w-full mt-[32px] sm:mt-[36px] md:mt-[40px] lg:mt-[44px]">
+                  <button 
+                    onClick={handleReservationClick}
+                    className="flex justify-center items-center gap-[8px] text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] px-[24px] sm:px-[28px] md:px-[32px] py-[12px] sm:py-[14px] md:py-[16px] hover:opacity-90 transition-opacity duration-300 w-full sm:w-auto max-w-[280px]"
+                  >
+                    Réservez maintenant
+                    <img 
+                      src="/images/img_solararrowuplinear.svg" 
+                      alt="Arrow" 
+                      className="w-[16px] sm:w-[18px] md:w-[20px] h-[16px] sm:h-[18px] md:h-[20px]"
+                    />
+                  </button>
+                </div>
 
                 <img 
                   src="/images/img_cercle.png" 
@@ -293,33 +354,33 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Services Section */}
-        <div className="w-full mt-[72px] sm:mt-[84px] md:mt-[90px] lg:mt-[96px]">
-          <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-[15px] sm:gap-[17px] md:gap-[18px] lg:gap-[20px] justify-start items-center">
+        <div className="w-full mt-[100px] sm:mt-[120px] md:mt-[140px] lg:mt-[96px]">
+          <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
+            <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[32px] justify-start items-center">
               {/* Services Header */}
-              <div className="flex flex-col lg:flex-row justify-start items-center w-full px-[42px] sm:px-[58px] md:px-[71px] lg:px-[84px]">
-                <div className="flex flex-col gap-[15px] sm:gap-[17px] md:gap-[18px] lg:gap-[20px] justify-start items-center w-full lg:w-[46%]">
-                  <div className="flex flex-col gap-[8px] sm:gap-[9px] md:gap-[9px] lg:gap-[10px] justify-start items-center w-full">
-                    <div className="flex flex-row justify-start items-center w-full px-[1px] sm:px-[1px] md:px-[1px] lg:px-[2px]">
-                      <span className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify text-global-text1">
+              <div className="flex flex-col lg:flex-row justify-between items-center w-full gap-[24px] lg:gap-[40px]">
+                <div className="flex flex-col gap-[16px] sm:gap-[20px] md:gap-[24px] lg:gap-[28px] justify-start items-center lg:items-start w-full lg:w-[60%] text-center lg:text-left">
+                  <div className="flex flex-col gap-[12px] sm:gap-[14px] md:gap-[16px] lg:gap-[18px] justify-start items-center lg:items-start w-full">
+                    <div className="flex flex-row justify-center lg:justify-start items-center w-full">
+                      <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal uppercase text-global-text1">
                         NOS SERVICES
                       </span>
-                      <div className="h-[1px] w-[111px] sm:w-[155px] md:w-[189px] lg:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[8px] sm:ml-[11px] md:ml-[14px] lg:lg-[16px] mb-[4px] sm:mb-[6px] md:mb-[7px] lg:mb-[8px] self-end"></div>
+                      <div className="h-[1px] w-[80px] sm:w-[100px] md:w-[140px] lg:w-[180px] xl:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[8px] sm:ml-[12px] md:ml-[16px] lg:ml-[20px] mb-[2px] self-end"></div>
                     </div>
-                    <h2 className="text-[30px] sm:text-[36px] md:text-[43px] lg:text-[50px] font-bahnschrift font-bold leading-[37px] sm:leading-[44px] md:leading-[52px] lg:leading-[61px] text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
+                    <h2 className="text-[20px] sm:text-[26px] md:text-[32px] lg:text-[40px] xl:text-[50px] font-bahnschrift font-bold leading-[24px] sm:leading-[32px] md:leading-[38px] lg:leading-[48px] xl:leading-[61px] text-center lg:text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent w-full">
                       DÉCOUVREZ NOS SERVICES
                     </h2>
                   </div>
-                  <p className="text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify lowercase text-global-text1 w-full px-[1px] sm:px-[1px] md:px-[1px] lg:px-[2px]">
-                    Nous proposons une variété de services pour répondre à tous vos besoins fitness et bien-être, en adaptant chaque offre à votre style de vie et à vos objectifs personnels afin de vous aider à progresser durablement: coaching personnalisé, programmes d'entraînement sur mesure, séances collectives dynamiques,
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full max-w-[600px] lg:max-w-none px-2 lg:px-0">
+                    Nous proposons une variété de services pour répondre à tous vos besoins fitness et bien-être, en adaptant chaque offre à votre style de vie et à vos objectifs personnels afin de vous aider à progresser durablement: coaching personnalisé, programmes d'entraînement sur mesure, séances collectives dynamiques.
                   </p>
                 </div>
 
                 {/* Navigation Arrows */}
-                <div className="flex flex-row justify-end items-center w-full lg:w-auto mt-[20px] lg:mt-0 gap-[44px] sm:gap-[50px] md:gap-[54px] lg:gap-[58px]">
+                <div className="flex flex-row justify-center lg:justify-end items-center w-full lg:w-auto gap-[32px] sm:gap-[40px] md:gap-[48px] lg:gap-[56px]">
                   <button 
                     onClick={prevServiceSlide}
-                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                    className="w-[44px] sm:w-[50px] md:w-[56px] lg:w-[62px] h-[44px] sm:h-[50px] md:h-[56px] lg:h-[62px] bg-global-background3 rounded-[22px] sm:rounded-[25px] md:rounded-[28px] lg:rounded-[30px] p-[8px] sm:p-[10px] md:p-[12px] lg:p-[14px] hover:bg-global-background2 transition-colors duration-300 shadow-md"
                   >
                     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -327,7 +388,7 @@ const HomePage: React.FC = () => {
                   </button>
                   <button 
                     onClick={nextServiceSlide}
-                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                    className="w-[44px] sm:w-[50px] md:w-[56px] lg:w-[62px] h-[44px] sm:h-[50px] md:h-[56px] lg:h-[62px] bg-global-background3 rounded-[22px] sm:rounded-[25px] md:rounded-[28px] lg:rounded-[30px] p-[8px] sm:p-[10px] md:p-[12px] lg:p-[14px] hover:bg-global-background2 transition-colors duration-300 shadow-md"
                   >
                     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -337,8 +398,67 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Services Cards */}
-              <div className="flex flex-col justify-start items-center w-full relative">
-                <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full max-w-[1378px] px-[34px] sm:px-[47px] md:px-[57px] lg:px-[67px] absolute top-[160px] sm:top-[200px] md:top-[240px] lg:top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
+              <div className="flex flex-col justify-start items-center w-full lg:relative">
+                {/* Mobile/Tablet Layout - Normal Flow */}
+                <div className="flex flex-col gap-[24px] sm:gap-[32px] w-full max-w-[1378px] px-4 sm:px-6 md:px-8 mt-[40px] sm:mt-[60px] md:mt-[80px] lg:hidden">
+                  {services.slice(currentServiceSlide * 2, currentServiceSlide * 2 + 2).map((service) => (
+                    <div key={service.id} className="flex flex-col gap-[14px] sm:gap-[16px] justify-start items-center w-full">
+                      <div className="flex flex-row gap-[3px] sm:gap-[4px] justify-center items-center w-full">
+                        <button className="w-[50px] sm:w-[58px] h-[50px] sm:h-[58px] bg-global-background2 rounded-[25px] sm:rounded-[29px] p-[8px] sm:p-[9px]">
+                          <img 
+                            src={service.icon} 
+                            alt={service.title} 
+                            className="w-full h-full object-contain"
+                          />
+                        </button>
+                        <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
+                      </div>
+                      <div className="flex flex-col justify-start items-start w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[20px] sm:p-[24px]">
+                        <img 
+                          src={service.image} 
+                          alt={service.title} 
+                          className="w-full h-[180px] sm:h-[200px] object-cover rounded-[5px]"
+                        />
+                        <h3 className="text-[16px] sm:text-[18px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] text-center uppercase text-global-text1 mt-[20px] sm:mt-[24px] w-full">
+                          {service.title}
+                        </h3>
+                        <p className="text-[14px] sm:text-[16px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] text-center text-global-text1 w-full mt-[6px] sm:mt-[8px] mb-[15px] sm:mb-[20px]">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {/* Coaching Privé Card - Mobile/Tablet */}
+                  <div className="flex flex-col gap-[14px] sm:gap-[16px] justify-start items-center w-full">
+                    <div className="flex flex-row gap-[3px] sm:gap-[4px] justify-center items-center w-full">
+                      <button className="w-[50px] sm:w-[58px] h-[50px] sm:h-[58px] bg-global-background2 rounded-[25px] sm:rounded-[29px] p-[8px] sm:p-[9px]">
+                        <img 
+                          src="/images/img_icon_park_solid_sport.png" 
+                          alt="Private coaching" 
+                          className="w-full h-full object-contain"
+                        />
+                      </button>
+                      <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
+                    </div>
+                    <div className="flex flex-col justify-start items-center w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[20px] sm:p-[24px]">
+                      <img 
+                        src="/images/img_rectangle_24_1.png" 
+                        alt="Private coaching session" 
+                        className="w-full h-[180px] sm:h-[200px] object-cover rounded-[5px]"
+                      />
+                      <h3 className="text-[16px] sm:text-[18px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] text-center uppercase text-global-text1 mt-[20px] sm:mt-[24px] w-full">
+                        COACHING PRIVÉ
+                      </h3>
+                      <p className="text-[14px] sm:text-[16px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] text-center text-global-text1 w-full mt-[6px] sm:mt-[8px] mb-[15px] sm:mb-[20px]">
+                        Un programme 100% personnalisé avec un expert pour maximiser vos résultats.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Desktop Layout - Absolute Positioning */}
+                <div className="hidden lg:flex lg:flex-row gap-[50px] w-full max-w-[1378px] px-[67px] absolute top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
                   {services.slice(currentServiceSlide * 2, currentServiceSlide * 2 + 2).map((service) => (
                     <div key={service.id} className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
                       <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
@@ -428,27 +548,27 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Testimonials Section */}
-        <div className="w-full mt-[72px] sm:mt-[84px] md:mt-[90px] lg:mt-[96px] px-[41px] sm:px-[57px] md:px-[69px] lg:px-[82px]">
+        <div className="w-full mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[96px] px-4 sm:px-6 md:px-8 lg:px-8">
           <div className="w-full max-w-[1376px] mx-auto">
             <div className="flex flex-col justify-start items-start w-full">
-              <div className="flex flex-col lg:flex-row justify-between items-center w-full ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
-                <div className="flex flex-col gap-[8px] sm:gap-[9px] md:gap-[9px] lg:gap-[10px] justify-start items-start w-full lg:w-auto">
-                  <div className="flex flex-row justify-start items-center w-full px-[3px] sm:px-[4px] md:px-[5px] lg:px-[6px]">
-                    <span className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify uppercase text-global-text1">
+              <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start w-full gap-[20px] lg:gap-[40px]">
+                <div className="flex flex-col gap-[12px] sm:gap-[14px] md:gap-[16px] lg:gap-[18px] justify-start items-center lg:items-start w-full lg:w-auto text-center lg:text-left">
+                  <div className="flex flex-row justify-center lg:justify-start items-center w-full">
+                    <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal uppercase text-global-text1">
                       TÉMOIGNAGE
                     </span>
-                    <div className="h-[1px] w-[111px] sm:w-[155px] md:w-[189px] lg:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[9px] sm:ml-[12px] md:ml-[15px] lg:ml-[18px] mb-[4px] sm:mb-[6px] md:mb-[7px] lg:mb-[8px] self-end"></div>
+                    <div className="h-[1px] w-[80px] sm:w-[100px] md:w-[140px] lg:w-[180px] xl:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[8px] sm:ml-[12px] md:ml-[16px] lg:ml-[20px] mb-[2px] self-end"></div>
                   </div>
-                  <h2 className="text-[30px] sm:text-[36px] md:text-[43px] lg:text-[50px] font-bahnschrift font-bold leading-[37px] sm:leading-[44px] md:leading-[52px] lg:leading-[61px] text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
+                  <h2 className="text-[20px] sm:text-[26px] md:text-[32px] lg:text-[40px] xl:text-[50px] font-bahnschrift font-bold leading-[24px] sm:leading-[32px] md:leading-[38px] lg:leading-[48px] xl:leading-[61px] text-center lg:text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent w-full">
                     TÉMOIGNAGES CLIENTS
                   </h2>
                 </div>
 
                 {/* Navigation Arrows */}
-                <div className="flex flex-row justify-end items-center gap-[44px] sm:gap-[50px] md:gap-[54px] lg:gap-[58px] mt-[20px] lg:mt-0 self-end">
+                <div className="flex flex-row justify-center lg:justify-end items-center gap-[32px] sm:gap-[40px] md:gap-[48px] lg:gap-[56px] w-full lg:w-auto">
                   <button 
                     onClick={prevTestimonialSlide}
-                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                    className="w-[44px] sm:w-[50px] md:w-[56px] lg:w-[62px] h-[44px] sm:h-[50px] md:h-[56px] lg:h-[62px] bg-global-background3 rounded-[22px] sm:rounded-[25px] md:rounded-[28px] lg:rounded-[30px] p-[8px] sm:p-[10px] md:p-[12px] lg:p-[14px] hover:bg-global-background2 transition-colors duration-300 shadow-md"
                   >
                     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -456,7 +576,7 @@ const HomePage: React.FC = () => {
                   </button>
                   <button 
                     onClick={nextTestimonialSlide}
-                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                    className="w-[44px] sm:w-[50px] md:w-[56px] lg:w-[62px] h-[44px] sm:h-[50px] md:h-[56px] lg:h-[62px] bg-global-background3 rounded-[22px] sm:rounded-[25px] md:rounded-[28px] lg:rounded-[30px] p-[8px] sm:p-[10px] md:p-[12px] lg:p-[14px] hover:bg-global-background2 transition-colors duration-300 shadow-md"
                   >
                     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -465,19 +585,19 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] font-bahnschrift font-normal leading-[13px] sm:leading-[14px] md:leading-[15px] lg:leading-[16px] text-left text-global-text1 w-[42%] mt-[10px] sm:mt-[12px] md:mt-[13px] lg:mt-[14px] ml-[7px] sm:ml-[10px] md:ml-[12px] lg:ml-[14px]">
+              <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-left text-global-text1 w-full lg:w-[60%] max-w-[600px] lg:max-w-none mt-[16px] sm:mt-[20px] md:mt-[24px] lg:mt-[28px] px-2 lg:px-0">
                 Nos membres parlent mieux que nous ! Découvrez leurs parcours inspirants et laissez-vous motiver par leurs transformations.
               </p>
 
               {/* Testimonial Cards */}
-              <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full mt-[40px] sm:mt-[50px] md:mt-[55px] lg:mt-[60px] px-[20px] sm:px-[30px] md:px-[40px] lg:px-[50px]">
+              <div className="flex flex-col lg:flex-row gap-[24px] sm:gap-[32px] md:gap-[40px] lg:gap-[48px] w-full mt-[32px] sm:mt-[40px] md:mt-[48px] lg:mt-[56px] px-2 sm:px-4 md:px-6 lg:px-8">
                 {testimonials.slice(currentTestimonialSlide * 2, currentTestimonialSlide * 2 + 2).map((testimonial) => (
-                  <div key={testimonial.id} className="flex flex-col w-full lg:w-1/2 relative">
+                  <div key={testimonial.id} className="flex flex-col w-full lg:w-1/2 relative bg-white rounded-[12px] p-[20px] sm:p-[24px] md:p-[28px] lg:p-[32px] shadow-lg">
                     {/* Profile Section */}
-                    <div className="flex flex-row items-start gap-4 mb-6">
+                    <div className="flex flex-row items-start gap-[12px] sm:gap-[16px] mb-[20px] sm:mb-[24px]">
                       {/* Profile Image with Green Border */}
                       <div className="relative flex-shrink-0">
-                        <div className="w-16 h-16 rounded-full border-4 border-green-500 overflow-hidden">
+                        <div className="w-[48px] sm:w-[56px] md:w-[64px] h-[48px] sm:h-[56px] md:h-[64px] rounded-full border-[3px] sm:border-[4px] border-green-500 overflow-hidden">
                           <img 
                             src={testimonial.avatar} 
                             alt={testimonial.name} 
@@ -487,18 +607,18 @@ const HomePage: React.FC = () => {
                       </div>
                       
                       {/* Name and Role */}
-                      <div className="flex flex-col">
-                        <h3 className="text-xl font-bold text-black mb-1">
+                      <div className="flex flex-col flex-1">
+                        <h3 className="text-[16px] sm:text-[18px] md:text-[20px] font-bold text-black mb-[4px] sm:mb-[6px]">
                           {testimonial.name}
                         </h3>
-                        <p className="text-gray-500 text-sm mb-2">
+                        <p className="text-gray-500 text-[12px] sm:text-[13px] md:text-[14px] mb-[8px] sm:mb-[10px]">
                           Membres du Club Fitness
                         </p>
                         
                         {/* Star Rating */}
-                        <div className="flex gap-1">
+                        <div className="flex gap-[2px] sm:gap-[4px]">
                           {[...Array(testimonial.rating)].map((_, index) => (
-                            <svg key={index} className="w-4 h-4 text-green-500 fill-current" viewBox="0 0 20 20">
+                            <svg key={index} className="w-[14px] sm:w-[16px] h-[14px] sm:h-[16px] text-green-500 fill-current" viewBox="0 0 20 20">
                               <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                             </svg>
                           ))}
@@ -506,9 +626,9 @@ const HomePage: React.FC = () => {
                       </div>
                       
                       {/* Quote Icon */}
-                      <div className="ml-auto">
-                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                          <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="ml-auto flex-shrink-0">
+                        <div className="w-[40px] sm:w-[44px] md:w-[48px] h-[40px] sm:h-[44px] md:h-[48px] bg-green-100 rounded-full flex items-center justify-center">
+                          <svg className="w-[20px] sm:w-[22px] md:w-[24px] h-[20px] sm:h-[22px] md:h-[24px] text-green-500" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
                           </svg>
                         </div>
@@ -516,7 +636,7 @@ const HomePage: React.FC = () => {
                     </div>
                     
                     {/* Testimonial Text */}
-                    <p className="text-gray-700 text-base leading-relaxed mt-4">
+                    <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-gray-700 text-justify mt-[16px] sm:mt-[20px]">
                       {testimonial.comment}
                     </p>
                   </div>
@@ -529,66 +649,66 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Contact Section */}
-        <div className="w-full bg-global-background5 border-b border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] mt-[90px] sm:mt-[105px] md:mt-[113px] lg:mt-[120px] py-[38px] sm:px-[43px] md:px-[47px] lg:px-[50px]">
+        <div className="w-full bg-global-background5 border-b border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[96px] py-[32px] sm:py-[40px] md:py-[48px] lg:py-[56px] px-4 sm:px-6 md:px-8 lg:px-8">
           <div className="w-full max-w-[1378px] mx-auto">
-            <div className="flex flex-col gap-[38px] sm:gap-[43px] md:gap-[47px] lg:gap-[50px] justify-start items-center w-full mt-[2px] sm:mt-[3px] md:mt-[3px] lg:mt-[4px]">
+            <div className="flex flex-col gap-[32px] sm:gap-[40px] md:gap-[48px] lg:gap-[56px] justify-start items-center w-full">
               {/* Contact Header */}
-              <div className="flex flex-col gap-[15px] sm:gap-[17px] md:gap-[18px] lg:gap-[20px] justify-start items-center w-full">
-                <div className="flex flex-col gap-[9px] sm:gap-[10px] md:gap-[11px] lg:gap-[12px] justify-start items-start w-full">
-                  <div className="flex flex-row justify-start items-center w-full px-[3px] sm:px-[4px] md:px-[5px] lg:px-[6px]">
-                    <span className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1">
+              <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[32px] justify-start items-center w-full text-center lg:text-left">
+                <div className="flex flex-col gap-[12px] sm:gap-[14px] md:gap-[16px] lg:gap-[18px] justify-start items-center lg:items-start w-full">
+                  <div className="flex flex-row justify-center lg:justify-start items-center w-full">
+                    <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal uppercase text-global-text1">
                       LAISSEZ NOUS UN MESSAGE
                     </span>
-                    <div className="h-[1px] w-[111px] sm:w-[155px] md:w-[189px] lg:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[4px] sm:ml-[6px] md:ml-[7px] lg:ml-[8px]"></div>
+                    <div className="h-[1px] w-[80px] sm:w-[100px] md:w-[140px] lg:w-[180px] xl:w-[222px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] ml-[8px] sm:ml-[12px] md:ml-[16px] lg:ml-[20px] mb-[2px] self-end"></div>
                   </div>
-                  <h2 className="text-[30px] sm:text-[36px] md:text-[43px] lg:text-[50px] font-bahnschrift font-bold leading-[37px] sm:leading-[44px] md:leading-[52px] lg:leading-[61px] text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
+                  <h2 className="text-[20px] sm:text-[26px] md:text-[32px] lg:text-[40px] xl:text-[50px] font-bahnschrift font-bold leading-[24px] sm:leading-[32px] md:leading-[38px] lg:leading-[48px] xl:leading-[61px] text-center lg:text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent w-full">
                     NOUS CONTACTEZ
                   </h2>
-                  <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify lowercase text-global-text1 w-[44%] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full lg:w-[60%] max-w-[600px] lg:max-w-none px-2 lg:px-0">
                     Notre équipe vous attend pour répondre à toutes vos questions et vous guider vers la formule qui vous correspond.
                   </p>
                 </div>
 
                 {/* Contact Info */}
-                <div className="flex flex-col lg:flex-row justify-start items-center w-full gap-[20px] lg:gap-0">
+                <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center w-full gap-[24px] sm:gap-[32px] md:gap-[40px] lg:gap-[48px]">
                   {/* Phone */}
-                  <div className="flex flex-row justify-start items-center w-full lg:w-[30%]">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
+                  <div className="flex flex-row justify-center lg:justify-start items-center w-full lg:w-auto">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[8px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] shadow-md">
                       <img 
                         src="/images/img_mingcute_phone_call_fill.png" 
                         alt="Phone" 
-                        className="w-[32px] sm:w-[36px] md:w-[40px] lg:w-[44px] h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px]"
+                        className="w-[28px] sm:w-[32px] md:w-[36px] lg:w-[40px] h-[28px] sm:h-[32px] md:h-[36px] lg:h-[40px]"
                       />
                     </div>
-                    <div className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-kanit font-light leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text1 w-[40%] ml-[12px] sm:ml-[14px] md:ml-[16px] lg:ml-[18px]">
+                    <div className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-kanit font-light leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[24px] text-center lg:text-left text-global-text1 ml-[12px] sm:ml-[16px] md:ml-[18px] lg:ml-[20px]">
                       +221 6666666<br />+221 6666666
                     </div>
                   </div>
 
                   {/* Email */}
-                  <div className="flex flex-row gap-[20px] sm:gap-[22px] md:gap-[24px] lg:gap-[26px] justify-center items-center w-full lg:w-auto px-[42px] sm:px-[48px] md:px-[52px] lg:px-[56px]">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
+                  <div className="flex flex-row justify-center items-center w-full lg:w-auto gap-[12px] sm:gap-[16px] md:gap-[18px] lg:gap-[20px]">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[8px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] shadow-md">
                       <img 
                         src="/images/img_ic_baseline_email.png" 
                         alt="Email" 
-                        className="w-[32px] sm:w-[36px] md:w-[40px] lg:w-[44px] h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px]"
+                        className="w-[28px] sm:w-[32px] md:w-[36px] lg:w-[40px] h-[28px] sm:h-[32px] md:h-[36px] lg:h-[40px]"
                       />
                     </div>
-                    <span className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-kanit font-light leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text1">
+                    <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-kanit font-light leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[24px] text-center lg:text-left text-global-text1">
                       info@email.com
                     </span>
                   </div>
 
                   {/* Location */}
-                  <div className="flex flex-row justify-end items-center w-full lg:w-[30%]">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
+                  <div className="flex flex-row justify-center lg:justify-end items-center w-full lg:w-auto">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[8px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] shadow-md">
                       <img 
                         src="/images/img_mdi_google_maps.png" 
                         alt="Location" 
-                        className="w-[32px] sm:w-[36px] md:w-[40px] lg:w-[44px] h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px]"
+                        className="w-[28px] sm:w-[32px] md:w-[36px] lg:w-[40px] h-[28px] sm:h-[32px] md:h-[36px] lg:h-[40px]"
                       />
                     </div>
-                    <div className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-kanit font-light leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text1 w-[40%] self-end mb-[6px] sm:mb-[7px] md:mb-[8px] lg:mb-[9px] ml-[12px] sm:ml-[14px] md:ml-[16px] lg:ml-[18px]">
+                    <div className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-kanit font-light leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[24px] text-center lg:text-left text-global-text1 ml-[12px] sm:ml-[16px] md:ml-[18px] lg:ml-[20px]">
                       Sénégal<br />rue 12B Dakar
                     </div>
                   </div>
@@ -596,80 +716,82 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Contact Form */}
-              <div className="flex flex-row justify-start items-center w-full max-w-[1378px] px-[4px] sm:px-[6px] md:px-[7px] lg:px-[8px]">
-                <div className="flex flex-col justify-start items-start w-full">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-[26px] sm:gap-[29px] md:gap-[32px] lg:gap-[34px] w-full">
+              <div className="flex flex-col justify-start items-center w-full">
+                <div className="flex flex-col justify-start items-start w-full max-w-[1200px]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[32px] w-full">
                     {/* Name Field */}
-                    <div className="flex flex-col gap-[2px] sm:gap-[3px] md:gap-[3px] lg:gap-[4px] justify-start items-start w-full">
-                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                    <div className="flex flex-col gap-[8px] sm:gap-[10px] justify-start items-start w-full">
+                      <label className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal text-global-text1">
                         Nom complet
                       </label>
                       <input 
                         type="text"
                         placeholder="Entrez votre nom"
-                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
 
                     {/* Phone Field */}
-                    <div className="flex flex-col gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-start items-start w-full">
-                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                    <div className="flex flex-col gap-[8px] sm:gap-[10px] justify-start items-start w-full">
+                      <label className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal text-global-text1">
                         Numéro de telephone
                       </label>
                       <input 
                         type="tel"
                         placeholder="Entrez votre numéro de telephone"
-                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
 
                     {/* Email Field */}
-                    <div className="flex flex-col gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-start items-start w-full">
-                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                    <div className="flex flex-col gap-[8px] sm:gap-[10px] justify-start items-start w-full">
+                      <label className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal text-global-text1">
                         Adresse mail
                       </label>
                       <input 
                         type="email"
                         placeholder="Entrez votre Adresse mail"
-                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
 
                     {/* Subject Field */}
-                    <div className="flex flex-col gap-[2px] sm:gap-[3px] md:gap-[3px] lg:gap-[4px] justify-start items-start w-full">
-                      <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 ml-[1px] sm:ml-[2px] md:ml-[2px] lg:ml-[3px]">
+                    <div className="flex flex-col gap-[8px] sm:gap-[10px] justify-start items-start w-full">
+                      <label className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal text-global-text1">
                         Sujet
                       </label>
                       <input 
                         type="text"
                         placeholder="Entrez le sujet"
-                        className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] px-[12px] sm:px-[14px] md:px-[16px] lg:px-[18px] py-[10px] sm:py-[12px] md:py-[14px] lg:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
                   </div>
 
                   {/* Message Field */}
-                  <label className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text1 mt-[20px] sm:mt-[22px] md:mt-[24px] lg:mt-[26px] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
-                    Message
-                  </label>
-                  <div className="flex flex-row justify-start items-start w-full bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] mt-[2px] sm:mt-[3px] md:mt-[3px] lg:mt-[4px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px]">
-                    <textarea 
-                      placeholder="Entrez votre message"
-                      rows={6}
-                      className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify text-global-text4 w-full border-0 bg-transparent resize-none focus:outline-none"
-                    />
+                  <div className="flex flex-col gap-[8px] sm:gap-[10px] justify-start items-start w-full mt-[24px] sm:mt-[28px] md:mt-[32px]">
+                    <label className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal text-global-text1">
+                      Message
+                    </label>
+                    <div className="flex flex-row justify-start items-start w-full bg-global-background8 rounded-[8px] shadow-md p-[16px] sm:p-[18px] md:p-[20px]">
+                      <textarea 
+                        placeholder="Entrez votre message"
+                        rows={6}
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 w-full border-0 bg-transparent resize-none focus:outline-none placeholder:text-gray-400"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="flex flex-row justify-center w-full mt-[32px] sm:mt-[36px] md:mt-[40px]">
+                    <Button 
+                      variant="primary"
+                      className="text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] px-[24px] sm:px-[32px] md:px-[40px] py-[12px] sm:py-[16px] md:py-[18px] hover:opacity-90 transition-opacity duration-300 shadow-lg w-full sm:w-auto max-w-[280px]"
+                    >
+                      Envoyez votre Message
+                    </Button>
                   </div>
                 </div>
-              </div>
-
-              {/* Submit Button */}
-              <div className="flex flex-row justify-center items-center w-full">
-                <Button 
-                  variant="primary"
-                  className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-left text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[16px] sm:px-[18px] md:px-[20px] lg:px-[22px] py-[12px] sm:py-[14px] md:py-[16px] lg:py-[18px] self-end hover:opacity-90 transition-opacity"
-                >
-                  Envoyez votre Message
-                </Button>
               </div>
             </div>
           </div>
