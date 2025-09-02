@@ -428,12 +428,9 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="relative w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[104px] sm:h-[120px] md:h-[129px] lg:h-[138px]">
                       <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] bg-global-background3 rounded-[29px] sm:rounded-[33px] md:rounded-[36px] lg:rounded-[38px]"></div>
-                      <div className="absolute top-0 left-[10px] sm:left-[11px] md:left-[12px] lg:left-[13px] flex justify-center items-center">
-                        <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
-                          ,
-                        </span>
-                        <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
-                          ,
+                      <div className="absolute h-fit top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] flex justify-center">
+                        <span className="h-fit text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent leading-none mt-[-8px] sm:mt-[-10px] md:mt-[-12px] lg:mt-[-14px]">
+                          ,,
                         </span>
                       </div>
                     </div>
@@ -475,7 +472,7 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="relative w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[104px] sm:h-[120px] md:h-[129px] lg:h-[138px]">
                       <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] bg-global-background3 rounded-[29px] sm:rounded-[33px] md:rounded-[36px] lg:rounded-[38px]"></div>
-                      <div className="absolute top-0 left-[10px] sm:left-[11px] md:left-[12px] lg:left-[13px] flex justify-center items-center">
+                      <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] flex justify-center items-center">
                         <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
                           ,
                         </span>
@@ -659,8 +656,8 @@ const HomePage: React.FC = () => {
                         Depuis notre création, nous nous engageons à offrir un environnement motivant et inclusif pour tous les passionnés de fitness, où chaque pas vers vos objectifs est célébré et chaque défi devient une occasion de grandir. Notre équipe de coachs certifiés est là pour vous guider avec expertise
                       </p>
                     </div>
-                    <div className="flex flex-row justify-center items-center w-[30%] bg-global-background2 rounded-[5px] p-[2px] sm:p-[3px] md:p-[3px] lg:p-[4px] ml-[7px] sm:ml-[10px] md:ml-[12px] lg:ml-[14px]">
-                      <div className="flex flex-row justify-between items-center w-full px-[3px] sm:px-[4px] md:px-[4px] lg:px-[6px]">
+                    <div className="flex flex-row justify-center items-center w-[30%] bg-global-background3 rounded-[6px] py-[8px] px-[16px] ml-[7px] sm:ml-[10px] md:ml-[12px] lg:ml-[14px]">
+                      <div className="flex flex-row justify-between items-center w-full">
                         <img 
                           src="/images/img_ic_baseline_facebook.png" 
                           alt="Facebook" 
@@ -669,12 +666,12 @@ const HomePage: React.FC = () => {
                         <img 
                           src="/images/img_teenyicons_instagram_solid.png" 
                           alt="Instagram" 
-                          className="w-[15px] sm:w-[17px] md:w-[19px] lg:w-[20px] h-[15px] sm:h-[17px] md:h-[19px] lg:h-[20px] ml-[40px] sm:ml-[46px] md:ml-[49px] lg:ml-[53px]"
+                          className="w-[15px] sm:w-[17px] md:w-[19px] lg:w-[20px] h-[15px] sm:h-[17px] md:h-[19px] lg:h-[20px]"
                         />
                         <img 
                           src="/images/img_flowbite_twitter_solid.png" 
                           alt="Twitter" 
-                          className="w-[21px] sm:w-[24px] md:w-[26px] lg:w-[28px] h-[21px] sm:h-[24px] md:h-[26px] lg:h-[28px] ml-[35px] sm:ml-[40px] md:ml-[44px] lg:ml-[47px]"
+                          className="w-[18px] sm:w-[21px] md:w-[22px] lg:w-[24px] h-[18px] sm:h-[21px] md:h-[22px] lg:h-[24px]"
                         />
                       </div>
                     </div>
@@ -739,13 +736,17 @@ const HomePage: React.FC = () => {
                         <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[21px] text-left text-global-text3 w-full">
                           Ne manquez aucune actualité, offre exclusive ou conseil coaching de votre centre de fitness préféré ! En vous abonnant, vous recevrez directement dans votre boîte mail .
                         </p>
-                        <div className="flex flex-row justify-center items-center w-full">
-                          <div className="w-[284px] sm:w-[326px] md:w-[352px] lg:w-[378px] h-[56px] sm:h-[64px] md:h-[69px] lg:h-[74px] bg-global-background3 border border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-l-[5px]"></div>
-                          <div className="flex flex-row justify-center items-end bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-r-[5px] px-[8px] sm:px-[9px] md:px-[9px] lg:px-[10px] py-[8px] sm:px-[9px] md:py-[9px] lg:py-[10px] pt-[8px] sm:pt-[9px] md:pt-[9px] lg:pt-[10px]">
+                        <div className="flex flex-row items-center w-full">
+                          <input 
+                            type="email" 
+                            placeholder="Votre adresse email"
+                            className="w-[220px] sm:w-[250px] md:w-[270px] lg:w-[290px] h-[40px] sm:h-[45px] md:h-[48px] lg:h-[46px] bg-global-background3 border border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-l-[5px] px-[12px] sm:px-[14px] md:px-[15px] lg:px-[16px] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift text-global-text1 placeholder:text-global-text1 placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                          />
+                          <div className="flex flex-row items-center bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-r-[5px] px-[6px] sm:px-[7px] md:px-[8px] lg:px-[9px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px]">
                             <img 
                               src="/images/img_tabler_send.svg" 
                               alt="Send" 
-                              className="w-[33px] sm:w-[38px] md:w-[41px] lg:w-[44px] h-[33px] sm:h-[38px] md:h-[41px] lg:h-[44px] mt-[5px] sm:mt-[5px] md:mt-[6px] lg:mt-[6px]"
+                              className="w-[24px] sm:w-[28px] md:w-[30px] lg:w-[32px] h-[24px] sm:h-[28px] md:h-[30px] lg:h-[32px]"
                             />
                           </div>
                         </div>
