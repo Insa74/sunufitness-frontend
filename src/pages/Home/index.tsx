@@ -400,7 +400,7 @@ const HomePage: React.FC = () => {
               {/* Services Cards */}
               <div className="flex flex-col justify-start items-center w-full lg:relative">
                 {/* Mobile/Tablet Layout - Normal Flow */}
-                <div className="flex flex-col gap-[24px] sm:gap-[32px] w-full max-w-[1378px] px-4 sm:px-6 md:px-8 mt-[40px] sm:mt-[60px] md:mt-[80px] lg:hidden">
+                <div className="flex flex-col gap-[24px] sm:gap-[32px] w-full max-w-[600px] sm:max-w-[700px] md:max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 mt-[40px] sm:mt-[60px] md:mt-[80px] lg:hidden">
                   {services.slice(currentServiceSlide * 2, currentServiceSlide * 2 + 2).map((service) => (
                     <div key={service.id} className="flex flex-col gap-[14px] sm:gap-[16px] justify-start items-center w-full">
                       <div className="flex flex-row gap-[3px] sm:gap-[4px] justify-center items-center w-full">
@@ -413,7 +413,7 @@ const HomePage: React.FC = () => {
                         </button>
                         <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
                       </div>
-                      <div className="flex flex-col justify-start items-start w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[20px] sm:p-[24px]">
+                      <div className="flex flex-col justify-start items-center w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[20px] sm:p-[24px]">
                         <img 
                           src={service.image} 
                           alt={service.title} 
@@ -521,11 +521,11 @@ const HomePage: React.FC = () => {
                   style={{ backgroundImage: "url('/images/img_rectangle_20.png')" }}
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(104deg,#5dcd62e5_0%,_#000000e5_100%)]"></div>
-                  <div className="relative z-10 flex flex-col gap-[20px] sm:gap-[25px] md:gap-[28px] lg:gap-[30px] justify-start items-center w-full h-full px-[30px] sm:px-[35px] md:px-[38px] lg:px-[40px] pt-[170px] sm:pt-[210px] md:pt-[250px] lg:pt-[290px]">
-                    <p className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-comic-sans font-normal leading-[26px] sm:leading-[28px] md:leading-[30px] lg:leading-[32px] text-left text-global-text5 text-center max-w-[900px]">
+                  <div className="relative z-10 flex flex-col gap-[20px] sm:gap-[25px] md:gap-[28px] lg:gap-[30px] justify-center items-center w-full h-full px-[20px] sm:px-[30px] md:px-[35px] lg:px-[40px]">
+                    <p className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-comic-sans font-normal leading-[26px] sm:leading-[28px] md:leading-[30px] lg:leading-[32px] text-center text-global-text5 max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] mx-auto">
                       Vous ne rejoignez pas seulement un centre de Fitness, vous intégrez une seconde famille
                     </p>
-                    <div className="flex justify-center items-center w-auto">
+                    <div className="flex justify-center items-center w-full">
                       <button 
                         onClick={handleReservationClick}
                         className="flex gap-[6px] sm:gap-[7px] md:gap-[8px] lg:gap-[9px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[10px] sm:px-[12px] md:px-[14px] lg:px-[16px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all"
