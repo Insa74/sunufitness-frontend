@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/common/Header';
 import Button from '../../components/ui/Button';
 import Footer from '../../components/common/Footer';
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+  
   // Carousel states
   const [currentServiceSlide, setCurrentServiceSlide] = useState(0);
   const [currentTestimonialSlide, setCurrentTestimonialSlide] = useState(0);
+  
+  // Navigation function
+  const handleReservationClick = () => {
+    navigate('/reservation');
+  };
 
   // Services data
   const services = [
@@ -145,7 +153,10 @@ const HomePage: React.FC = () => {
 
               {/* Hero Buttons */}
               <div className="flex flex-col sm:flex-row justify-center items-center gap-[12px] sm:gap-[16px] md:gap-[20px] lg:gap-[24px] w-full max-w-[600px]">
-                <button className="flex justify-center items-center gap-[6px] bg-global-background10 border border-global-text5 rounded-[5px] px-[28px] py-[14px] w-full sm:w-auto hover:bg-global-text5 hover:text-button-text1 transition-all">
+                <button 
+                  onClick={handleReservationClick}
+                  className="flex justify-center items-center gap-[6px] bg-global-background10 border border-global-text5 rounded-[5px] px-[28px] py-[14px] w-full sm:w-auto hover:text-button-text1 transition-all"
+                >
                   <span className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-global-text5">
                     Réservez
                   </span>
@@ -397,7 +408,10 @@ const HomePage: React.FC = () => {
                       Vous ne rejoignez pas seulement un centre de Fitness, vous intégrez une seconde famille
                     </p>
                     <div className="flex justify-center items-center w-auto">
-                      <button className="flex gap-[6px] sm:gap-[7px] md:gap-[8px] lg:gap-[9px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[10px] sm:px-[12px] md:px-[14px] lg:px-[16px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all">
+                      <button 
+                        onClick={handleReservationClick}
+                        className="flex gap-[6px] sm:gap-[7px] md:gap-[8px] lg:gap-[9px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[10px] sm:px-[12px] md:px-[14px] lg:px-[16px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all"
+                      >
                         <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[18px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-global-text5">
                           Réservez maintenant
                         </span>

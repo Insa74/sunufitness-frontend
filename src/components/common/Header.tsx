@@ -37,6 +37,7 @@ const Header: React.FC = () => {
               <nav className="flex items-center gap-[40px]" role="menubar">
                 <button 
                   role="menuitem" 
+                  onClick={() => navigate('/')}
                   className="text-[16px] font-medium text-white hover:text-gray-200 transition-colors"
                 >
                   Accueil
@@ -55,6 +56,7 @@ const Header: React.FC = () => {
                 </button>
                 <button 
                   role="menuitem" 
+                  onClick={() => navigate('/reservation')}
                   className="text-[16px] font-medium text-white border border-white rounded-[5px] px-[20px] py-[8px] hover:bg-white hover:text-green-600 transition-all"
                 >
                   Réservez
