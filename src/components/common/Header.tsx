@@ -8,17 +8,17 @@ const Header: React.FC = () => {
     <header className="w-full">
       <div className="w-full max-w-[1512px] mx-auto">
         <div className="relative w-full h-[60px] flex">
-          {/* White section for logo - trapézoïdale */}
+          {/* White section for logo - trapézoïdale (15% width) */}
           <div className="bg-white flex items-center pl-[40px] pr-[70px] relative" style={{clipPath: 'polygon(0 0, 100% 0, calc(100% - 40px) 100%, 0 100%)'}}>
             <img 
               src="/images/img_logo_500x500_px.png" 
               alt="MMT Fitness Logo" 
-              className="w-[40px] h-[40px] object-contain"
+              className="w-[70px] object-contain"
             />
           </div>
           
           {/* Green section for navigation */}
-          <div className="flex-1 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] flex items-center justify-end pr-[40px] gap-[30px] ml-[-40px]">
+          <div className="w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] flex items-center justify-end pr-[40px] gap-[30px] ml-[-40px]">
             {/* Hamburger Menu (Mobile only) */}
             <button 
               className="block lg:hidden p-2 text-white" 
@@ -66,8 +66,8 @@ const Header: React.FC = () => {
                 Contact
               </Button>
               
-              <button className="w-[40px] h-[40px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-                <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+              <button className="w-[40px] h-[40px] bg-[#3BB641] rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                 </svg>
               </button>

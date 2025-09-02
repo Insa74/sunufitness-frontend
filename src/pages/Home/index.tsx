@@ -6,8 +6,8 @@ const HomePage: React.FC = () => {
   return (
     <div className="w-full bg-global-background8">
       <div className="flex flex-col justify-start items-center w-full">
-        {/* Main Content Stack */}
-        <div className="relative w-full h-[1022px] sm:h-[1400px] md:h-[1800px] lg:h-[2044px]">
+        {/* Hero Section */}
+        <div className="relative w-full h-screen">
           {/* Header Section */}
           <div className="absolute top-0 left-0 right-0 z-20">
             <Header />
@@ -46,92 +46,89 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Hero Content */}
-          <div className="absolute inset-0 flex flex-col justify-start items-center z-15 pt-[80px] sm:pt-[120px] md:pt-[200px] lg:pt-[292px] px-4 sm:px-8 md:px-[56px]">
+          <div className="absolute inset-0 flex flex-col justify-center items-center z-15 px-4 sm:px-8 md:px-[56px]">
             <div className="flex flex-col gap-[26px] sm:gap-[36px] md:gap-[46px] lg:gap-[52px] justify-start items-center w-full max-w-[1200px]">
               {/* Hero Text */}
               <div className="flex flex-col gap-[17px] sm:gap-[24px] md:gap-[30px] lg:gap-[34px] justify-start items-start w-full max-w-[900px]">
-                <h1 className="text-[32px] sm:text-[48px] md:text-[64px] lg:text-[85px] font-bahnschrift font-bold leading-[40px] sm:leading-[58px] md:leading-[78px] lg:leading-[103px] text-center text-global-text5 uppercase w-full">
+                <h1 className="text-[28px] sm:text-[40px] md:text-[52px] lg:text-[68px] font-bahnschrift font-bold leading-[34px] sm:leading-[48px] md:leading-[62px] lg:leading-[82px] text-center text-global-text5 uppercase w-full">
                   MMT FITNESS AND MORE
                 </h1>
-                <p className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal leading-[21px] sm:leading-[24px] md:leading-[27px] lg:leading-[30px] text-center text-global-text5 w-full ml-[2px]">
+                <p className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] font-bahnschrift font-normal leading-[18px] sm:leading-[21px] md:leading-[24px] lg:leading-[27px] text-center text-global-text5 w-full ml-[2px]">
                   Bienvenue dans votre centre de fitness ultime, conçu pour vous accompagner dans l'atteinte de vos objectifs sportifs. Que vous soyez débutant ou athlète confirmé, nos coachs experts vous aideront à repousser vos limites.
                 </p>
               </div>
 
               {/* Hero Buttons */}
               <div className="flex flex-col sm:flex-row justify-center items-center gap-[12px] sm:gap-[16px] md:gap-[20px] lg:gap-[24px] w-full max-w-[600px]">
-                <button className="flex justify-center items-center gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] bg-global-background10 border border-global-text5 rounded-[5px] px-[10px] sm:px-[12px] md:px-[14px] py-[10px] sm:py-[12px] md:py-[14px] w-full sm:w-auto hover:bg-global-text5 hover:text-button-text1 transition-all">
-                  <span className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[25px] md:leading-[28px] lg:leading-[31px] text-global-text5 mt-[3px] sm:mt-[4px] md:mt-[5px] lg:mt-[6px]">
+                <button className="flex justify-center items-center gap-[6px] bg-global-background10 border border-global-text5 rounded-[5px] px-[28px] py-[14px] w-full sm:w-auto hover:bg-global-text5 hover:text-button-text1 transition-all">
+                  <span className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-global-text5">
                     Réservez
                   </span>
                   <img 
                     src="/images/img_basil_arrow_up_outline.svg" 
                     alt="Arrow" 
-                    className="w-[40px] sm:w-[45px] md:w-[50px] lg:w-[54px] h-[40px] sm:h-[45px] md:h-[50px] lg:h-[54px] self-center ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]"
+                    className="w-[20px] h-[20px] self-center"
                   />
                 </button>
                 
-                <Button 
-                  variant="primary"
-                  className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] font-bahnschrift font-normal leading-[23px] sm:leading-[25px] md:leading-[28px] lg:leading-[31px] text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[24px] sm:px-[28px] md:px-[32px] lg:px-[34px] py-[18px] sm:py-[20px] md:py-[22px] lg:py-[24px] w-full sm:w-auto hover:opacity-90 transition-opacity"
-                >
+                <button className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] border border-[#5dcd62] rounded-[5px] px-[28px] py-[14px] w-full sm:w-auto hover:opacity-90 transition-opacity">
                   Contact
-                </Button>
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Service Cards */}
-          <div className="absolute bottom-[100px] sm:bottom-[140px] md:bottom-[180px] lg:bottom-[223px] left-1/2 transform -translate-x-1/2 w-full max-w-[1200px] px-4 sm:px-8 z-20">
+          {/* Service Cards - Positioned absolutely */}
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full max-w-[1200px] px-4 sm:px-8 z-20">
             <div className="flex flex-col lg:flex-row gap-[20px] sm:gap-[24px] md:gap-[30px] lg:gap-[34px] w-full">
               {/* Excellence Card */}
-              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[20px] sm:p-[24px] md:p-[28px] lg:p-[32px]">
-                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[4px] sm:p-[5px] md:p-[6px] ml-[2px] sm:ml-[3px] md:ml-[4px]">
+              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[8px]">
                   <img 
                     src="/images/img_game_icons_sport_medal.svg" 
                     alt="Sport medal" 
-                    className="w-[48px] sm:w-[56px] md:w-[60px] lg:w-[64px] h-[48px] sm:h-[56px] md:h-[60px] lg:h-[64px]"
+                    className="w-[40px] h-[40px]"
                   />
                 </div>
-                <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-semibold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify text-global-text1 mt-[24px] sm:mt-[28px] md:mt-[32px] lg:mt-[36px]">
+                <h3 className="text-[18px] font-bahnschrift font-semibold leading-[22px] text-justify text-global-text1 mt-[20px]">
                   Excellence & Tradition Sportive
                 </h3>
-                <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-justify text-global-text1 mt-[4px] sm:mt-[5px] md:mt-[6px] mb-[30px] sm:mb-[35px] md:mb-[38px] lg:mb-[40px] w-full">
-                  Nous combinons les méthodes d'entraînement modernes avec l'énergie et la passion pour vous offrir une expérience unique,
+                <p className="text-[14px] font-bahnschrift font-light leading-[18px] text-justify text-global-text1 mt-[12px] w-full">
+                  Nous combinons les méthodes d'entraînement modernes avec l'énergie et la passion pour vous offrir une expérience unique.
                 </p>
               </div>
 
               {/* Community Card */}
-              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[20px] sm:p-[24px] md:p-[28px] lg:p-[32px]">
-                <div className="flex flex-col justify-center items-center w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] bg-global-background8 rounded-[5px] p-[10px] sm:p-[12px] md:p-[13px] lg:p-[14px] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
+              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[50px] bg-global-background8 rounded-[5px] p-[8px]">
                   <img 
                     src="/images/img_fa_solid_users.png" 
                     alt="Users" 
-                    className="w-full h-[33px] sm:h-[38px] md:h-[41px] lg:h-[44px]"
+                    className="w-full h-[30px]"
                   />
                 </div>
-                <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-semibold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify text-global-text5 mt-[22px] sm:mt-[26px] md:mt-[30px] lg:mt-[34px]">
+                <h3 className="text-[18px] font-bahnschrift font-semibold leading-[22px] text-justify text-global-text5 mt-[20px]">
                   Communauté & Solidarité
                 </h3>
-                <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-justify text-global-text5 mt-[6px] sm:mt-[7px] md:mt-[8px] lg:mt-[10px] mb-[24px] sm:mb-[28px] md:mb-[30px] lg:mb-[32px] w-[98%]">
-                  Plus qu'une salle de sport, nous sommes une famille ! Chez nous, l'entraide et la bonne humeur sont aussi importantes que la performance. Venez vous entraîner dans une ambiance chaleureuse
+                <p className="text-[14px] font-bahnschrift font-light leading-[18px] text-justify text-global-text5 mt-[12px] w-full">
+                  Plus qu'une salle de sport, nous sommes une famille ! Chez nous, l'entraide et la bonne humeur sont aussi importantes que la performance.
                 </p>
               </div>
 
               {/* Accessibility Card */}
-              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[20px] sm:p-[24px] md:p-[28px] lg:p-[32px]">
-                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[4px] sm:p-[5px] md:p-[6px] ml-[2px] sm:ml-[3px] md:ml-[4px]">
+              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[8px]">
                   <img 
                     src="/images/img_material_symbol.svg" 
                     alt="Material symbol" 
-                    className="w-[48px] sm:w-[56px] md:w-[60px] lg:w-[64px] h-[48px] sm:h-[56px] md:h-[60px] lg:h-[64px]"
+                    className="w-[40px] h-[40px]"
                   />
                 </div>
-                <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-semibold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify text-global-text1 mt-[24px] sm:mt-[28px] md:mt-[32px] lg:mt-[36px]">
+                <h3 className="text-[18px] font-bahnschrift font-semibold leading-[22px] text-justify text-global-text1 mt-[20px]">
                   Accessibilité & Bien-être pour Tous
                 </h3>
-                <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-justify text-global-text1 mt-[4px] sm:mt-[6px] md:mt-[7px] lg:mt-[8px] mb-[24px] sm:mb-[28px] md:mb-[30px] lg:mb-[32px] w-full">
-                  Nous croyons que le fitness doit être accessible à tous, quel que soit le niveau ou le budget. Nos tarifs adaptés et nos programmes variés permettent à chacun de progresser à son rythme, dans un cadre professionnel.
+                <p className="text-[14px] font-bahnschrift font-light leading-[18px] text-justify text-global-text1 mt-[12px] w-full">
+                  Nous croyons que le fitness doit être accessible à tous, quel que soit le niveau ou le budget. Nos tarifs adaptés et nos programmes variés permettent à chacun de progresser à son rythme.
                 </p>
               </div>
             </div>
@@ -139,21 +136,21 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* About Section */}
-        <div className="w-full bg-global-background4 mt-[53px] sm:mt-[74px] md:mt-[95px] lg:mt-[106px]">
+        <div className="w-full bg-global-background4 mt-[120px] sm:mt-[140px] md:mt-[160px] lg:mt-[180px]">
           <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row justify-between items-center py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px] gap-[40px] lg:gap-0">
               {/* Left Image Section */}
-              <div className="relative w-full lg:w-[44%] flex justify-center lg:justify-start">
-                <div className="relative w-[300px] sm:w-[400px] md:w-[500px] lg:w-[666px] h-[350px] sm:h-[450px] md:h-[550px] lg:h-[736px]">
+              <div className="relative w-full lg:w-[42%] flex justify-center lg:justify-start">
+                <div className="relative w-[270px] sm:w-[350px] md:w-[440px] lg:w-[580px] h-[320px] sm:h-[410px] md:h-[510px] lg:h-[670px]">
                   <img 
                     src="/images/img_02_1.png" 
                     alt="Fitness training" 
-                    className="absolute top-[10px] sm:top-[15px] md:top-[18px] lg:top-[20px] left-[35px] sm:left-[45px] md:left-[55px] lg:left-[69px] w-[270px] sm:w-[350px] md:w-[430px] lg:w-[598px] h-[320px] sm:h-[420px] md:h-[520px] lg:h-[716px] object-cover"
+                    className="absolute top-[10px] sm:top-[15px] md:top-[18px] lg:top-[20px] left-[32px] sm:left-[40px] md:left-[50px] lg:left-[62px] w-[240px] sm:w-[310px] md:w-[390px] lg:w-[518px] h-[300px] sm:h-[380px] md:h-[470px] lg:h-[630px] object-cover"
                   />
                   <img 
                     src="/images/img_cercle.png" 
                     alt="Decorative circle" 
-                    className="absolute top-0 left-0 w-[44px] sm:w-[60px] md:w-[74px] lg:w-[88px] h-[54px] sm:h-[74px] md:h-[91px] lg:h-[108px] object-contain"
+                    className="absolute top-0 left-0 w-[40px] sm:w-[54px] md:w-[67px] lg:w-[80px] h-[49px] sm:h-[66px] md:h-[82px] lg:h-[98px] object-contain"
                   />
                 </div>
               </div>
@@ -182,17 +179,14 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <Button 
-                  variant="primary"
-                  className="flex gap-[2px] sm:gap-[3px] md:gap-[3px] lg:gap-[4px] text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-normal leading-[18px] sm:leading-[20px] md:leading-[21px] lg:leading-[22px] text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] border border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[24px] sm:px-[40px] md:px-[52px] lg:px-[64px] py-[12px] sm:py-[14px] md:py-[15px] lg:py-[16px] mt-[44px] sm:mt-[50px] md:mt-[54px] lg:mt-[58px] ml-[4px] sm:ml-[5px] md:ml-[6px] lg:ml-[8px] hover:opacity-90 transition-opacity"
-                >
+                <button className="flex justify-center items-center gap-[8px] text-[16px] font-bahnschrift font-normal leading-[20px] text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[28px] py-[14px] mt-[32px] ml-[4px] hover:opacity-90 transition-opacity">
                   Réservez maintenant
                   <img 
                     src="/images/img_solararrowuplinear.svg" 
                     alt="Arrow" 
-                    className="w-[24px] sm:w-[28px] md:w-[30px] lg:w-[32px] h-[24px] sm:h-[28px] md:h-[30px] lg:h-[32px]"
+                    className="w-[20px] h-[20px]"
                   />
-                </Button>
+                </button>
 
                 <img 
                   src="/images/img_cercle.png" 
@@ -247,8 +241,8 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Services Cards */}
-              <div className="flex flex-col justify-start items-center w-full">
-                <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full max-w-[1378px] px-[34px] sm:px-[47px] md:px-[57px] lg:px-[67px]">
+              <div className="flex flex-col justify-start items-center w-full relative">
+                <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full max-w-[1378px] px-[34px] sm:px-[47px] md:px-[57px] lg:px-[67px] absolute top-[160px] sm:top-[200px] md:top-[240px] lg:top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
                   {/* Musculation Card */}
                   <div className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
                     <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
@@ -333,23 +327,23 @@ const HomePage: React.FC = () => {
 
                 {/* CTA Section with Background */}
                 <div 
-                  className="w-full h-[229px] sm:h-[320px] md:h-[389px] lg:h-[458px] bg-cover bg-center mt-[-111px] sm:mt-[-155px] md:mt-[-189px] lg:lg-[-222px] relative"
+                  className="w-full h-[229px] sm:h-[320px] md:h-[389px] lg:h-[458px] bg-cover bg-center relative mt-[150px] sm:mt-[200px] md:mt-[250px] lg:mt-[300px]"
                   style={{ backgroundImage: "url('/images/img_rectangle_20.png')" }}
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(104deg,#5dcd62e5_0%,_#000000e5_100%)]"></div>
-                  <div className="relative z-10 flex flex-col gap-[30px] sm:gap-[35px] md:gap-[38px] lg:gap-[40px] justify-start items-center w-full h-full px-[30px] sm:px-[35px] md:px-[38px] lg:px-[40px] pt-[165px] sm:pt-[231px] md:pt-[281px] lg:pt-[330px]">
-                    <p className="text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-comic-sans font-normal leading-[31px] sm:leading-[36px] md:leading-[39px] lg:leading-[42px] text-left text-global-text5 text-center max-w-[900px]">
+                  <div className="relative z-10 flex flex-col gap-[20px] sm:gap-[25px] md:gap-[28px] lg:gap-[30px] justify-start items-center w-full h-full px-[30px] sm:px-[35px] md:px-[38px] lg:px-[40px] pt-[170px] sm:pt-[210px] md:pt-[250px] lg:pt-[290px]">
+                    <p className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-comic-sans font-normal leading-[26px] sm:leading-[28px] md:leading-[30px] lg:leading-[32px] text-left text-global-text5 text-center max-w-[900px]">
                       Vous ne rejoignez pas seulement un centre de Fitness, vous intégrez une seconde famille
                     </p>
                     <div className="flex justify-center items-center w-auto">
-                      <button className="flex gap-[9px] sm:gap-[10px] md:gap-[11px] lg:gap-[12px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[12px] sm:px-[14px] md:px-[15px] lg:px-[16px] py-[12px] sm:py-[14px] md:py-[15px] lg:px-[16px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all">
-                        <span className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-global-text5">
+                      <button className="flex gap-[6px] sm:gap-[7px] md:gap-[8px] lg:gap-[9px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[10px] sm:px-[12px] md:px-[14px] lg:px-[16px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all">
+                        <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[18px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-global-text5">
                           Réservez maintenant
                         </span>
                         <img 
                           src="/images/img_solararrowuplinear.svg" 
                           alt="Arrow" 
-                          className="w-[32px] sm:w-[36px] md:w-[39px] lg:w-[42px] h-[32px] sm:h-[36px] md:h-[39px] lg:h-[42px]"
+                          className="w-[24px] sm:w-[26px] md:w-[28px] lg:w-[30px] h-[24px] sm:h-[26px] md:h-[28px] lg:h-[30px]"
                         />
                       </button>
                     </div>
@@ -434,12 +428,9 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="relative w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[104px] sm:h-[120px] md:h-[129px] lg:h-[138px]">
                       <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] bg-global-background3 rounded-[29px] sm:rounded-[33px] md:rounded-[36px] lg:rounded-[38px]"></div>
-                      <div className="absolute top-0 left-[10px] sm:left-[11px] md:left-[12px] lg:left-[13px] flex justify-center items-center">
-                        <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
-                          ,
-                        </span>
-                        <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
-                          ,
+                      <div className="absolute h-fit top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] flex justify-center">
+                        <span className="h-fit text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent leading-none mt-[-8px] sm:mt-[-10px] md:mt-[-12px] lg:mt-[-14px]">
+                          ,,
                         </span>
                       </div>
                     </div>
@@ -481,7 +472,7 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="relative w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[104px] sm:h-[120px] md:h-[129px] lg:h-[138px]">
                       <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] bg-global-background3 rounded-[29px] sm:rounded-[33px] md:rounded-[36px] lg:rounded-[38px]"></div>
-                      <div className="absolute top-0 left-[10px] sm:left-[11px] md:left-[12px] lg:left-[13px] flex justify-center items-center">
+                      <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] flex justify-center items-center">
                         <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
                           ,
                         </span>
@@ -665,8 +656,8 @@ const HomePage: React.FC = () => {
                         Depuis notre création, nous nous engageons à offrir un environnement motivant et inclusif pour tous les passionnés de fitness, où chaque pas vers vos objectifs est célébré et chaque défi devient une occasion de grandir. Notre équipe de coachs certifiés est là pour vous guider avec expertise
                       </p>
                     </div>
-                    <div className="flex flex-row justify-center items-center w-[30%] bg-global-background2 rounded-[5px] p-[2px] sm:p-[3px] md:p-[3px] lg:p-[4px] ml-[7px] sm:ml-[10px] md:ml-[12px] lg:ml-[14px]">
-                      <div className="flex flex-row justify-between items-center w-full px-[3px] sm:px-[4px] md:px-[4px] lg:px-[6px]">
+                    <div className="flex flex-row justify-center items-center w-[30%] bg-global-background3 rounded-[6px] py-[8px] px-[16px] ml-[7px] sm:ml-[10px] md:ml-[12px] lg:ml-[14px]">
+                      <div className="flex flex-row justify-between items-center w-full">
                         <img 
                           src="/images/img_ic_baseline_facebook.png" 
                           alt="Facebook" 
@@ -675,12 +666,12 @@ const HomePage: React.FC = () => {
                         <img 
                           src="/images/img_teenyicons_instagram_solid.png" 
                           alt="Instagram" 
-                          className="w-[15px] sm:w-[17px] md:w-[19px] lg:w-[20px] h-[15px] sm:h-[17px] md:h-[19px] lg:h-[20px] ml-[40px] sm:ml-[46px] md:ml-[49px] lg:ml-[53px]"
+                          className="w-[15px] sm:w-[17px] md:w-[19px] lg:w-[20px] h-[15px] sm:h-[17px] md:h-[19px] lg:h-[20px]"
                         />
                         <img 
                           src="/images/img_flowbite_twitter_solid.png" 
                           alt="Twitter" 
-                          className="w-[21px] sm:w-[24px] md:w-[26px] lg:w-[28px] h-[21px] sm:h-[24px] md:h-[26px] lg:h-[28px] ml-[35px] sm:ml-[40px] md:ml-[44px] lg:ml-[47px]"
+                          className="w-[18px] sm:w-[21px] md:w-[22px] lg:w-[24px] h-[18px] sm:h-[21px] md:h-[22px] lg:h-[24px]"
                         />
                       </div>
                     </div>
@@ -745,13 +736,17 @@ const HomePage: React.FC = () => {
                         <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[21px] text-left text-global-text3 w-full">
                           Ne manquez aucune actualité, offre exclusive ou conseil coaching de votre centre de fitness préféré ! En vous abonnant, vous recevrez directement dans votre boîte mail .
                         </p>
-                        <div className="flex flex-row justify-center items-center w-full">
-                          <div className="w-[284px] sm:w-[326px] md:w-[352px] lg:w-[378px] h-[56px] sm:h-[64px] md:h-[69px] lg:h-[74px] bg-global-background3 border border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-l-[5px]"></div>
-                          <div className="flex flex-row justify-center items-end bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-r-[5px] px-[8px] sm:px-[9px] md:px-[9px] lg:px-[10px] py-[8px] sm:px-[9px] md:py-[9px] lg:py-[10px] pt-[8px] sm:pt-[9px] md:pt-[9px] lg:pt-[10px]">
+                        <div className="flex flex-row items-center w-full">
+                          <input 
+                            type="email" 
+                            placeholder="Votre adresse email"
+                            className="w-[220px] sm:w-[250px] md:w-[270px] lg:w-[290px] h-[40px] sm:h-[45px] md:h-[48px] lg:h-[46px] bg-global-background3 border border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-l-[5px] px-[12px] sm:px-[14px] md:px-[15px] lg:px-[16px] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift text-global-text1 placeholder:text-global-text1 placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#5dcd62]"
+                          />
+                          <div className="flex flex-row items-center bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-r-[5px] px-[6px] sm:px-[7px] md:px-[8px] lg:px-[9px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px]">
                             <img 
                               src="/images/img_tabler_send.svg" 
                               alt="Send" 
-                              className="w-[33px] sm:w-[38px] md:w-[41px] lg:w-[44px] h-[33px] sm:h-[38px] md:h-[41px] lg:h-[44px] mt-[5px] sm:mt-[5px] md:mt-[6px] lg:mt-[6px]"
+                              className="w-[24px] sm:w-[28px] md:w-[30px] lg:w-[32px] h-[24px] sm:h-[28px] md:h-[30px] lg:h-[32px]"
                             />
                           </div>
                         </div>
