@@ -41,6 +41,7 @@
     "warning": "🚨 CRITICAL: DO NOT REMOVE OR MODIFY ABOVE DEPENDENCIES - Required for TypeScript React app functionality"
   },
   "scripts": {
+    "dev": "vite",
     "start": "vite",
     "build": "tsc --noCheck && vite build",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md,json}\"",
