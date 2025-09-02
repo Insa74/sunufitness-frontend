@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className="w-full">
@@ -66,7 +68,11 @@ const Header: React.FC = () => {
                 Contact
               </Button>
               
-              <button className="w-[40px] h-[40px] bg-[#3BB641] rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+              <button 
+                className="w-[40px] h-[40px] bg-[#3BB641] rounded-full flex items-center justify-center hover:bg-green-700 transition-colors"
+                onClick={() => navigate('/member')}
+                title="Espace Membre"
+              >
                 <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                 </svg>
