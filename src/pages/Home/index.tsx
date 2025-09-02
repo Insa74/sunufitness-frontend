@@ -1,9 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/common/Header';
 import Button from '../../components/ui/Button';
 import Footer from '../../components/common/Footer';
 
 const HomePage: React.FC = () => {
+  // Carousel states
+  const [currentServiceSlide, setCurrentServiceSlide] = useState(0);
+  const [currentTestimonialSlide, setCurrentTestimonialSlide] = useState(0);
+
+  // Services data
+  const services = [
+    {
+      id: 1,
+      icon: '/images/img_game_icons_muscular_torso.png',
+      image: '/images/img_rectangle_24.png',
+      title: 'MUSCULATION & CARDIO',
+      description: 'Accédez à des machines performantes et des espaces dédiés pour sculpter votre corps et améliorer votre endurance.'
+    },
+    {
+      id: 2,
+      icon: '/images/img_fa_users.png',
+      image: '/images/img_rectangle_24_214x358.png',
+      title: 'COURS COLLECTIFS',
+      description: 'Yoga, HIIT, Pilates, Zumba… Des séances dynamiques pour brûler des calories en groupe et en musique !'
+    },
+    {
+      id: 3,
+      icon: '/images/img_game_icons_muscular_torso.png',
+      image: '/images/img_rectangle_24.png',
+      title: 'COACHING PERSONNEL',
+      description: 'Un accompagnement sur mesure avec nos coachs certifiés pour atteindre vos objectifs rapidement et efficacement.'
+    },
+    {
+      id: 4,
+      icon: '/images/img_fa_users.png',
+      image: '/images/img_rectangle_24_214x358.png',
+      title: 'NUTRITION & BIEN-ÊTRE',
+      description: 'Conseils nutritionnels personnalisés et programmes de relaxation pour un équilibre corps-esprit optimal.'
+    }
+  ];
+
+  // Testimonials data
+  const testimonials = [
+    {
+      id: 1,
+      name: "Omar D",
+      avatar: "/images/img_ellipse_24.png",
+      rating: 5,
+      comment: "Entre les réunions et les voyages, ma santé passait au dernier plan. Grâce aux cours express du matin et au suivi nutritionnel, j'ai perdu mon ventre de bureau et gagné en productivité. Aujourd'hui, même en déplacement, j'applique leurs conseils. Une révolution !"
+    },
+    {
+      id: 2,
+      name: "Fatou K.", 
+      avatar: "/images/img_ellipse_24_120x120.png",
+      rating: 5,
+      comment: "Je n'osais même pas entrer dans une salle de sport avant... Ici, pas de regard moqueur, que des encouragements ! Mon premier cours de danse africaine-fit a tout changé. 6 mois plus tard, je participe à des compétitions locales. La team m'a révélée à moi-même !"
+    },
+    {
+      id: 3,
+      name: "Sophie Laurent",
+      avatar: "/images/reservation/woman.png",
+      rating: 5,
+      comment: "Après ma grossesse, j'avais perdu confiance en moi. L'équipe m'a accompagnée avec bienveillance dans ma remise en forme. Les cours de yoga prénatal puis les séances de renforcement m'ont redonné énergie et estime de soi."
+    },
+    {
+      id: 4,
+      name: "Ahmed Ben Ali",
+      avatar: "/images/reservation/man1.png",
+      rating: 4,
+      comment: "À 45 ans, je pensais qu'il était trop tard pour me remettre en forme. Grâce au programme adapté à mon âge et mes capacités, j'ai retrouvé la forme de mes 30 ans. L'ambiance conviviale m'a motivé à persévérer."
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextServiceSlide = () => {
+    setCurrentServiceSlide((prev) => (prev + 1) % Math.ceil(services.length / 2));
+  };
+
+  const prevServiceSlide = () => {
+    setCurrentServiceSlide((prev) => (prev - 1 + Math.ceil(services.length / 2)) % Math.ceil(services.length / 2));
+  };
+
+  const nextTestimonialSlide = () => {
+    setCurrentTestimonialSlide((prev) => (prev + 1) % Math.ceil(testimonials.length / 2));
+  };
+
+  const prevTestimonialSlide = () => {
+    setCurrentTestimonialSlide((prev) => (prev - 1 + Math.ceil(testimonials.length / 2)) % Math.ceil(testimonials.length / 2));
+  };
   return (
     <div className="w-full bg-global-background8">
       <div className="flex flex-col justify-start items-center w-full">
@@ -224,19 +308,21 @@ const HomePage: React.FC = () => {
 
                 {/* Navigation Arrows */}
                 <div className="flex flex-row justify-end items-center w-full lg:w-auto mt-[20px] lg:mt-0 gap-[44px] sm:gap-[50px] md:gap-[54px] lg:gap-[58px]">
-                  <button className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors">
-                    <img 
-                      src="/images/img_tdesign_arrow_up.png" 
-                      alt="Previous" 
-                      className="w-full h-full object-contain"
-                    />
+                  <button 
+                    onClick={prevServiceSlide}
+                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                  >
+                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
                   </button>
-                  <button className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors">
-                    <img 
-                      src="/images/img_tdesign_arrow_up.png" 
-                      alt="Next" 
-                      className="w-full h-full object-contain"
-                    />
+                  <button 
+                    onClick={nextServiceSlide}
+                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                  >
+                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -244,59 +330,33 @@ const HomePage: React.FC = () => {
               {/* Services Cards */}
               <div className="flex flex-col justify-start items-center w-full relative">
                 <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full max-w-[1378px] px-[34px] sm:px-[47px] md:px-[57px] lg:px-[67px] absolute top-[160px] sm:top-[200px] md:top-[240px] lg:top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
-                  {/* Musculation Card */}
-                  <div className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
-                    <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
-                      <button className="w-[50px] sm:w-[58px] md:w-[62px] lg:w-[66px] h-[50px] sm:h-[58px] md:h-[62px] lg:h-[66px] bg-global-background2 rounded-[25px] sm:rounded-[29px] md:rounded-[31px] lg:rounded-[32px] p-[8px] sm:p-[9px] md:p-[9px] lg:p-[10px]">
+                  {services.slice(currentServiceSlide * 2, currentServiceSlide * 2 + 2).map((service) => (
+                    <div key={service.id} className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
+                      <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
+                        <button className="w-[50px] sm:w-[58px] md:w-[62px] lg:w-[66px] h-[50px] sm:h-[58px] md:h-[62px] lg:h-[66px] bg-global-background2 rounded-[25px] sm:rounded-[29px] md:rounded-[31px] lg:rounded-[32px] p-[8px] sm:p-[9px] md:p-[9px] lg:p-[10px]">
+                          <img 
+                            src={service.icon} 
+                            alt={service.title} 
+                            className="w-full h-full object-contain"
+                          />
+                        </button>
+                        <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
+                      </div>
+                      <div className="flex flex-col justify-start items-start w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[21px] sm:p-[24px] md:p-[26px] lg:p-[28px]">
                         <img 
-                          src="/images/img_game_icons_muscular_torso.png" 
-                          alt="Musculation" 
-                          className="w-full h-full object-contain"
+                          src={service.image} 
+                          alt={service.title} 
+                          className="w-full h-[161px] sm:h-[185px] md:h-[200px] lg:h-[214px] object-cover rounded-[5px]"
                         />
-                      </button>
-                      <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
+                        <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1 mt-[21px] sm:mt-[24px] md:mt-[26px] lg:mt-[28px] text-center w-full">
+                          {service.title}
+                        </h3>
+                        <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-center text-global-text1 w-full mt-[6px] sm:mt-[7px] md:mt-[7px] lg:mt-[8px] mb-[15px] sm:mb-[17px] md:mb-[18px] lg:mb-[20px]">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex flex-col justify-start items-start w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[21px] sm:p-[24px] md:p-[26px] lg:p-[28px]">
-                      <img 
-                        src="/images/img_rectangle_24.png" 
-                        alt="Musculation equipment" 
-                        className="w-full h-[161px] sm:h-[185px] md:h-[200px] lg:h-[214px] object-cover rounded-[5px]"
-                      />
-                      <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1 mt-[21px] sm:mt-[24px] md:mt-[26px] lg:mt-[28px] ml-[42px] sm:ml-[48px] md:ml-[52px] lg:ml-[56px]">
-                        MUSCULATION & CARDIO
-                      </h3>
-                      <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-center text-global-text1 w-full mt-[6px] sm:mt-[7px] md:mt-[7px] lg:mt-[8px] mb-[15px] sm:mb-[17px] md:mb-[18px] lg:mb-[20px] ml-[2px] sm:ml-[3px] md:ml-[3px] lg:ml-[4px]">
-                        Accédez à des machines performantes et des espaces dédiés pour sculpter votre corps et améliorer votre endurance.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Cours Collectifs Card */}
-                  <div className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
-                    <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
-                      <button className="w-[50px] sm:w-[58px] md:w-[62px] lg:w-[66px] h-[50px] sm:h-[58px] md:h-[62px] lg:h-[66px] bg-global-background2 rounded-[25px] sm:rounded-[29px] md:rounded-[31px] lg:rounded-[32px] p-[2px] sm:p-[3px] md:p-[3px] lg:p-[4px]">
-                        <img 
-                          src="/images/img_fa_users.png" 
-                          alt="Group classes" 
-                          className="w-full h-full object-contain"
-                        />
-                      </button>
-                      <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
-                    </div>
-                    <div className="flex flex-col justify-start items-start w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[21px] sm:p-[24px] md:p-[26px] lg:p-[28px]">
-                      <img 
-                        src="/images/img_rectangle_24_214x358.png" 
-                        alt="Group fitness class" 
-                        className="w-full h-[161px] sm:h-[185px] md:h-[200px] lg:h-[214px] object-cover rounded-[5px]"
-                      />
-                      <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1 mt-[21px] sm:mt-[24px] md:mt-[26px] lg:mt-[28px] ml-[59px] sm:ml-[67px] md:ml-[73px] lg:ml-[78px]">
-                        COURS COLLECTIFS
-                      </h3>
-                      <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-center text-global-text1 w-full mt-[6px] sm:mt-[7px] md:mt-[7px] lg:mt-[8px] mb-[15px] sm:mb-[17px] md:mb-[18px] lg:mb-[20px] ml-[2px] sm:ml-[3px] md:ml-[3px] lg:ml-[4px]">
-                        Yoga, HIIT, Pilates, Zumba… Des séances dynamiques pour brûler des calories en groupe et en musique !
-                      </p>
-                    </div>
-                  </div>
+                  ))}
 
                   {/* Coaching Privé Card */}
                   <div className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
@@ -374,19 +434,21 @@ const HomePage: React.FC = () => {
 
                 {/* Navigation Arrows */}
                 <div className="flex flex-row justify-end items-center gap-[44px] sm:gap-[50px] md:gap-[54px] lg:gap-[58px] mt-[20px] lg:mt-0 self-end">
-                  <button className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors">
-                    <img 
-                      src="/images/img_tdesign_arrow_up.png" 
-                      alt="Previous" 
-                      className="w-full h-full object-contain"
-                    />
+                  <button 
+                    onClick={prevTestimonialSlide}
+                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                  >
+                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
                   </button>
-                  <button className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors">
-                    <img 
-                      src="/images/img_tdesign_arrow_up.png" 
-                      alt="Next" 
-                      className="w-full h-full object-contain"
-                    />
+                  <button 
+                    onClick={nextTestimonialSlide}
+                    className="w-[47px] sm:w-[54px] md:w-[58px] lg:w-[62px] h-[47px] sm:h-[54px] md:h-[58px] lg:h-[62px] bg-global-background3 rounded-[24px] sm:rounded-[27px] md:rounded-[29px] lg:rounded-[30px] p-[6px] sm:p-[7px] md:p-[7px] lg:p-[8px] hover:bg-global-background2 transition-colors"
+                  >
+                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -396,97 +458,59 @@ const HomePage: React.FC = () => {
               </p>
 
               {/* Testimonial Cards */}
-              <div className="flex flex-col lg:flex-row gap-[22px] sm:gap-[26px] md:gap-[28px] lg:gap-[30px] w-full mt-[18px] sm:mt-[20px] md:lg-[22px] lg:mt-[24px] px-[3px] sm:px-[4px] md:px-[5px] lg:px-[6px]">
-                {/* Omar D Testimonial */}
-                <div className="flex flex-col gap-[24px] sm:gap-[28px] md:gap-[30px] lg:gap-[32px] justify-start items-center w-full lg:w-[670px] bg-global-background6 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[3px] sm:p-[4px] md:p-[5px] lg:p-[6px]">
-                  <div className="flex flex-row justify-start items-center w-full px-[15px] sm:px-[17px] md:px-[18px] lg:px-[20px]">
-                    <div className="flex flex-row justify-start items-start w-full self-end">
-                      <img 
-                        src="/images/img_ellipse_24.png" 
-                        alt="Omar D" 
-                        className="w-[90px] sm:w-[105px] md:w-[113px] lg:w-[120px] h-[90px] sm:h-[105px] md:h-[113px] lg:h-[120px] rounded-[45px] sm:rounded-[53px] md:rounded-[57px] lg:rounded-[60px] self-center object-cover"
-                      />
-                      <div className="flex flex-col gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-start items-center w-full px-[9px] sm:px-[13px] md:px-[16px] lg:px-[18px]">
-                        <div className="flex flex-col justify-start items-start w-full px-[3px] sm:px-[4px] md:px-[5px] lg:px-[6px]">
-                          <h3 className="text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-bahnschrift font-semibold leading-[28px] sm:leading-[32px] md:leading-[35px] lg:leading-[37px] text-left text-global-text1 ml-[1px] sm:ml-[1px] md:ml-[1px] lg:ml-[2px]">
-                            Omar D
-                          </h3>
-                          <p className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left text-global-text4 mt-[-1px] sm:mt-[-1px] md:mt-[-1px] lg:mt-[-2px]">
-                            Membres du Club Fitness
-                          </p>
+              <div className="flex flex-col lg:flex-row gap-[30px] sm:gap-[40px] md:gap-[45px] lg:gap-[50px] w-full mt-[40px] sm:mt-[50px] md:mt-[55px] lg:mt-[60px] px-[20px] sm:px-[30px] md:px-[40px] lg:px-[50px]">
+                {testimonials.slice(currentTestimonialSlide * 2, currentTestimonialSlide * 2 + 2).map((testimonial) => (
+                  <div key={testimonial.id} className="flex flex-col w-full lg:w-1/2 relative">
+                    {/* Profile Section */}
+                    <div className="flex flex-row items-start gap-4 mb-6">
+                      {/* Profile Image with Green Border */}
+                      <div className="relative flex-shrink-0">
+                        <div className="w-16 h-16 rounded-full border-4 border-green-500 overflow-hidden">
+                          <img 
+                            src={testimonial.avatar} 
+                            alt={testimonial.name} 
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                        <div className="flex flex-row justify-start items-center w-full">
-                          {[...Array(5)].map((_, index) => (
-                            <img 
-                              key={index}
-                              src="/images/img_material_symbols_star.png" 
-                              alt="Star" 
-                              className="w-[21px] sm:w-[24px] md:w-[26px] lg:w-[28px] h-[21px] sm:h-[24px] md:h-[26px] lg:h-[28px] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px] first:ml-0"
-                            />
+                      </div>
+                      
+                      {/* Name and Role */}
+                      <div className="flex flex-col">
+                        <h3 className="text-xl font-bold text-black mb-1">
+                          {testimonial.name}
+                        </h3>
+                        <p className="text-gray-500 text-sm mb-2">
+                          Membres du Club Fitness
+                        </p>
+                        
+                        {/* Star Rating */}
+                        <div className="flex gap-1">
+                          {[...Array(testimonial.rating)].map((_, index) => (
+                            <svg key={index} className="w-4 h-4 text-green-500 fill-current" viewBox="0 0 20 20">
+                              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                            </svg>
                           ))}
                         </div>
                       </div>
-                    </div>
-                    <div className="relative w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[104px] sm:h-[120px] md:h-[129px] lg:h-[138px]">
-                      <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] bg-global-background3 rounded-[29px] sm:rounded-[33px] md:rounded-[36px] lg:rounded-[38px]"></div>
-                      <div className="absolute h-fit top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] flex justify-center">
-                        <span className="h-fit text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent leading-none mt-[-8px] sm:mt-[-10px] md:mt-[-12px] lg:mt-[-14px]">
-                          ,,
-                        </span>
+                      
+                      {/* Quote Icon */}
+                      <div className="ml-auto">
+                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                          <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                          </svg>
+                        </div>
                       </div>
                     </div>
+                    
+                    {/* Testimonial Text */}
+                    <p className="text-gray-700 text-base leading-relaxed mt-4">
+                      {testimonial.comment}
+                    </p>
                   </div>
-                  <p className="text-[15px] sm:text-[17px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[18px] sm:leading-[21px] md:leading-[22px] lg:leading-[24px] text-justify text-global-text1 w-[94%] mb-[24px] sm:mb-[28px] md:mb-[30px] lg:mb-[32px] ml-[9px] sm:ml-[10px] md:ml-[11px] lg:ml-[12px]">
-                    Entre les réunions et les voyages, ma santé passait au dernier plan. Grâce aux cours express du matin et au suivi nutritionnel, j'ai perdu mon ventre de bureau et gagné en productivité. Aujourd'hui, même en déplacement, j'applique leurs conseils. Une révolution !
-                  </p>
-                </div>
+                ))}
 
-                {/* Fatou K Testimonial */}
-                <div className="flex flex-col gap-[24px] sm:gap-[28px] md:gap-[30px] lg:gap-[32px] justify-start items-center w-full lg:w-[670px] bg-global-background6 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[3px] sm:p-[4px] md:p-[5px] lg:p-[6px]">
-                  <div className="flex flex-row justify-start items-center w-full px-[15px] sm:px-[17px] md:px-[18px] lg:px-[20px]">
-                    <div className="flex flex-row justify-start items-start w-full self-end">
-                      <img 
-                        src="/images/img_ellipse_24_120x120.png" 
-                        alt="Fatou K" 
-                        className="w-[90px] sm:w-[105px] md:w-[113px] lg:w-[120px] h-[90px] sm:h-[105px] md:h-[113px] lg:h-[120px] rounded-[45px] sm:rounded-[53px] md:rounded-[57px] lg:rounded-[60px] self-center object-cover"
-                      />
-                      <div className="flex flex-col gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-start items-center w-full px-[9px] sm:px-[13px] md:px-[16px] lg:px-[18px]">
-                        <div className="flex flex-col justify-start items-start w-full px-[3px] sm:px-[4px] md:px-[5px] lg:px-[6px]">
-                          <h3 className="text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-bahnschrift font-semibold leading-[28px] sm:leading-[32px] md:leading-[35px] lg:leading-[37px] text-left text-global-text1 ml-[1px] sm:ml-[1px] md:ml-[1px] lg:ml-[2px]">
-                            Fatou K.
-                          </h3>
-                          <p className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left text-global-text4 mt-[-1px] sm:mt-[-1px] md:mt-[-1px] lg:mt-[-2px]">
-                            Membres du Club Fitness
-                          </p>
-                        </div>
-                        <div className="flex flex-row justify-start items-center w-full">
-                          {[...Array(5)].map((_, index) => (
-                            <img 
-                              key={index}
-                              src="/images/img_material_symbols_star.png" 
-                              alt="Star" 
-                              className="w-[21px] sm:w-[24px] md:w-[26px] lg:w-[28px] h-[21px] sm:h-[24px] md:h-[26px] lg:h-[28px] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px] first:ml-0"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="relative w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[104px] sm:h-[120px] md:h-[129px] lg:h-[138px]">
-                      <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] bg-global-background3 rounded-[29px] sm:rounded-[33px] md:rounded-[36px] lg:rounded-[38px]"></div>
-                      <div className="absolute top-[21px] sm:top-[24px] md:top-[26px] lg:top-[28px] left-0 w-[57px] sm:w-[66px] md:w-[71px] lg:w-[76px] h-[57px] sm:h-[66px] md:h-[71px] lg:h-[76px] flex justify-center items-center">
-                        <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
-                          ,
-                        </span>
-                        <span className="text-[75px] sm:text-[87px] md:text-[94px] lg:text-[100px] font-pontano-sans font-light leading-[97px] sm:leading-[112px] md:leading-[121px] lg:leading-[129px] text-left bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
-                          ,
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-[15px] sm:text-[17px] md:text-[19px] lg:text-[20px] font-bahnschrift font-normal leading-[18px] sm:leading-[21px] md:leading-[22px] lg:leading-[24px] text-justify text-global-text1 w-[94%] mb-[24px] sm:mb-[28px] md:mb-[30px] lg:mb-[32px] ml-[9px] sm:ml-[10px] md:ml-[11px] lg:ml-[12px]">
-                    Je n'osais même pas entrer dans une salle de sport avant... Ici, pas de regard moqueur, que des encouragements ! Mon premier cours de danse africaine-fit a tout changé. 6 mois plus tard, je participe à des compétitions locales. La team m'a révélée à moi-même !
-                  </p>
-                </div>
+
               </div>
             </div>
           </div>
@@ -508,7 +532,7 @@ const HomePage: React.FC = () => {
                   <h2 className="text-[30px] sm:text-[36px] md:text-[43px] lg:text-[50px] font-bahnschrift font-bold leading-[37px] sm:leading-[44px] md:leading-[52px] lg:leading-[61px] text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent">
                     NOUS CONTACTEZ
                   </h2>
-                  <p className="text-[12px] sm:text-[13px] md:text-[13px] lg:text-[14px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-justify lowercase text-global-text1 w-[44%] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
+                  <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bahnschrift font-normal leading-[16px] sm:leading-[18px] md:leading-[20px] lg:leading-[22px] text-justify lowercase text-global-text1 w-[44%] ml-[3px] sm:ml-[4px] md:ml-[5px] lg:ml-[6px]">
                     Notre équipe vous attend pour répondre à toutes vos questions et vous guider vers la formule qui vous correspond.
                   </p>
                 </div>
