@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="w-full">
+    <header className="w-full fixed top-0 left-0" style={{zIndex: 999999, position: 'fixed', isolation: 'isolate'}}>
       <div className="w-full max-w-[1512px] mx-auto">
         <div className="relative w-full h-[60px] flex">
           {/* White section for logo - trapézoïdale (15% width) */}

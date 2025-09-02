@@ -98,13 +98,11 @@ const HomePage: React.FC = () => {
   };
   return (
     <div className="w-full bg-global-background8">
-      <div className="flex flex-col justify-start items-center w-full">
+      <Header />
+      <div className="flex flex-col justify-start items-center w-full pt-[60px]">
         {/* Hero Section */}
         <div className="relative w-full h-screen">
-          {/* Header Section */}
-          <div className="absolute top-0 left-0 right-0 z-20">
-            <Header />
-          </div>
+
 
           {/* Hero Background Image with Overlays */}
           <div 
