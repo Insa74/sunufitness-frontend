@@ -6,7 +6,7 @@ export class Footer extends Component {
       <div>
          {/* Footer */}
          <div className="w-full bg-global-background7">
-          <div className="w-full max-w-[1512px] mx-auto">
+          <div className="w-full  mx-auto">
             <div className="flex flex-col justify-start items-start w-full p-[20px] sm:p-[24px] md:p-[28px] lg:p-[18px]">
               <div className="flex flex-col justify-start items-center w-full px-4 sm:px-6 md:px-8 lg:px-[16px] mb-[40px] sm:mb-[50px] md:mb-[60px] lg:mb-[72px]">
                 <div className="flex flex-col lg:flex-row justify-start items-center lg:items-start w-full gap-[40px] sm:gap-[50px] md:gap-[60px] lg:gap-0">
@@ -18,7 +18,7 @@ export class Footer extends Component {
                         alt="MMT Fitness Logo" 
                         className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[206px] h-[120px] sm:h-[140px] md:h-[160px] lg:h-[202px] object-contain mb-[16px] sm:mb-[20px] md:mb-[24px] lg:mb-[28px]"
                       />
-                      <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[14px] font-bahnschrift font-normal leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[25px] text-center lg:text-justify lowercase text-global-text1 w-full">
+                      <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[14px] font-bahnschrift font-light leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[25px] text-center lg:text-justify lowercase text-global-text1 w-full">
                         Depuis notre création, nous nous engageons à offrir un environnement motivant et inclusif pour tous les passionnés de fitness, où chaque pas vers vos objectifs est célébré et chaque défi devient une occasion de grandir. Notre équipe de coachs certifiés est là pour vous guider avec expertise
                       </p>
                     </div>

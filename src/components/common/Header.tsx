@@ -8,7 +8,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="w-full fixed top-0 left-0" style={{zIndex: 999999, position: 'fixed', isolation: 'isolate'}}>
-      <div className="w-full max-w-[1512px] mx-auto">
+      <div className="w-full  mx-auto">
         <div className="relative w-full h-[60px] flex">
           {/* White section for logo - trapézoïdale (15% width) */}
           <div className="bg-white flex items-center pl-[40px] pr-[70px] relative" style={{clipPath: 'polygon(0 0, 100% 0, calc(100% - 40px) 100%, 0 100%)'}}>
@@ -38,26 +38,26 @@ const Header: React.FC = () => {
                 <button 
                   role="menuitem" 
                   onClick={() => navigate('/')}
-                  className="text-[16px] font-medium text-white hover:text-gray-200 transition-colors"
+                  className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
                   Accueil
                 </button>
                 <button 
                   role="menuitem" 
-                  className="text-[16px] font-medium text-white hover:text-gray-200 transition-colors"
+                  className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
                   A propos
                 </button>
                 <button 
                   role="menuitem" 
-                  className="text-[16px] font-medium text-white hover:text-gray-200 transition-colors"
+                  className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
                   Services
                 </button>
                 <button 
                   role="menuitem" 
                   onClick={() => navigate('/reservation')}
-                  className="text-[16px] font-medium text-white border border-white rounded-[5px] px-[20px] py-[8px] hover:bg-white hover:text-green-600 transition-all"
+                  className="text-[16px]  text-white border border-white rounded-[3px] px-[20px] py-[8px] hover:bg-white hover:text-green-600 transition-all"
                 >
                   Réservez
                 </button>
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
               
               <Button 
                 variant="primary"
-                className="text-[16px] font-medium text-green-600 bg-white rounded-[5px] px-[20px] py-[8px] hover:bg-gray-100 transition-all"
+                className="text-[16px]  text-green-600 bg-white rounded-[3px] px-[20px] py-[8px] hover:bg-gray-100 transition-all"
               >
                 Contact
               </Button>

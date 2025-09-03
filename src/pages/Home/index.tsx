@@ -151,9 +151,9 @@ const HomePage: React.FC = () => {
               <div className="flex flex-col sm:flex-row justify-center items-center gap-[16px] sm:gap-[20px] md:gap-[24px] w-full max-w-[500px] sm:max-w-[600px] px-4">
                 <button 
                   onClick={handleReservationClick}
-                  className="flex justify-center items-center gap-[8px] bg-global-background10 border border-global-text5 rounded-[8px] px-[20px] sm:px-[24px] md:px-[28px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px]  hover:text-global-background10 transition-all duration-300"
+                  className="flex justify-center items-center gap-[8px] bg-global-background10 border border-global-text5 rounded-[5px] px-[20px] sm:px-[24px] md:px-[48px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px]  hover:text-global-background10 transition-all duration-300"
                 >
-                  <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal text-current">
+                  <span className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal text-white text-current">
                     Réservez
                   </span>
                   <img 
@@ -163,7 +163,7 @@ const HomePage: React.FC = () => {
                   />
                 </button>
                 
-                <button className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] border border-[#5dcd62] rounded-[8px] px-[20px] sm:px-[24px] md:px-[28px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px] hover:opacity-90 transition-opacity duration-300">
+                <button className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] border border-[#5dcd62] rounded-[5px] px-[20px] sm:px-[24px] md:px-[60px] py-[12px] sm:py-[14px] w-full sm:w-auto min-w-[140px] sm:min-w-[160px] hover:opacity-90 transition-opacity duration-300">
                   Contact
                 </button>
               </div>
@@ -174,8 +174,8 @@ const HomePage: React.FC = () => {
           <div className="hidden lg:block absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full max-w-[1200px] px-4 sm:px-6 md:px-8 z-20">
             <div className="flex flex-row gap-[30px] w-full">
               {/* Excellence Card */}
-              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
-                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[8px]">
+              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[3px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[3px] p-[8px]">
                   <img 
                     src="/images/img_game_icons_sport_medal.svg" 
                     alt="Sport medal" 
@@ -191,8 +191,8 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Community Card */}
-              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
-                <div className="flex flex-col justify-center items-center w-[50px] bg-global-background8 rounded-[5px] p-[8px]">
+              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[3px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[50px] bg-global-background8 rounded-[3px] p-[8px]">
                   <img 
                     src="/images/img_fa_solid_users.png" 
                     alt="Users" 
@@ -208,8 +208,8 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Accessibility Card */}
-              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[5px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
-                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[8px]">
+              <div className="flex flex-col justify-start items-start w-full lg:w-[378px] bg-global-background8 rounded-[3px] shadow-[0px_4px_4px_#0000003f] p-[24px] min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-auto bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[3px] p-[8px]">
                   <img 
                     src="/images/img_material_symbol.svg" 
                     alt="Material symbol" 
@@ -232,8 +232,8 @@ const HomePage: React.FC = () => {
           <div className="w-full max-w-[1200px] mx-auto">
             <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] w-full">
               {/* Excellence Card */}
-              <div className="flex flex-col justify-start items-start w-full bg-global-background8 rounded-[8px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
-                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] p-[8px] sm:p-[10px]">
+              <div className="flex flex-col justify-start items-start w-full bg-global-background8 rounded-[5px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[8px] sm:p-[10px]">
                   <img 
                     src="/images/img_game_icons_sport_medal.svg" 
                     alt="Sport medal" 
@@ -249,8 +249,8 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Community Card */}
-              <div className="flex flex-col justify-start items-start w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
-                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-global-background8 rounded-[8px] p-[8px] sm:p-[10px]">
+              <div className="flex flex-col justify-start items-start w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-global-background8 rounded-[5px] p-[8px] sm:p-[10px]">
                   <img 
                     src="/images/img_fa_solid_users.png" 
                     alt="Users" 
@@ -266,8 +266,8 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Accessibility Card */}
-              <div className="flex flex-col justify-start items-start w-full bg-global-background8 rounded-[8px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
-                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] p-[8px] sm:p-[10px]">
+              <div className="flex flex-col justify-start items-start w-full bg-global-background8 rounded-[5px] shadow-lg p-[20px] sm:p-[24px] min-h-[180px] sm:min-h-[200px]">
+                <div className="flex flex-col justify-center items-center w-[44px] sm:w-[50px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] p-[8px] sm:p-[10px]">
                   <img 
                     src="/images/img_material_symbol.svg" 
                     alt="Material symbol" 
@@ -295,7 +295,7 @@ const HomePage: React.FC = () => {
                   <img 
                     src="/images/img_02_1.png" 
                     alt="Fitness training" 
-                    className="absolute top-[8px] sm:top-[12px] md:top-[15px] lg:top-[18px] xl:top-[20px] left-[20px] sm:left-[25px] md:left-[30px] lg:left-[40px] xl:left-[62px] w-[240px] sm:w-[270px] md:w-[320px] lg:w-[400px] xl:w-[518px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[480px] xl:h-[630px] object-cover rounded-[8px] shadow-lg"
+                    className="absolute top-[8px] sm:top-[12px] md:top-[15px] lg:top-[18px] xl:top-[20px] left-[20px] sm:left-[25px] md:left-[30px] lg:left-[40px] xl:left-[62px] w-[240px] sm:w-[270px] md:w-[320px] lg:w-[400px] xl:w-[518px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[480px] xl:h-[630px] object-cover rounded-[5px] shadow-lg"
                   />
                   <img 
                     src="/images/img_cercle.png" 
@@ -318,13 +318,13 @@ const HomePage: React.FC = () => {
                   TAGGATYARAM FITNESS
                 </h2>
 
-                <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full mt-[16px] sm:mt-[20px] md:mt-[24px] lg:mt-[28px] px-2 lg:px-0">
+                <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-light leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full mt-[16px] sm:mt-[20px] md:mt-[24px] lg:mt-[28px] px-2 lg:px-0">
                   Depuis notre création, nous nous engageons à offrir un environnement motivant et inclusif pour tous les passionnés de fitness, où chaque pas vers vos objectifs est célébré et chaque défi devient une occasion de grandir. Notre équipe de coachs certifiés est là pour vous guider avec expertise, vous challenger avec bienveillance et vous faire progresser durablement, quel que soit votre niveau, que vous soyez débutant cherchant les bases solides ou athlète confirmé visant des performances optimisées.
                 </p>
 
-                <div className="flex flex-row justify-start items-start w-full bg-[linear-gradient(90deg,#5dcd6219_0%,_#21ac2819_100%)] mt-[24px] sm:mt-[28px] md:mt-[32px] lg:mt-[36px] p-[16px] sm:p-[18px] md:p-[20px] lg:p-[24px] rounded-[8px]">
+                <div className="flex flex-row justify-start items-start w-full bg-[linear-gradient(90deg,#5dcd6219_0%,_#21ac2819_100%)] mt-[24px] sm:mt-[28px] md:mt-[32px] lg:mt-[36px] p-[16px] sm:p-[18px] md:p-[20px] lg:p-[24px] rounded-[5px]">
                   <div className="w-[4px] h-[60px] sm:h-[70px] md:h-[80px] lg:h-[90px] bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] flex-shrink-0 mt-[4px]"></div>
-                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 ml-[12px] sm:ml-[16px] md:ml-[18px] lg:ml-[20px]">
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-light leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 ml-[12px] sm:ml-[16px] md:ml-[18px] lg:ml-[20px]">
                     Rejoignez-nous pour transformer votre entraînement en une expérience inspirante, adaptée à vos besoins, votre rythme et vos rêves, et découvrez comment chaque séance peut devenir une étape vers une meilleure version de vous-même.
                   </p>
                 </div>
@@ -332,7 +332,7 @@ const HomePage: React.FC = () => {
                 <div className="flex justify-center lg:justify-start w-full mt-[32px] sm:mt-[36px] md:mt-[40px] lg:mt-[44px]">
                   <button 
                     onClick={handleReservationClick}
-                    className="flex justify-center items-center gap-[8px] text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] px-[24px] sm:px-[28px] md:px-[32px] py-[12px] sm:py-[14px] md:py-[16px] hover:opacity-90 transition-opacity duration-300 w-full sm:w-auto max-w-[280px]"
+                    className="flex justify-center items-center gap-[8px] text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[3px] px-[24px] sm:px-[28px] md:px-[32px] py-[12px] sm:py-[14px] md:py-[16px] hover:opacity-90 transition-opacity duration-300 w-full sm:w-auto max-w-[280px]"
                   >
                     Réservez maintenant
                     <img 
@@ -371,7 +371,7 @@ const HomePage: React.FC = () => {
                       DÉCOUVREZ NOS SERVICES
                     </h2>
                   </div>
-                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full max-w-[600px] lg:max-w-none px-2 lg:px-0">
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-light leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full max-w-[600px] lg:max-w-none px-2 lg:px-0">
                     Nous proposons une variété de services pour répondre à tous vos besoins fitness et bien-être, en adaptant chaque offre à votre style de vie et à vos objectifs personnels afin de vous aider à progresser durablement: coaching personnalisé, programmes d'entraînement sur mesure, séances collectives dynamiques.
                   </p>
                 </div>
@@ -417,7 +417,7 @@ const HomePage: React.FC = () => {
                         <img 
                           src={service.image} 
                           alt={service.title} 
-                          className="w-full h-[180px] sm:h-[200px] object-cover rounded-[5px]"
+                          className="w-full h-[180px] sm:h-[200px] object-cover rounded-[3px]"
                         />
                         <h3 className="text-[16px] sm:text-[18px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] text-center uppercase text-global-text1 mt-[20px] sm:mt-[24px] w-full">
                           {service.title}
@@ -445,7 +445,7 @@ const HomePage: React.FC = () => {
                       <img 
                         src="/images/img_rectangle_24_1.png" 
                         alt="Private coaching session" 
-                        className="w-full h-[180px] sm:h-[200px] object-cover rounded-[5px]"
+                        className="w-full h-[180px] sm:h-[200px] object-cover rounded-[3px]"
                       />
                       <h3 className="text-[16px] sm:text-[18px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] text-center uppercase text-global-text1 mt-[20px] sm:mt-[24px] w-full">
                         COACHING PRIVÉ
@@ -457,60 +457,70 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Desktop Layout - Absolute Positioning */}
-                <div className="hidden lg:flex lg:flex-row gap-[50px] w-full max-w-[1378px] px-[67px] absolute top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
-                  {services.slice(currentServiceSlide * 2, currentServiceSlide * 2 + 2).map((service) => (
-                    <div key={service.id} className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
+                {/* Desktop Layout - Absolute Positioning with Smooth Sliding */}
+                <div className="hidden lg:block w-[1180px] px-[40px] absolute top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 overflow-hidden">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out gap-[30px]"
+                    style={{ transform: `translateX(-${currentServiceSlide * 33.33}%)` }}
+                  >
+                    {/* All Service Cards with Uniform Height */}
+                    {services.map((service) => (
+                      <div key={service.id} className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[360px] flex-shrink-0">
+                        <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
+                          <button className="w-[50px] sm:w-[58px] md:w-[62px] lg:w-[66px] h-[50px] sm:h-[58px] md:h-[62px] lg:h-[66px] bg-global-background2 rounded-[25px] sm:rounded-[29px] md:rounded-[31px] lg:rounded-[32px] p-[8px] sm:p-[9px] md:p-[9px] lg:p-[10px]">
+                            <img 
+                              src={service.icon} 
+                              alt={service.title} 
+                              className="w-full h-full object-contain"
+                            />
+                          </button>
+                          <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
+                        </div>
+                        <div className="flex flex-col justify-between w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[21px] sm:p-[24px] md:p-[26px] lg:p-[28px] pb-[32px] h-[380px]">
+                          <div className="flex flex-col">
+                            <img 
+                              src={service.image} 
+                              alt={service.title} 
+                              className="w-full h-[161px] sm:h-[185px] md:h-[200px] lg:h-[214px] object-cover rounded-[3px]"
+                            />
+                            <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-center uppercase text-global-text1 mt-[21px] sm:mt-[24px] md:mt-[26px] lg:mt-[28px] w-full">
+                              {service.title}
+                            </h3>
+                          </div>
+                          <p className="text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] font-bahnschrift font-light leading-[16px] sm:leading-[18px] md:leading-[19px] lg:leading-[19px] text-center text-global-text1 w-full mt-[6px] sm:mt-[7px] md:mt-[7px] lg:mt-[8px]">
+                            {service.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+
+                    {/* Coaching Privé Card with Same Height */}
+                    <div className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px] flex-shrink-0">
                       <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
                         <button className="w-[50px] sm:w-[58px] md:w-[62px] lg:w-[66px] h-[50px] sm:h-[58px] md:h-[62px] lg:h-[66px] bg-global-background2 rounded-[25px] sm:rounded-[29px] md:rounded-[31px] lg:rounded-[32px] p-[8px] sm:p-[9px] md:p-[9px] lg:p-[10px]">
                           <img 
-                            src={service.icon} 
-                            alt={service.title} 
+                            src="/images/img_icon_park_solid_sport.png" 
+                            alt="Private coaching" 
                             className="w-full h-full object-contain"
                           />
                         </button>
                         <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
                       </div>
-                      <div className="flex flex-col justify-start items-start w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[21px] sm:p-[24px] md:p-[26px] lg:p-[28px]">
-                        <img 
-                          src={service.image} 
-                          alt={service.title} 
-                          className="w-full h-[161px] sm:h-[185px] md:h-[200px] lg:h-[214px] object-cover rounded-[5px]"
-                        />
-                        <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1 mt-[21px] sm:mt-[24px] md:mt-[26px] lg:mt-[28px] text-center w-full">
-                          {service.title}
-                        </h3>
-                        <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-center text-global-text1 w-full mt-[6px] sm:mt-[7px] md:mt-[7px] lg:mt-[8px] mb-[15px] sm:mb-[17px] md:mb-[18px] lg:mb-[20px]">
-                          {service.description}
+                      <div className="flex flex-col justify-between w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[21px] sm:p-[24px] md:p-[26px] lg:p-[28px] h-[380px]">
+                        <div className="flex flex-col">
+                          <img 
+                            src="/images/img_rectangle_24_1.png" 
+                            alt="Private coaching session" 
+                            className="w-full h-[161px] sm:h-[185px] md:h-[200px] lg:h-[214px] object-cover rounded-[3px]"
+                          />
+                          <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-center uppercase text-global-text1 mt-[20px] sm:mt-[22px] md:mt-[24px] lg:mt-[26px]">
+                            COACHING PRIVÉ
+                          </h3>
+                        </div>
+                        <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-center text-global-text1 w-full mt-[8px] sm:mt-[9px] md:mt-[9px] lg:mt-[10px]">
+                          Un programme 100% personnalisé avec un expert pour maximiser vos résultats.
                         </p>
                       </div>
-                    </div>
-                  ))}
-
-                  {/* Coaching Privé Card */}
-                  <div className="flex flex-col gap-[14px] sm:gap-[16px] md:gap-[17px] lg:gap-[18px] justify-start items-center w-full lg:w-[426px]">
-                    <div className="flex flex-row gap-[3px] sm:gap-[4px] md:gap-[5px] lg:gap-[6px] justify-center items-center w-full">
-                      <button className="w-[50px] sm:w-[58px] md:w-[62px] lg:w-[66px] h-[50px] sm:h-[58px] md:h-[62px] lg:h-[66px] bg-global-background2 rounded-[25px] sm:rounded-[29px] md:rounded-[31px] lg:rounded-[32px] p-[8px] sm:p-[9px] md:p-[9px] lg:p-[10px]">
-                        <img 
-                          src="/images/img_icon_park_solid_sport.png" 
-                          alt="Private coaching" 
-                          className="w-full h-full object-contain"
-                        />
-                      </button>
-                      <div className="h-[1px] w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)]"></div>
-                    </div>
-                    <div className="flex flex-col justify-start items-center w-full bg-global-background6 rounded-[10px] shadow-[0px_4px_4px_#0000003f] p-[21px] sm:p-[24px] md:p-[26px] lg:p-[28px]">
-                      <img 
-                        src="/images/img_rectangle_24_1.png" 
-                        alt="Private coaching session" 
-                        className="w-full h-[161px] sm:h-[185px] md:h-[200px] lg:h-[214px] object-cover rounded-[5px]"
-                      />
-                      <h3 className="text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-bahnschrift font-bold leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[25px] text-left uppercase text-global-text1 mt-[20px] sm:mt-[22px] md:mt-[24px] lg:mt-[26px]">
-                        COACHING PRIVÉ
-                      </h3>
-                      <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] font-bahnschrift font-light leading-[17px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-center text-global-text1 w-full mt-[8px] sm:mt-[9px] md:mt-[9px] lg:lg-[10px] mb-[15px] sm:mb-[17px] md:mb-[18px] lg:mb-[20px]">
-                        Un programme 100 % personnalisé avec un expert pour maximiser vos résultats.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -528,7 +538,7 @@ const HomePage: React.FC = () => {
                     <div className="flex justify-center items-center w-full">
                       <button 
                         onClick={handleReservationClick}
-                        className="flex gap-[6px] sm:gap-[7px] md:gap-[8px] lg:gap-[9px] justify-center items-center border border-[#5dcd62] rounded-[5px] bg-global-background9 px-[10px] sm:px-[12px] md:px-[14px] lg:px-[16px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all"
+                        className="flex gap-[6px] sm:gap-[7px] md:gap-[8px] lg:gap-[9px] justify-center items-center border border-[#5dcd62] rounded-[3px] bg-global-background9 px-[10px] sm:px-[12px] md:px-[14px] lg:px-[16px] py-[6px] sm:py-[7px] md:py-[8px] lg:py-[9px] hover:bg-[#5dcd62] hover:text-global-text1 transition-all"
                       >
                         <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[18px] sm:leading-[19px] md:leading-[20px] lg:leading-[21px] text-global-text5">
                           Réservez maintenant
@@ -585,7 +595,7 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-left text-global-text1 w-full lg:w-[60%] max-w-[600px] lg:max-w-none mt-[16px] sm:mt-[20px] md:mt-[24px] lg:mt-[28px] px-2 lg:px-0">
+              <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-light leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-left text-global-text1 w-full lg:w-[60%] max-w-[600px] lg:max-w-none mt-[16px] sm:mt-[20px] md:mt-[24px] lg:mt-[28px] px-2 lg:px-0">
                 Nos membres parlent mieux que nous ! Découvrez leurs parcours inspirants et laissez-vous motiver par leurs transformations.
               </p>
 
@@ -664,7 +674,7 @@ const HomePage: React.FC = () => {
                   <h2 className="text-[20px] sm:text-[26px] md:text-[32px] lg:text-[40px] xl:text-[50px] font-bahnschrift font-bold leading-[24px] sm:leading-[32px] md:leading-[38px] lg:leading-[48px] xl:leading-[61px] text-center lg:text-left uppercase bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] bg-clip-text text-transparent w-full">
                     NOUS CONTACTEZ
                   </h2>
-                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full lg:w-[60%] max-w-[600px] lg:max-w-none px-2 lg:px-0">
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-light leading-[20px] sm:leading-[22px] md:leading-[24px] lg:leading-[26px] text-center lg:text-justify lowercase text-global-text1 w-full lg:w-[60%] max-w-[600px] lg:max-w-none px-2 lg:px-0">
                     Notre équipe vous attend pour répondre à toutes vos questions et vous guider vers la formule qui vous correspond.
                   </p>
                 </div>
@@ -673,7 +683,7 @@ const HomePage: React.FC = () => {
                 <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center w-full gap-[24px] sm:gap-[32px] md:gap-[40px] lg:gap-[48px]">
                   {/* Phone */}
                   <div className="flex flex-row justify-center lg:justify-start items-center w-full lg:w-auto">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[8px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] shadow-md">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] ">
                       <img 
                         src="/images/img_mingcute_phone_call_fill.png" 
                         alt="Phone" 
@@ -687,7 +697,7 @@ const HomePage: React.FC = () => {
 
                   {/* Email */}
                   <div className="flex flex-row justify-center items-center w-full lg:w-auto gap-[12px] sm:gap-[16px] md:gap-[18px] lg:gap-[20px]">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[8px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] shadow-md">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] ">
                       <img 
                         src="/images/img_ic_baseline_email.png" 
                         alt="Email" 
@@ -701,7 +711,7 @@ const HomePage: React.FC = () => {
 
                   {/* Location */}
                   <div className="flex flex-row justify-center lg:justify-end items-center w-full lg:w-auto">
-                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[8px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] shadow-md">
+                    <div className="flex flex-row justify-center items-center bg-global-background2 rounded-[5px] p-[12px] sm:p-[14px] md:p-[16px] lg:p-[18px] ">
                       <img 
                         src="/images/img_mdi_google_maps.png" 
                         alt="Location" 
@@ -727,7 +737,7 @@ const HomePage: React.FC = () => {
                       <input 
                         type="text"
                         placeholder="Entrez votre nom"
-                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[5px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
 
@@ -739,7 +749,7 @@ const HomePage: React.FC = () => {
                       <input 
                         type="tel"
                         placeholder="Entrez votre numéro de telephone"
-                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[5px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
 
@@ -751,7 +761,7 @@ const HomePage: React.FC = () => {
                       <input 
                         type="email"
                         placeholder="Entrez votre Adresse mail"
-                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[5px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
 
@@ -763,7 +773,7 @@ const HomePage: React.FC = () => {
                       <input 
                         type="text"
                         placeholder="Entrez le sujet"
-                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[8px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
+                        className="text-[14px] sm:text-[15px] md:text-[16px] font-bahnschrift font-normal text-global-text4 bg-global-background8 rounded-[5px] shadow-md px-[16px] sm:px-[18px] md:px-[20px] py-[12px] sm:py-[14px] md:py-[16px] w-full border-0 focus:outline-none focus:ring-2 focus:ring-[#5dcd62] transition-all duration-300"
                       />
                     </div>
                   </div>
@@ -773,7 +783,7 @@ const HomePage: React.FC = () => {
                     <label className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-bahnschrift font-normal text-global-text1">
                       Message
                     </label>
-                    <div className="flex flex-row justify-start items-start w-full bg-global-background8 rounded-[8px] shadow-md p-[16px] sm:p-[18px] md:p-[20px]">
+                    <div className="flex flex-row justify-start items-start w-full bg-global-background8 rounded-[5px] shadow-md p-[16px] sm:p-[18px] md:p-[20px]">
                       <textarea 
                         placeholder="Entrez votre message"
                         rows={6}
@@ -786,7 +796,7 @@ const HomePage: React.FC = () => {
                   <div className="flex flex-row justify-center w-full mt-[32px] sm:mt-[36px] md:mt-[40px]">
                     <Button 
                       variant="primary"
-                      className="text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[8px] px-[24px] sm:px-[32px] md:px-[40px] py-[12px] sm:py-[16px] md:py-[18px] hover:opacity-90 transition-opacity duration-300 shadow-lg w-full sm:w-auto max-w-[280px]"
+                      className="text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[24px] sm:px-[32px] md:px-[40px] py-[12px] sm:py-[16px] md:py-[18px] hover:opacity-90 transition-opacity duration-300 shadow-lg w-full sm:w-auto max-w-[280px]"
                     >
                       Envoyez votre Message
                     </Button>

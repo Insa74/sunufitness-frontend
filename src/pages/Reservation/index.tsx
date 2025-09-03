@@ -603,30 +603,38 @@ const ReservationPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {coaches.slice(currentCoachSlide, currentCoachSlide + 3).map((coach) => (
-                  <div
-                    key={coach.id}
-                    className={`bg-white rounded-lg p-6 text-center cursor-pointer transition-all duration-200 shadow-md hover:shadow-lg ${
-                      selectedCoach === coach.id
-                        ? 'border-2 border-green-500 shadow-lg'
-                        : 'border border-gray-100'
-                    }`}
-                    onClick={() => setSelectedCoach(coach.id)}
-                  >
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
-                      <img src={coach.image} alt={coach.name} className="w-full h-full object-cover" />
+              {/* Coach Carousel with Smooth Sliding */}
+              <div className="overflow-hidden">
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out gap-6"
+                  style={{ transform: `translateX(-${currentCoachSlide * 33.33}%)` }}
+                >
+                  {coaches.map((coach) => (
+                    <div
+                      key={coach.id}
+                      className={`bg-white rounded-lg p-6 text-center cursor-pointer transition-all duration-200 shadow-md hover:shadow-lg flex-shrink-0 w-full md:w-1/3 h-[280px] flex flex-col justify-between ${
+                        selectedCoach === coach.id
+                          ? 'border-2 border-green-500 shadow-lg'
+                          : 'border border-gray-100'
+                      }`}
+                      onClick={() => setSelectedCoach(coach.id)}
+                    >
+                      <div className="flex flex-col">
+                        <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
+                          <img src={coach.image} alt={coach.name} className="w-full h-full object-cover" />
+                        </div>
+                        <h4 className="font-semibold text-gray-900 text-lg mb-2">{coach.name}</h4>
+                        <p className="text-sm text-gray-600 mb-4 leading-relaxed flex-grow">{coach.description}</p>
+                      </div>
+                      <button className="bg-green-100 text-green-600 text-sm font-medium px-4 py-2 rounded-md hover:bg-green-200 transition-colors flex items-center justify-center mx-auto mt-auto">
+                        Choisir 
+                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
                     </div>
-                    <h4 className="font-semibold text-gray-900 text-lg mb-2">{coach.name}</h4>
-                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">{coach.description}</p>
-                    <button className="bg-green-100 text-green-600 text-sm font-medium px-4 py-2 rounded-md hover:bg-green-200 transition-colors flex items-center justify-center mx-auto">
-                      Choisir 
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </>
