@@ -286,7 +286,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* About Section */}
-        <div className="w-full bg-global-background4 mt-[60px] sm:mt-[80px] md:mt-[100px] lg:mt-[180px]">
+        <div id="about" className="w-full bg-global-background4 mt-[60px] sm:mt-[80px] md:mt-[100px] lg:mt-[180px]">
           <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
             <div className="flex flex-col lg:flex-row justify-between items-center py-[40px] sm:py-[50px] md:py-[60px] lg:py-[80px] gap-[32px] sm:gap-[40px] lg:gap-[60px]">
               {/* Left Image Section */}
@@ -354,7 +354,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Services Section */}
-        <div className="w-full mt-[100px] sm:mt-[120px] md:mt-[140px] lg:mt-[96px]">
+        <div id="services" className="w-full mt-[100px] sm:mt-[120px] md:mt-[140px] lg:mt-[96px]">
           <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
             <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[32px] justify-start items-center">
               {/* Services Header */}
@@ -659,7 +659,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Contact Section */}
-        <div className="w-full bg-global-background5 border-b border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[96px] py-[32px] sm:py-[40px] md:py-[48px] lg:py-[56px] px-4 sm:px-6 md:px-8 lg:px-8">
+        <div id='contact' className="w-full bg-global-background5 border-b border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[96px] py-[32px] sm:py-[40px] md:py-[48px] lg:py-[56px] px-4 sm:px-6 md:px-8 lg:px-8">
           <div className="w-full max-w-[1600px] mx-auto">
             <div className="flex flex-col gap-[32px] sm:gap-[40px] md:gap-[48px] lg:gap-[56px] justify-start items-center w-full">
               {/* Contact Header */}

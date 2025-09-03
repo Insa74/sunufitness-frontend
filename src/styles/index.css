@@ -1,13 +1,22 @@
 @import './tailwind.css';
 @import url('https://fonts.googleapis.com/css2?family=Bahnschrift:wght@400;500;700&display=swap');
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed header height + some padding */
+}
+
 body {
+
   font-family: 'Bahnschrift', 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
+
 }

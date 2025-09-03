@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="w-full fixed top-0 left-0" style={{zIndex: 999999, position: 'fixed', isolation: 'isolate'}}>
+    <header className="scroll-smooth w-full fixed top-0 left-0" style={{zIndex: 999999, position: 'fixed', isolation: 'isolate'}}>
       <div className="w-full  mx-auto">
         <div className="relative w-full h-[60px] flex">
           {/* White section for logo - trapézoïdale (15% width) */}
@@ -42,18 +42,20 @@ const Header: React.FC = () => {
                 >
                   Accueil
                 </button>
-                <button 
+                <a 
+                  href='#about'
                   role="menuitem" 
                   className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
                   A propos
-                </button>
-                <button 
+                </a>
+                <a 
+                  href='#services'
                   role="menuitem" 
                   className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
                   Services
-                </button>
+                </a>
                 <button 
                   role="menuitem" 
                   onClick={() => navigate('/reservation')}
@@ -63,12 +65,13 @@ const Header: React.FC = () => {
                 </button>
               </nav>
               
-              <Button 
+              <a 
+                href='#contact'
                 variant="primary"
                 className="text-[16px]  text-green-600 bg-white rounded-[3px] px-[20px] py-[8px] hover:bg-gray-100 transition-all"
               >
                 Contact
-              </Button>
+              </a>
               
               <button 
                 className="w-[40px] h-[40px] bg-[#3BB641] rounded-full flex items-center justify-center hover:bg-green-700 transition-colors"
@@ -96,12 +99,12 @@ const Header: React.FC = () => {
               >
                 Accueil
               </button>
-              <button role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
+              <a href='#about' role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
                 A propos
-              </button>
-              <button role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
+              </a>
+              <a href='#services' role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
                 Services
-              </button>
+              </a>
               <button 
                 role="menuitem" 
                 onClick={() => {
@@ -112,12 +115,13 @@ const Header: React.FC = () => {
               >
                 Réservez
               </button>
-              <Button 
+              <a 
+                href='#contact'
                 variant="primary" 
                 className="text-left bg-white text-button-text1"
               >
                 Contact
-              </Button>
+              </a>
               <button 
                 role="menuitem" 
                 onClick={() => {
