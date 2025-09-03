@@ -3,15 +3,15 @@ import React, { Component } from 'react'
 export class Footer extends Component {
   render() {
     return (
-      <div>
+      <div className="w-full">
          {/* Footer */}
          <div className="w-full bg-global-background7">
           <div className="w-full  mx-auto">
             <div className="flex flex-col justify-start items-start w-full p-[20px] sm:p-[24px] md:p-[28px] lg:p-[18px]">
               <div className="flex flex-col justify-start items-center w-full px-4 sm:px-6 md:px-8 lg:px-[16px] mb-[40px] sm:mb-[50px] md:mb-[60px] lg:mb-[72px]">
-                <div className="flex flex-col lg:flex-row justify-start items-center lg:items-start w-full gap-[40px] sm:gap-[50px] md:gap-[60px] lg:gap-0">
+                <div className="flex flex-col lg:flex-row justify-start items-center lg:items-start w-full gap-[40px] sm:gap-[50px] md:gap-[60px] lg:gap-[80px]">
                   {/* Logo and Description */}
-                  <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[24px] justify-start items-center lg:items-start w-full lg:w-[34%] px-4 lg:px-[14px]">
+                  <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[24px] justify-start items-center lg:items-start w-full lg:w-[40%] px-4 lg:px-[14px]">
                     <div className="flex flex-col items-center lg:items-start w-full max-w-[350px] lg:max-w-none">
                       <img 
                         src="/images/img_logo_500x500_px.png" 
@@ -44,7 +44,7 @@ export class Footer extends Component {
                   </div>
 
                   {/* Contact and Newsletter */}
-                  <div className="flex flex-col gap-[32px] sm:gap-[40px] md:gap-[48px] lg:gap-[10px] justify-start items-center w-full lg:w-auto">
+                  <div className="flex flex-col gap-[32px] sm:gap-[40px] md:gap-[48px] lg:gap-[10px] justify-start items-center w-full lg:w-[60%]">
                     {/* Mobile/Tablet Headers - Stacked */}
                     <div className="flex flex-col lg:hidden gap-[32px] sm:gap-[40px] md:gap-[48px] w-full">
                       <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-bahnschrift font-normal leading-[24px] sm:leading-[28px] md:leading-[32px] text-center text-global-text1">
@@ -114,7 +114,7 @@ export class Footer extends Component {
                         <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-bahnschrift font-normal leading-[24px] sm:leading-[28px] md:leading-[32px] text-center text-global-text1">
                           Newsletter
                         </h3>
-                        <p className="text-[13px] sm:text-[14px] md:text-[16px] font-bahnschrift font-normal leading-[18px] sm:leading-[20px] md:leading-[22px] text-center text-global-text3 w-full">
+                        <p className="text-[13px] sm:text-[14px] md:text-[16px] font-bahnschrift font-light leading-[18px] sm:leading-[20px] md:leading-[22px] text-center text-global-text3 w-full">
                           Ne manquez aucune actualité, offre exclusive ou conseil coaching de votre centre de fitness préféré ! En vous abonnant, vous recevrez directement dans votre boîte mail .
                         </p>
                         <div className="flex flex-col sm:flex-row items-center w-full gap-[12px] sm:gap-0">
@@ -138,7 +138,7 @@ export class Footer extends Component {
                       
                       {/* Newsletter - Desktop */}
                       <div className="hidden lg:flex flex-col gap-[20px] justify-start items-start w-full lg:w-[54%]">
-                        <p className="text-[18px] font-bahnschrift font-normal leading-[21px] text-left text-global-text3 w-full">
+                        <p className="text-[18px] font-bahnschrift font-light leading-[21px] text-left text-global-text3 w-full">
                           Ne manquez aucune actualité, offre exclusive ou conseil coaching de votre centre de fitness préféré ! En vous abonnant, vous recevrez directement dans votre boîte mail .
                         </p>
                         <div className="flex flex-row items-center w-full">
@@ -166,8 +166,8 @@ export class Footer extends Component {
 
         {/* Copyright */}
         <div className="w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] px-4 sm:px-6 md:px-8 lg:px-[34px] py-[12px] sm:py-[14px] md:py-[16px] lg:py-[10px]">
-          <p className="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] font-kanit font-normal leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[27px] text-center text-global-text5 max-w-[600px] lg:max-w-none mx-auto">
-            <span className="text-global-text5">© 2025 nom du site. Tous droits réservés</span>
+          <p className="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] font-kanit font-normal leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[27px] text-center text-global-text5 w-full  mx-auto">
+            <span className="text-global-text5">© 2025 MMT Fitness. Tous droits réservés</span>
             <span className="block sm:inline text-global-text5"> | Design By </span>
             <span className="text-global-text5 underline">Maisoft.</span>
           </p>

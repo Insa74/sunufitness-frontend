@@ -355,7 +355,7 @@ const HomePage: React.FC = () => {
 
         {/* Services Section */}
         <div className="w-full mt-[100px] sm:mt-[120px] md:mt-[140px] lg:mt-[96px]">
-          <div className="w-full max-w-[1378px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
+          <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
             <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[32px] justify-start items-center">
               {/* Services Header */}
               <div className="flex flex-col lg:flex-row justify-between items-center w-full gap-[24px] lg:gap-[40px]">
@@ -458,9 +458,9 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 {/* Desktop Layout - Absolute Positioning with Smooth Sliding */}
-                <div className="hidden lg:block w-[1180px] px-[40px] absolute top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 overflow-hidden">
+                <div className="hidden lg:block w-[1380px] px-[40px] absolute top-[280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 overflow-hidden">
                   <div 
-                    className="flex transition-transform duration-500 ease-in-out gap-[30px]"
+                    className="flex transition-transform duration-500 ease-in-out gap-[90px]"
                     style={{ transform: `translateX(-${currentServiceSlide * 33.33}%)` }}
                   >
                     {/* All Service Cards with Uniform Height */}
@@ -660,7 +660,7 @@ const HomePage: React.FC = () => {
 
         {/* Contact Section */}
         <div className="w-full bg-global-background5 border-b border-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[96px] py-[32px] sm:py-[40px] md:py-[48px] lg:py-[56px] px-4 sm:px-6 md:px-8 lg:px-8">
-          <div className="w-full max-w-[1378px] mx-auto">
+          <div className="w-full max-w-[1600px] mx-auto">
             <div className="flex flex-col gap-[32px] sm:gap-[40px] md:gap-[48px] lg:gap-[56px] justify-start items-center w-full">
               {/* Contact Header */}
               <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[32px] justify-start items-center w-full text-center lg:text-left">
@@ -727,7 +727,7 @@ const HomePage: React.FC = () => {
 
               {/* Contact Form */}
               <div className="flex flex-col justify-start items-center w-full">
-                <div className="flex flex-col justify-start items-start w-full max-w-[1200px]">
+                <div className="flex flex-col justify-start items-start w-full ">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[32px] w-full">
                     {/* Name Field */}
                     <div className="flex flex-col gap-[8px] sm:gap-[10px] justify-start items-start w-full">
@@ -796,7 +796,7 @@ const HomePage: React.FC = () => {
                   <div className="flex flex-row justify-center w-full mt-[32px] sm:mt-[36px] md:mt-[40px]">
                     <Button 
                       variant="primary"
-                      className="text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[5px] px-[24px] sm:px-[32px] md:px-[40px] py-[12px] sm:py-[16px] md:py-[18px] hover:opacity-90 transition-opacity duration-300 shadow-lg w-full sm:w-auto max-w-[280px]"
+                      className="text-[14px] sm:text-[16px] md:text-[18px] font-bahnschrift font-normal text-global-text5 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] rounded-[3px] px-[24px] sm:px-[32px] md:px-[40px] py-[12px] sm:py-[16px] md:py-[18px] hover:opacity-90 transition-opacity duration-300 shadow-lg w-full "
                     >
                       Envoyez votre Message
                     </Button>
