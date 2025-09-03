@@ -35,13 +35,13 @@ const Header: React.FC = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-[40px]">
               <nav className="flex items-center gap-[40px]" role="menubar">
-                <button 
+                <a  href='#home'
                   role="menuitem" 
                   onClick={() => navigate('/')}
                   className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
                   Accueil
-                </button>
+                </a>
                 <a 
                   href='#about'
                   role="menuitem" 
@@ -89,7 +89,7 @@ const Header: React.FC = () => {
           {/* Mobile Navigation Menu */}
           <nav className={`${menuOpen ? 'block' : 'hidden'} lg:hidden absolute top-full left-0 right-0 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] shadow-lg z-50`}>
             <div className="flex flex-col p-4 space-y-4">
-              <button 
+              <a  href='#home'
                 role="menuitem" 
                 onClick={() => {
                   navigate('/');
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
                 className="text-left text-global-text5 hover:text-gray-200 transition-colors"
               >
                 Accueil
-              </button>
+              </a>
               <a href='#about' role="menuitem" className="text-left text-global-text5 hover:text-gray-200 transition-colors">
                 A propos
               </a>

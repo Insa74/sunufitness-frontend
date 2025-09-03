@@ -98,6 +98,7 @@ const HomePage: React.FC = () => {
   };
   return (
     <div className="w-full bg-global-background8">
+      
       <Header />
       <div className="flex flex-col justify-start items-center w-full pt-[60px]">
         {/* Hero Section */}
@@ -135,7 +136,7 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Hero Content */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center z-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+          <div id="home" className="absolute inset-0 flex flex-col justify-center items-center z-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div className="flex flex-col gap-[20px] sm:gap-[28px] md:gap-[36px] lg:gap-[44px] xl:gap-[52px] justify-center items-center w-full max-w-[1200px] text-center">
               {/* Hero Text */}
               <div className="flex flex-col gap-[12px] sm:gap-[16px] md:gap-[20px] lg:gap-[24px] xl:gap-[28px] justify-center items-center w-full">
@@ -809,6 +810,33 @@ const HomePage: React.FC = () => {
 
         <Footer />
       </div>
+      
+      {/* Scroll to Top Button */}
+      <button
+        onClick={() => {
+          const homeSection = document.getElementById('home');
+          if (homeSection) {
+            homeSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+        className="fixed bottom-6 right-6 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] hover:bg-[linear-gradient(90deg,#21ac28_0%,_#5dcd62_100%)] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-50 group"
+        title="Retour en haut"
+        aria-label="Retour en haut de la page"
+      >
+        <svg 
+          className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform duration-300" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2.5} 
+            d="M5 15l7-7 7 7" 
+          />
+        </svg>
+      </button>
     </div>
   );
 };
