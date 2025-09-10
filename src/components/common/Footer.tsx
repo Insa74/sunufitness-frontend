@@ -14,7 +14,7 @@ export class Footer extends Component {
                   <div className="flex flex-col gap-[20px] sm:gap-[24px] md:gap-[28px] lg:gap-[24px] justify-start items-center lg:items-start w-full lg:w-[40%] px-4 lg:px-[14px]">
                     <div className="flex flex-col items-center lg:items-start w-full max-w-[350px] lg:max-w-none">
                       <img
-                        src="/images/sunfitness.jpg"
+                        src="/images/sunu.png"
                         alt="MMT Fitness Logo"
                         className="w-[200px] sm:w-[140px] md:w-[160px] lg:w-[206px] h-[120px] sm:h-[140px] md:h-[160px] lg:h-[202px] object-contain mb-[16px] sm:mb-[20px] md:mb-[24px] lg:mb-[28px]"
                       />

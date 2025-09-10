@@ -19,7 +19,7 @@ const Header: React.FC = () => {
             style={{ clipPath: 'polygon(0 0, 100% 0, calc(100% - 40px) 100%, 0 100%)' }}
           >
             <img
-              src="/images/sunfitness.jpg"
+              src="/images/sunu.png"
               alt="MMT Fitness Logo"
               className="w-[200px] object-contain"
             />
