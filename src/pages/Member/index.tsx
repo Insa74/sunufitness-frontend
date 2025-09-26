@@ -39,7 +39,7 @@ const MemberPage: React.FC = () => {
   }, []);
 
   function formatDateTime(s: Session) {
-    const raw = s.scheduled_at || s.date;
+    const raw = s.date_time || s.scheduled_at || s.date;
     if (!raw) return '';
     try {
       const d = new Date(raw);
@@ -47,8 +47,41 @@ const MemberPage: React.FC = () => {
         return d.toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' });
       }
     } catch {}
-    // Fallback on separate date/time fields
     return [s.date, s.time].filter(Boolean).join(' à ');
+  }
+
+  function formatStatus(val?: string) {
+    const v = (val || '').toString().toLowerCase();
+    switch (v) {
+      case 'pending':
+      case 'en_attente':
+        return { label: 'En attente', color: 'bg-yellow-100 text-yellow-800' };
+      case 'confirmed':
+      case 'confirmee':
+      case 'confirmé':
+        return { label: 'Confirmée', color: 'bg-green-100 text-green-800' };
+      case 'cancelled':
+      case 'annulee':
+      case 'annulé':
+        return { label: 'Annulée', color: 'bg-red-100 text-red-700' };
+      case 'completed':
+      case 'terminee':
+      case 'terminé':
+        return { label: 'Terminée', color: 'bg-blue-100 text-blue-800' };
+      default:
+        return { label: val || '—', color: 'bg-gray-100 text-gray-700' };
+    }
+  }
+
+  function coachName(s: Session) {
+    return (s as any)?.coach?.full_name || 'Coach';
+  }
+  function durationText(s?: Session) {
+    const d = s?.duration ?? s?.duration_minutes ?? s?.duration_min;
+    if (!d && d !== 0) return undefined;
+    const n = Number(d);
+    if (!isNaN(n) && n > 0) return `${n} min`;
+    return undefined;
   }
 
   return (
@@ -135,16 +168,58 @@ const MemberPage: React.FC = () => {
 
             {/* Appointments List */}
             <div className="space-y-4">
-              {(sessions.length > 0 ? sessions : []).map((s) => (
-                <div key={(s.id ?? Math.random()).toString()} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                  <div className="w-3 h-3 bg-[#3BB641] rounded-full flex-shrink-0"></div>
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-800 text-sm sm:text-base">
-                      {(s.title || s.name || 'Séance')} {formatDateTime(s) ? `- ${formatDateTime(s)}` : ''}
-                    </p>
+              {(sessions.length > 0 ? sessions : []).map((s) => {
+                const dt = formatDateTime(s);
+                const coach = coachName(s);
+                const loc = (s as any).location || (s as any).lieu;
+                const st = formatStatus((s as any).status);
+                const dur = durationText(s);
+                return (
+                  <div key={(s.id ?? Math.random()).toString()} className="p-4 bg-white rounded-lg border border-gray-200 hover:shadow transition">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#3BB641]"></span>
+                          <h4 className="font-semibold text-gray-900 text-sm sm:text-base truncate">
+                            {s.title || s.name || 'Séance'}
+                          </h4>
+                        </div>
+                        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-gray-700">
+                          {dt && (
+                            <div className="flex items-center gap-2">
+                              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                              <span className="font-medium text-gray-600">Date:</span>
+                              <span className="text-gray-800">{dt}</span>
+                            </div>
+                          )}
+                          {coach && (
+                            <div className="flex items-center gap-2">
+                              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A4 4 0 019 16h6a4 4 0 013.879 1.804M15 11a3 3 0 10-6 0 3 3 0 006 0z"/></svg>
+                              <span className="font-medium text-gray-600">Coach:</span>
+                              <span className="text-gray-800">{coach}</span>
+                            </div>
+                          )}
+                          {loc && (
+                            <div className="flex items-center gap-2">
+                              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.242a8 8 0 1111.314 0z"/></svg>
+                              <span className="font-medium text-gray-600">Lieu:</span>
+                              <span className="text-gray-800">{loc}</span>
+                            </div>
+                          )}
+                          {dur && (
+                            <div className="flex items-center gap-2">
+                              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                              <span className="font-medium text-gray-600">Durée:</span>
+                              <span className="text-gray-800">{dur}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${st.color}`}>{st.label}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               {!loading && sessions.length === 0 && (
                 <div className="text-gray-500 text-sm">Aucun rendez-vous pour le moment.</div>
               )}
