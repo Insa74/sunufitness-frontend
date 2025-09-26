@@ -44,7 +44,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left Panel - Brand/Image Section */}
-      <div className="hidden lg:flex lg:flex-1 relative bg-gradient-to-br from-emerald-700 to-emerald-900 overflow-hidden">
+      <div className="hidden lg:flex lg:flex-1 relative bg-gradient-to-br from-[#3BB641] to-[#2d8d34] overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full bg-repeat" style={{
@@ -63,7 +63,7 @@ const LoginPage: React.FC = () => {
           
           <div className="max-w-md">
             <h2 className="text-4xl font-bold mb-4">Transformez votre potentiel en performance</h2>
-            <p className="text-emerald-100 text-lg opacity-90">
+            <p className="text-white/80 text-lg opacity-90">
               Rejoignez notre communauté de sportifs passionnés et accédez à des programmes d'entraînement personnalisés.
             </p>
           </div>
@@ -71,11 +71,11 @@ const LoginPage: React.FC = () => {
           <div className="flex space-x-4">
             <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
               <div className="text-2xl font-bold mb-1">5000+</div>
-              <div className="text-emerald-100 text-sm">Membres actifs</div>
+              <div className="text-white/80 text-sm">Membres actifs</div>
             </div>
             <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
               <div className="text-2xl font-bold mb-1">50+</div>
-              <div className="text-emerald-100 text-sm">Coach experts</div>
+              <div className="text-white/80 text-sm">Coach experts</div>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ const LoginPage: React.FC = () => {
             <h2 className="text-3xl font-bold text-gray-900">Connectez-vous</h2>
             <p className="mt-2 text-sm text-gray-600">
               Ou{' '}
-              <Link to="/register" className="font-medium text-emerald-600 hover:text-emerald-500 transition-colors">
+              <Link to="/register" className="font-medium text-[#3BB641] hover:opacity-90 transition-colors">
                 créez un nouveau compte
               </Link>
             </p>
@@ -135,10 +135,10 @@ const LoginPage: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     onFocus={() => setIsFocused({ ...isFocused, email: true })}
                     onBlur={() => setIsFocused({ ...isFocused, email: false })}
-                    className="block w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200"
                     placeholder="vous@exemple.com"
                   />
-                  <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.email ? 'opacity-20' : ''}`}></div>
+                  <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.email ? 'opacity-20' : ''}`}></div>
                 </div>
               </div>
 
@@ -157,10 +157,10 @@ const LoginPage: React.FC = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setIsFocused({ ...isFocused, password: true })}
                     onBlur={() => setIsFocused({ ...isFocused, password: false })}
-                    className="block w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200"
                     placeholder="••••••••"
                   />
-                  <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.password ? 'opacity-20' : ''}`}></div>
+                  <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.password ? 'opacity-20' : ''}`}></div>
                 </div>
               </div>
 
@@ -178,7 +178,7 @@ const LoginPage: React.FC = () => {
                 </div>
 
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500 transition-colors">
+                  <a href="#" className="font-medium text-[#3BB641] hover:opacity-90 transition-colors">
                     Mot de passe oublié?
                   </a>
                 </div>
@@ -188,7 +188,7 @@ const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-60 transition-all duration-200 transform hover:scale-[1.02]"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-[#3BB641] hover:bg-[#319c39] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3BB641] disabled:opacity-60 transition-all duration-200 transform hover:scale-[1.02]"
                 >
                   {loading ? (
                     <div className="flex items-center">

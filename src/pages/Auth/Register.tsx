@@ -68,7 +68,7 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left Panel - Brand/Image Section */}
-      <div className="hidden lg:flex lg:flex-1 relative bg-gradient-to-br from-emerald-700 to-emerald-900 overflow-hidden">
+      <div className="hidden lg:flex lg:flex-1 relative bg-gradient-to-br from-[#3BB641] to-[#2d8d34] overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full bg-repeat" style={{
@@ -85,13 +85,13 @@ const RegisterPage: React.FC = () => {
           
           <div className="max-w-md">
             <h2 className="text-4xl font-bold mb-4">Commencez votre transformation</h2>
-            <p className="text-emerald-100 text-lg opacity-90">
+            <p className="text-white/80 text-lg opacity-90">
               Rejoignez notre communauté fitness et découvrez un nouveau mode de vie sain avec des coachs experts.
             </p>
           </div>
           
           <div className="space-y-4">
-            <div className="flex items-center space-x-3 text-emerald-100">
+            <div className="flex items-center space-x-3 text-white/80">
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -99,7 +99,7 @@ const RegisterPage: React.FC = () => {
               </div>
               <span>Programmes d'entraînement personnalisés</span>
             </div>
-            <div className="flex items-center space-x-3 text-emerald-100">
+            <div className="flex items-center space-x-3 text-white/80">
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -107,7 +107,7 @@ const RegisterPage: React.FC = () => {
               </div>
               <span>Suivi de progression détaillé</span>
             </div>
-            <div className="flex items-center space-x-3 text-emerald-100">
+            <div className="flex items-center space-x-3 text-white/80">
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -118,7 +118,7 @@ const RegisterPage: React.FC = () => {
           </div>
           
           {/* Decorative Elements */}
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full -mr-32 -mb-32"></div>
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#3BB641]/20 rounded-full -mr-32 -mb-32"></div>
           <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mt-16"></div>
         </div>
       </div>
@@ -128,7 +128,7 @@ const RegisterPage: React.FC = () => {
         <div className="mx-auto w-full max-w-2xl lg:w-96">
           <div className="lg:hidden mb-8 text-center">
             <div className="flex items-center justify-center space-x-3">
-              <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#3BB641] rounded-xl flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
@@ -141,7 +141,7 @@ const RegisterPage: React.FC = () => {
             <h2 className="text-3xl font-bold text-gray-900">Créer votre compte</h2>
             <p className="mt-2 text-sm text-gray-600">
               Ou{' '}
-              <Link to="/login" className="font-medium text-emerald-600 hover:text-emerald-500 transition-colors">
+              <Link to="/login" className="font-medium text-[#3BB641] hover:opacity-90 transition-colors">
                 connectez-vous à votre compte existant
               </Link>
             </p>
@@ -170,10 +170,10 @@ const RegisterPage: React.FC = () => {
                       onChange={e => update('first_name', e.target.value)}
                       onFocus={() => handleFocus('first_name')}
                       onBlur={() => handleBlur('first_name')}
-                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200 placeholder-gray-400"
                       placeholder="Jean"
                     />
-                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.first_name ? 'opacity-20' : ''}`}></div>
+                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.first_name ? 'opacity-20' : ''}`}></div>
                   </div>
                   {renderFieldError('first_name')}
                 </div>
@@ -189,10 +189,10 @@ const RegisterPage: React.FC = () => {
                       onChange={e => update('last_name', e.target.value)}
                       onFocus={() => handleFocus('last_name')}
                       onBlur={() => handleBlur('last_name')}
-                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200 placeholder-gray-400"
                       placeholder="Dupont"
                     />
-                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.last_name ? 'opacity-20' : ''}`}></div>
+                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.last_name ? 'opacity-20' : ''}`}></div>
                   </div>
                   {renderFieldError('last_name')}
                 </div>
@@ -209,10 +209,10 @@ const RegisterPage: React.FC = () => {
                       onChange={e => update('email', e.target.value)}
                       onFocus={() => handleFocus('email')}
                       onBlur={() => handleBlur('email')}
-                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200 placeholder-gray-400"
                       placeholder="vous@exemple.com"
                     />
-                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.email ? 'opacity-20' : ''}`}></div>
+                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.email ? 'opacity-20' : ''}`}></div>
                   </div>
                   {renderFieldError('email')}
                 </div>
@@ -229,10 +229,10 @@ const RegisterPage: React.FC = () => {
                       onChange={e => update('password', e.target.value)}
                       onFocus={() => handleFocus('password')}
                       onBlur={() => handleBlur('password')}
-                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200 placeholder-gray-400"
                       placeholder="••••••••"
                     />
-                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.password ? 'opacity-20' : ''}`}></div>
+                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.password ? 'opacity-20' : ''}`}></div>
                   </div>
                   {renderFieldError('password')}
                 </div>
@@ -248,10 +248,10 @@ const RegisterPage: React.FC = () => {
                       onChange={e => update('phone', e.target.value)}
                       onFocus={() => handleFocus('phone')}
                       onBlur={() => handleBlur('phone')}
-                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200 placeholder-gray-400"
                       placeholder="+221 77 123 45 67"
                     />
-                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.phone ? 'opacity-20' : ''}`}></div>
+                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.phone ? 'opacity-20' : ''}`}></div>
                   </div>
                 </div>
 
@@ -268,10 +268,10 @@ const RegisterPage: React.FC = () => {
                       onChange={e => update('address', e.target.value)}
                       onFocus={() => handleFocus('address')}
                       onBlur={() => handleBlur('address')}
-                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3BB641] focus:border-[#3BB641] transition-all duration-200 placeholder-gray-400"
                       placeholder="Votre adresse complète"
                     />
-                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.address ? 'opacity-20' : ''}`}></div>
+                    <div className={`absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-[#3BB641] to-[#2d8d34] opacity-0 transition-opacity duration-300 pointer-events-none ${isFocused.address ? 'opacity-20' : ''}`}></div>
                   </div>
                 </div>
               </div>
@@ -281,7 +281,7 @@ const RegisterPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-60 transition-all duration-200 transform hover:scale-[1.02]"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-[#3BB641] hover:bg-[#319c39] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3BB641] disabled:opacity-60 transition-all duration-200 transform hover:scale-[1.02]"
                 >
                   {loading ? (
                     <div className="flex items-center">

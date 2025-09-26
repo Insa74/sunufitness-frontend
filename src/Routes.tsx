@@ -14,13 +14,13 @@ const AppRoutes = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-        <Route path="/dashboard" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={<HomePage />} />
         <Route path="/reservation" element={<ProtectedRoute><ReservationPage /></ProtectedRoute>} />
         <Route path="/member" element={<ProtectedRoute><MemberPage /></ProtectedRoute>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="*" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>
   );
