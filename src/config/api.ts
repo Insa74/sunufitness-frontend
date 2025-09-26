@@ -6,7 +6,8 @@ export const API = {
     // These are appended to BASE_URL
     login: '/login', // POST { email, password }
     logout: '/logout', // POST
-    register: '/register', // POST { first_name, last_name, email, password, phone?, address?, date_of_birth? }
+    register: '/users', // POST { first_name, last_name, email, password, phone?, address?, date_of_birth? }
+    profile: '/profile', // GET (auth required)
   },
 } as const;
 
