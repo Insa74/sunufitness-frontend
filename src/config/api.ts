@@ -1,7 +1,7 @@
 // Central API configuration for the React frontend
 // Backend API base should point directly to Laravel API (including /api)
 export const API = {
-  BASE_URL: (import.meta.env.VITE_API_BASE_URL ?? 'http://192.168.1.243:8000/api'),
+  BASE_URL: (import.meta.env.VITE_API_BASE_URL ?? 'http://192.168.43.20:8000/api'),
   endpoints: {
     // These are appended to BASE_URL
     login: '/login', // POST { email, password }
