@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tagger from "@dhiwise/component-tagger";
+import tagger from '@dhiwise/component-tagger';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    outDir: "build",
+    outDir: 'build',
   },
-  plugins: [react(),tagger()],
+  plugins: [react(), tagger()],
   resolve: {
     alias: {
       '@': '/src',
@@ -20,12 +20,12 @@ export default defineConfig({
   },
   server: {
     port: 4028,
-    host: "0.0.0.0",
+    host: '0.0.0.0',
     strictPort: true,
     proxy: {
       // Forward only API calls to Laravel (dev only)
       '/api': {
-        target: 'http://192.168.43.20:8000',
+        target: 'http://192.168.1.243:8000',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '/api'),
@@ -41,6 +41,6 @@ export default defineConfig({
           });
         },
       },
-    }
-  }
+    },
+  },
 });
