@@ -31,7 +31,19 @@ const LoginPage: React.FC = () => {
         throw { message: "Réponse invalide du serveur." };
       }
       setAuth(res.access_token, res.user);
-      const from = (location.state as any)?.from?.pathname || '/';
+      
+      // Check if user was trying to select a service before login
+      const serviceId = (location.state as any)?.serviceId || sessionStorage.getItem('selectedService');
+      if (serviceId) {
+        // Clear the stored service selection
+        sessionStorage.removeItem('selectedService');
+        // Redirect to payment with the selected service
+        navigate('/payment', { state: { serviceId }, replace: true });
+        return;
+      }
+      
+      // Default redirect behavior
+      const from = (location.state as any)?.from || '/';
       navigate(from, { replace: true });
     } catch (err: any) {
       const msg = err?.message || 'Identifiants invalides. Veuillez réessayer.';

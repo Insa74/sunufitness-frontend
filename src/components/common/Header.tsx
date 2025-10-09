@@ -57,14 +57,16 @@ const Header: React.FC = () => {
                   Accueil
                 </a>
                 <a
-                  href="#about"
+                  href=""
                   role="menuitem"
+                  onClick={() => navigate('/about')}
                   className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
                   A propos
                 </a>
                 <a
-                  href="#services"
+                  href=""
+                  onClick={() => navigate('/services')}
                   role="menuitem"
                   className="text-[16px]  text-white hover:text-gray-200 transition-colors"
                 >
@@ -72,7 +74,7 @@ const Header: React.FC = () => {
                 </a>
                 <button
                   role="menuitem"
-                  onClick={() => navigate('/reservation')}
+                  onClick={() => navigate('/services')}
                   className="text-[16px]  text-white border border-white rounded-[3px] px-[20px] py-[8px] hover:bg-white hover:text-green-600 transition-all"
                 >
                   Réservez
@@ -81,7 +83,6 @@ const Header: React.FC = () => {
 
               <a
                 href="#contact"
-                variant="primary"
                 className="text-[16px]  text-green-600 bg-white rounded-[3px] px-[20px] py-[8px] hover:bg-gray-100 transition-all"
               >
                 Contact
@@ -133,14 +134,16 @@ const Header: React.FC = () => {
                 Accueil
               </a>
               <a
-                href="#about"
+                href=""
+                onClick={() => navigate('/about')}
                 role="menuitem"
                 className="text-left text-global-text5 hover:text-gray-200 transition-colors"
               >
                 A propos
               </a>
               <a
-                href="#services"
+                href=""
+                onClick={() => navigate('/services')}
                 role="menuitem"
                 className="text-left text-global-text5 hover:text-gray-200 transition-colors"
               >
@@ -149,14 +152,14 @@ const Header: React.FC = () => {
               <button
                 role="menuitem"
                 onClick={() => {
-                  navigate('/reservation');
+                  navigate('/services');
                   setMenuOpen(false);
                 }}
                 className="text-left text-global-text5 border border-global-text5 rounded-[5px] px-4 py-2 hover:bg-global-text5 hover:text-button-text1 transition-all"
               >
                 Réservez
               </button>
-              <a href="#contact" variant="primary" className="text-left bg-white text-button-text1">
+              <a href="#contact" className="text-left bg-white text-button-text1">
                 Contact
               </a>
               {token ? (
@@ -177,14 +180,20 @@ const Header: React.FC = () => {
                 <div className="flex flex-col gap-3">
                   <button
                     role="menuitem"
-                    onClick={() => { navigate('/login'); setMenuOpen(false); }}
+                    onClick={() => {
+                      navigate('/login');
+                      setMenuOpen(false);
+                    }}
                     className="text-left text-global-text5 border border-global-text5 rounded-[5px] px-4 py-2 hover:bg-global-text5 hover:text-button-text1 transition-all"
                   >
                     Se connecter
                   </button>
                   <button
                     role="menuitem"
-                    onClick={() => { navigate('/register'); setMenuOpen(false); }}
+                    onClick={() => {
+                      navigate('/register');
+                      setMenuOpen(false);
+                    }}
                     className="text-left bg-white text-button-text1 rounded-[5px] px-4 py-2"
                   >
                     Créer un compte

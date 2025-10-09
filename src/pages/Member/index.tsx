@@ -4,9 +4,11 @@ import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import { apiClient } from '../../services/apiClient';
 import { API } from '../../config/api';
+import { useAuth } from '../../context/AuthContext';
 
 const MemberPage: React.FC = () => {
   const navigate = useNavigate();
+  const { token, logout } = useAuth();
   type Session = Record<string, any> & {
     id?: number | string;
     title?: string;
@@ -39,6 +41,20 @@ const MemberPage: React.FC = () => {
       mounted = false;
     };
   }, []);
+
+  // Handle logout: call backend then clear local auth and redirect
+  const handleLogout = async () => {
+    try {
+      // Call API to invalidate token/session on the server
+      await apiClient.post(API.endpoints.logout, {});
+    } catch (e) {
+      // Even if server call fails, proceed to clear client state
+      console.warn('Logout API call failed, proceeding to clear client session');
+    } finally {
+      logout();
+      navigate('/');
+    }
+  };
 
   function formatDateTime(s: Session) {
     const raw = s.date_time || s.scheduled_at || s.date;
@@ -101,6 +117,23 @@ const MemberPage: React.FC = () => {
           
           {/* Content */}
           <div className="relative z-10 flex flex-col h-full text-white px-4 sm:px-6 lg:px-8">
+            {/* Logout button (top-right) shown when user is loaded */}
+            {user && (
+              <div className="absolute top-4 right-4 z-20">
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white/90 text-[#3BB641] hover:bg-white shadow font-semibold text-sm"
+                  aria-label="Se déconnecter"
+                  title="Se déconnecter"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1" />
+                  </svg>
+                  Se déconnecter
+                </button>
+              </div>
+            )}
             <div className="flex-1 flex items-center justify-center">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center">
                 ESPACE MEMBRE
@@ -135,6 +168,20 @@ const MemberPage: React.FC = () => {
             <p className="text-white/90 text-base sm:text-lg">
               {user?.email || ''}
             </p>
+            {user && (
+              <div className="mt-3">
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/90 text-[#3BB641] hover:bg-white shadow font-semibold text-xs sm:text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1" />
+                  </svg>
+                  Se déconnecter
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
