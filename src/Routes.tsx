@@ -9,8 +9,13 @@ import ReservationPage from './pages/Reservation';
 import MemberPage from './pages/Member';
 import LoginPage from './pages/Auth/Login';
 import RegisterPage from './pages/Auth/Register';
+import ForgotPasswordPage from './pages/Auth/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 import About from './pages/About';
+import AdminDashboard from './pages/Admin';
+import AdminSubscriptions from './pages/Admin/Subscriptions';
+import CaissePage from './pages/Caisse';
 
 
 const AppRoutes = () => {
@@ -19,12 +24,16 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<HomePage />} />
+        <Route path="/admin" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
+        <Route path="/admin/subscriptions" element={<AdminProtectedRoute><AdminSubscriptions /></AdminProtectedRoute>} />
+        <Route path="/caisse" element={<CaissePage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/reservation" element={<ProtectedRoute><ReservationPage /></ProtectedRoute>} />
         <Route path="/member" element={<ProtectedRoute><MemberPage /></ProtectedRoute>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path='/about' element={<About />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
