@@ -18,6 +18,7 @@ interface Sub {
   end_date: string | null;
   end_datetime: string | null;
   status: string;
+  is_renewal: boolean;
   payment_method: string | null;
   cree_par: string;
   cree_par_id: number | null;
@@ -299,6 +300,9 @@ const AdminSubscriptions: React.FC = () => {
                         <td className="px-4 py-3 text-gray-600">{s.cree_par}</td>
                         <td className="px-4 py-3">
                           <span className={`text-xs font-semibold px-2 py-1 rounded-full ${st.cls}`}>{st.label}</span>
+                          {s.is_renewal && (
+                            <span className="ml-1 text-xs font-semibold px-2 py-1 rounded-full bg-amber-100 text-amber-700">Renouvellement</span>
+                          )}
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">

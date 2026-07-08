@@ -26,12 +26,12 @@ interface Recu {
   membre: { id: number; nom: string; email: string; phone: string };
   produit: { nom: string; type: string; slug: string };
   montant: number; devise: string; mode_paiement: string;
-  date_fin: string | null; abonne_actif: boolean; enregistre_par: string; centre: string;
+  date_fin: string | null; abonne_actif: boolean; is_renewal: boolean; enregistre_par: string; centre: string;
 }
 interface TransactionJour {
   id: number; recu_numero: string; membre: string; produit: string;
   type_produit: string; montant: number; mode_paiement: string;
-  date_fin: string | null; statut: string; enregistre_par: string; heure: string;
+  date_fin: string | null; statut: string; is_renewal: boolean; enregistre_par: string; heure: string;
 }
 interface JourData {
   date: string; total_jour: number; currency: string;
@@ -199,6 +199,9 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
           <span className={`text-xs px-2 py-0.5 rounded-full ${recu.produit.type==='duree' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`}>
             {recu.produit.type==='duree' ? 'Accès durée' : 'Séance'}
           </span>
+          {recu.is_renewal && (
+            <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 ml-1">Renouvellement</span>
+          )}
         </div>
         {recu.date_fin && (
           <div className="border-t pt-3 flex justify-between">
@@ -309,6 +312,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
   const [prodTab, setProdTab]     = useState<'tous'|'duree'|'seance'>('tous');
   const [product, setProduct]     = useState<Product|null>(null);
   const [mode, setMode]           = useState<'wave'|'orange_money'|'cash'|''>('');
+  const [isRenewal, setIsRenewal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError]         = useState<string|null>(null);
   const [recu, setRecu]           = useState<Recu|null>(null);
@@ -340,14 +344,14 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
     setSubmitting(true); setError(null);
     try {
       const res = await caisseApi.post<{success:boolean;data:Recu}>('/caisse/transactions',{
-        member_id:membre.id, product_id:product.id, mode_paiement:mode,
+        member_id:membre.id, product_id:product.id, mode_paiement:mode, is_renewal:isRenewal,
       });
       setRecu(res.data); setStep('done');
     } catch(e:any){ setError(e?.message??'Erreur lors de la transaction.'); }
     finally { setSubmitting(false); }
   };
 
-  const resetForm = () => { setStep('search');setMembre(null);setProduct(null);setMode('');setRecu(null);setError(null);setQuery('');setResults([]); };
+  const resetForm = () => { setStep('search');setMembre(null);setProduct(null);setMode('');setIsRenewal(false);setRecu(null);setError(null);setQuery('');setResults([]); };
 
   const loadJour = async () => {
     try { const r = await caisseApi.get<JourData>('/caisse/transactions/jour'); setJourData(r); setShowJour(true); }
@@ -489,6 +493,11 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
               <div className="flex justify-between text-sm"><span className="text-gray-500">Produit</span><span className="font-medium">{product.nom}</span></div>
               <div className="flex justify-between text-sm font-bold border-t pt-2"><span>Montant</span><span className="text-lg">{fmtXOF(product.prix)}</span></div>
             </div>
+            <label className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex items-center gap-3 cursor-pointer hover:border-gray-300 transition">
+              <input type="checkbox" checked={isRenewal} onChange={e => setIsRenewal(e.target.checked)}
+                className="w-5 h-5 rounded border-gray-300 text-black focus:ring-black" />
+              <span className="text-sm font-medium text-gray-900">Renouvellement (client existant)</span>
+            </label>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <h2 className="font-semibold text-gray-900 mb-4">Mode de paiement</h2>
               <div className="grid grid-cols-3 gap-3 mb-5">
@@ -541,6 +550,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{t.membre}</p>
                     <p className="text-xs text-gray-400 truncate">{t.produit} · {t.heure}</p>
+                    {t.is_renewal && <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 mr-1">Renouvellement</span>}
                     {t.statut==='annulee' && <span className="text-xs text-red-500">Annulée</span>}
                   </div>
                   <div className="text-right ml-3"><p className="text-sm font-bold">{fmtXOF(t.montant)}</p><ModeBadge mode={t.mode_paiement} /></div>
