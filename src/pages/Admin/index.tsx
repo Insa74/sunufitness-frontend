@@ -91,6 +91,9 @@ const AdminDashboard: React.FC = () => {
           <button onClick={() => navigate('/admin/subscriptions')} className="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-white/20 transition">
             📋 Abonnements
           </button>
+          <button onClick={() => navigate('/admin/coaches')} className="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-white/20 transition">
+            🧑‍🏫 Coachs
+          </button>
           <button onClick={() => navigate('/caisse')} className="bg-white text-black text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-gray-100 transition">
             🏪 Caisse
           </button>

@@ -15,6 +15,7 @@ import AdminProtectedRoute from './components/AdminProtectedRoute';
 import About from './pages/About';
 import AdminDashboard from './pages/Admin';
 import AdminSubscriptions from './pages/Admin/Subscriptions';
+import AdminCoaches from './pages/Admin/Coaches';
 import CaissePage from './pages/Caisse';
 
 
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         <Route path="/dashboard" element={<HomePage />} />
         <Route path="/admin" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
         <Route path="/admin/subscriptions" element={<AdminProtectedRoute><AdminSubscriptions /></AdminProtectedRoute>} />
+        <Route path="/admin/coaches" element={<AdminProtectedRoute><AdminCoaches /></AdminProtectedRoute>} />
         <Route path="/caisse" element={<CaissePage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/payment" element={<PaymentPage />} />
