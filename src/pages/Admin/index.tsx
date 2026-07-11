@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { caisseApi, getCaisseUser } from '../../services/caisseApiClient';
 
-interface MembresData  { total_membres: number; membres_actifs: number; membres_inactifs: number; }
-interface AbonnesData  { abonnes_actifs: number; abonnes_inactifs: number; nouveaux_aujourdhui: number; nouveaux_semaine: number; nouveaux_mois: number; actifs_aujourdhui: number; actifs_semaine: number; actifs_mois: number; }
+interface MembresData  { total: number; actifs: number; inactifs: number; }
+interface AbonnesData  { actifs: number; inactifs: number; nouveaux_aujourd_hui: number; nouveaux_semaine: number; nouveaux_mois: number; }
 interface ProduitItem  { product_slug: string; nom: string; type: 'duree' | 'seance'; nombre: number; total: number; }
 interface RevenusData  { revenu_jour: number; revenu_semaine: number; revenu_mois: number; revenu_mois_precedent: number; evolution_pct: number | null; revenu_abonnements_seul: number; revenu_seances_seul: number; revenu_par_produit: ProduitItem[]; }
 interface ObjectifItem { id: number; periode: string; type: string; description: string | null; valeur_cible: number; valeur_actuelle: number; progression_pct: number; jours_restants: number; atteint: boolean; }
@@ -190,18 +190,18 @@ const AdminDashboard: React.FC = () => {
             {/* MEMBRES */}
             <Section title="Membres (comptes créés)">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <StatCard label="Total membres"   value={fmt(membres.total_membres)}   icon="👤" color="bg-gray-100" sub="Comptes enregistrés" />
-                <StatCard label="Abonnés actifs"  value={fmt(membres.membres_actifs)}  icon="✅" color="bg-blue-50"  sub="Abonnement valide aujourd'hui" />
-                <StatCard label="Sans abonnement" value={fmt(membres.membres_inactifs)} icon="⏸️" color="bg-orange-50" sub="Pas d'abonnement actif" />
+                <StatCard label="Total membres"   value={fmt(membres.total)}   icon="👤" color="bg-gray-100" sub="Comptes enregistrés" />
+                <StatCard label="Abonnés actifs"  value={fmt(membres.actifs)}  icon="✅" color="bg-blue-50"  sub="Abonnement valide aujourd'hui" />
+                <StatCard label="Sans abonnement" value={fmt(membres.inactifs)} icon="⏸️" color="bg-orange-50" sub="Pas d'abonnement actif" />
               </div>
             </Section>
 
             {/* ABONNEMENTS */}
             <Section title="Abonnements">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <StatCard label="Nouveaux aujourd'hui"      value={fmt(abonnes.nouveaux_aujourdhui)} icon="🆕" color="bg-purple-50" sub={`Actifs: ${fmt(abonnes.actifs_aujourdhui)}`} />
-                <StatCard label="Nouveaux cette semaine"    value={fmt(abonnes.nouveaux_semaine)}    icon="📆" color="bg-purple-50" sub={`Actifs: ${fmt(abonnes.actifs_semaine)}`} />
-                <StatCard label={`Nouveaux en ${periodLabel}`} value={fmt(abonnes.nouveaux_mois)}   icon="📈" color="bg-purple-100" sub={`Actifs: ${fmt(abonnes.actifs_mois)}`} />
+                <StatCard label="Nouveaux aujourd'hui"      value={fmt(abonnes.nouveaux_aujourd_hui)} icon="🆕" color="bg-purple-50" />
+                <StatCard label="Nouveaux cette semaine"    value={fmt(abonnes.nouveaux_semaine)}    icon="📆" color="bg-purple-50" />
+                <StatCard label={`Nouveaux en ${periodLabel}`} value={fmt(abonnes.nouveaux_mois)}   icon="📈" color="bg-purple-100" />
               </div>
             </Section>
 
