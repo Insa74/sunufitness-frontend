@@ -26,3 +26,12 @@ jest-test-results.json
 # Optional: if using IDEs
 .vscode/
 .idea/
+
+# Archives de build / crash dumps
+*.zip
+*.stackdump
+vite.config.ts.timestamp-*.mjs
+
+# Config locale (Claude Code, env)
+.claude/
+.env

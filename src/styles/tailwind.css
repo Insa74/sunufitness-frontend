@@ -6,8 +6,8 @@
   :root {
     /* Global Colors */
     --global-bg-1: #0000007f;
-    --global-bg-2: #5dcd6219;
-    --global-bg-3: #5dcd6226;
+    --global-bg-2: #05835e19;
+    --global-bg-3: #05835e26;
     --global-bg-4: #cacacd33;
     --global-bg-5: #f4f4f5;
     --global-bg-6: #fafafa;
@@ -23,7 +23,7 @@
     --global-text-5: #ffffff;
 
     /* Button Colors */
-    --button-text-1: #26b02d;
+    --button-text-1: #05835e;
   }
 
   html {

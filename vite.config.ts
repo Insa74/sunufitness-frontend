@@ -25,7 +25,7 @@ export default defineConfig({
     proxy: {
       // Forward only API calls to Laravel (dev only)
       '/api': {
-        target: 'http://192.168.1.243:8000',
+        target: 'https://admin.sunufitness.com',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '/api'),

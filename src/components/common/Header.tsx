@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
 import { useAuth } from '../../context/AuthContext';
@@ -6,7 +6,16 @@ import { useAuth } from '../../context/AuthContext';
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
+
+  // Listen for auth:logout events from apiClient
+  useEffect(() => {
+    const handleAuthLogout = () => {
+      logout();
+    };
+    window.addEventListener('auth:logout', handleAuthLogout);
+    return () => window.removeEventListener('auth:logout', handleAuthLogout);
+  }, [logout]);
 
   return (
     <header
@@ -21,14 +30,14 @@ const Header: React.FC = () => {
             style={{ clipPath: 'polygon(0 0, 100% 0, calc(100% - 40px) 100%, 0 100%)' }}
           >
             <img
-              src="/images/sunu.png"
+              src="/images/log.png"
               alt="MMT Fitness Logo"
               className="w-[200px] object-contain"
             />
           </div>
 
           {/* Green section for navigation */}
-          <div className="w-full bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] flex items-center justify-end pr-[40px] gap-[30px] ml-[-40px]">
+          <div className="w-full bg-[linear-gradient(90deg,#05835e_0%,_#05835e_100%)] flex items-center justify-end pr-[40px] gap-[30px] ml-[-40px]">
             {/* Hamburger Menu (Mobile only) */}
             <button
               className="block lg:hidden p-2 text-white"
@@ -72,23 +81,23 @@ const Header: React.FC = () => {
                 >
                   Services
                 </a>
-                <button
+                {/* <button
                   role="menuitem"
                   onClick={() => navigate('/services')}
                   className="text-[16px]  text-white border border-white rounded-[3px] px-[20px] py-[8px] hover:bg-white hover:text-green-600 transition-all"
                 >
                   Réservez
-                </button>
+                </button> */}
               </nav>
 
-              <a
+              {/* <a
                 href="#contact"
                 className="text-[16px]  text-green-600 bg-white rounded-[3px] px-[20px] py-[8px] hover:bg-gray-100 transition-all"
               >
                 Contact
-              </a>
+              </a> */}
 
-              {token ? (
+              {isAuthenticated ? (
                 <button
                   className="w-[40px] h-[40px]   rounded-full flex items-center justify-center hover:bg-green-700 transition-colors"
                   onClick={() => navigate('/member')}
@@ -119,7 +128,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Navigation Menu */}
           <nav
-            className={`${menuOpen ? 'block' : 'hidden'} lg:hidden absolute top-full left-0 right-0 bg-[linear-gradient(90deg,#5dcd62_0%,_#21ac28_100%)] shadow-lg z-50`}
+            className={`${menuOpen ? 'block' : 'hidden'} lg:hidden absolute top-full left-0 right-0 bg-[linear-gradient(90deg,#05835e_0%,_#05835e_100%)] shadow-lg z-50`}
           >
             <div className="flex flex-col p-4 space-y-4">
               <a
@@ -162,7 +171,7 @@ const Header: React.FC = () => {
               <a href="#contact" className="text-left bg-white text-button-text1">
                 Contact
               </a>
-              {token ? (
+              {isAuthenticated ? (
                 <button
                   role="menuitem"
                   onClick={() => {
