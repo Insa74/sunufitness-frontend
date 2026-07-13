@@ -18,6 +18,7 @@ import AdminSubscriptions from './pages/Admin/Subscriptions';
 import AdminCoaches from './pages/Admin/Coaches';
 import AdminSchedule from './pages/Admin/Schedule';
 import CaissePage from './pages/Caisse';
+import ScanPage from './pages/Scan';
 
 
 const AppRoutes = () => {
@@ -39,6 +40,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path='/about' element={<About />} />
+        <Route path="/scan" element={<ScanPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>

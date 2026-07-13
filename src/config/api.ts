@@ -23,6 +23,11 @@ export const API = {
     },
     contact: '/contact', // POST { full_name, phone, email, subject, message }
   },
+  qr: {
+    checkin:  (token: string) => `/checkin/${token}`,          // GET public
+    image:    (id: number)    => `/members/${id}/qr`,          // GET auth SVG
+    sendEmail:(id: number)    => `/admin/members/${id}/send-qr`, // POST admin
+  },
 } as const;
 
 export function apiUrl(path: string) {
