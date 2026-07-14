@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
+import MemberQrCode from '../../components/common/MemberQrCode';
 import { apiClient } from '../../services/apiClient';
 import { API } from '../../config/api';
 import { useAuth } from '../../context/AuthContext';
@@ -352,6 +353,30 @@ const MemberPage: React.FC = () => {
           </div>
         </div>
 
+        {/* QR Code Section */}
+        {user?.qr_token && (
+          <div className="mt-8 lg:mt-12">
+            <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 bg-[#05835e] rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h5v5H3V3zm0 13h5v5H3v-5zM13 3h5v5h-5V3zm5 13h.01M13 13h2m-2 5h2m3-5h.01M13 8h5" />
+                  </svg>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
+                  Mon QR Code d'accès
+                </h3>
+              </div>
+
+              <p className="text-gray-600 text-sm sm:text-base mb-6">
+                Présentez ce QR code à l'accueil pour valider votre entrée rapidement.
+              </p>
+
+              <MemberQrCode token={user.qr_token} size={220} />
+            </div>
+          </div>
+        )}
+
         {/* Subscriptions Section */}
         <div className="mt-8 lg:mt-12">
           <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
@@ -554,7 +579,7 @@ const MemberPage: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <div>
-                    <span className="font-medium">E-mail :</span> contact@sunufitness.com
+                    <span className="font-medium">E-mail :</span> info@sunufitness.com
                   </div>
                 </div>
                 <div className="flex items-start gap-3">

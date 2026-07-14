@@ -19,6 +19,7 @@ import AdminCoaches from './pages/Admin/Coaches';
 import AdminSchedule from './pages/Admin/Schedule';
 import CaissePage from './pages/Caisse';
 import ScanPage from './pages/Scan';
+import MyQrPage from './pages/MyQr';
 
 
 const AppRoutes = () => {
@@ -41,6 +42,7 @@ const AppRoutes = () => {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path='/about' element={<About />} />
         <Route path="/scan" element={<ScanPage />} />
+        <Route path="/mon-qr/:token" element={<MyQrPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>
