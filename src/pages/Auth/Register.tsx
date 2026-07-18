@@ -119,7 +119,13 @@ const RegisterPage: React.FC = () => {
       return;
     }
 
-    if (!form.first_name || !form.last_name || !form.email || !form.password) {
+    if (
+      !form.first_name ||
+      !form.last_name ||
+      !form.email ||
+      !form.password ||
+      !form.password_confirmation
+    ) {
       setError('Veuillez remplir tous les champs obligatoires.');
       return;
     }
