@@ -1,0 +1,27 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Désactive le cache LiteSpeed pour ce vhost (SPA : index.html doit toujours être frais)
+<IfModule LiteSpeed>
+    CacheLookup off
+</IfModule>
+
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+<IfModule mod_headers.c>
+    # index.html référence des noms de fichiers hashés : jamais de cache dessus
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+
+    # Les assets buildés ont un hash dans le nom -> cache long sans risque
+    <FilesMatch "\.(js|css|png|jpg|jpeg|svg|woff2?|ttf|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
