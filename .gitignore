@@ -36,3 +36,4 @@ vite.config.ts.timestamp-*.mjs
 .claude/
 .env
 .env.local
+.env.*.local
