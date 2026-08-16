@@ -35,3 +35,4 @@ vite.config.ts.timestamp-*.mjs
 # Config locale (Claude Code, env)
 .claude/
 .env
+.env.local

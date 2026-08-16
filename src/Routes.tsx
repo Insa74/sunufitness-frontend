@@ -20,6 +20,8 @@ import AdminSchedule from './pages/Admin/Schedule';
 import CaissePage from './pages/Caisse';
 import ScanPage from './pages/Scan';
 import MyQrPage from './pages/MyQr';
+import MemberWorkspace from './pages/Coach/MemberWorkspace';
+import CoachProtectedRoute from './components/CoachProtectedRoute';
 
 
 const AppRoutes = () => {
@@ -33,6 +35,7 @@ const AppRoutes = () => {
         <Route path="/admin/coaches" element={<AdminProtectedRoute><AdminCoaches /></AdminProtectedRoute>} />
         <Route path="/admin/schedule" element={<AdminProtectedRoute><AdminSchedule /></AdminProtectedRoute>} />
         <Route path="/caisse" element={<CaissePage />} />
+        <Route path="/coach/membres" element={<CoachProtectedRoute><MemberWorkspace /></CoachProtectedRoute>} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/reservation" element={<ProtectedRoute><ReservationPage /></ProtectedRoute>} />

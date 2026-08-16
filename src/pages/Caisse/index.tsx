@@ -377,6 +377,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
         </div>
         <div className="flex gap-2">
           <button onClick={loadJour} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Journal</button>
+          <button onClick={() => navigate('/coach/membres')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">🏋️ Membres</button>
           {isAdmin && (
             <button onClick={() => navigate('/admin')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Dashboard</button>
           )}

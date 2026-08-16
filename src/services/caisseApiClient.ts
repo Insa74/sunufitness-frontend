@@ -32,6 +32,11 @@ export function isCaisseAdmin(): boolean {
   return !!getCaisseToken() && !!user && ['admin', 'super_admin'].includes(user.role);
 }
 
+export function isCaisseStaff(): boolean {
+  const user = getCaisseUser();
+  return !!getCaisseToken() && !!user && ['coach', 'admin', 'super_admin'].includes(user.role);
+}
+
 async function caisseRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getCaisseToken();
   const res = await fetch(apiUrl(path), {
@@ -54,3 +59,36 @@ export const caisseApi = {
   put: <T,>(path: string, body?: any) => caisseRequest<T>(path, { method: 'PUT', body: body ? JSON.stringify(body) : undefined }),
   del: <T,>(path: string) => caisseRequest<T>(path, { method: 'DELETE' }),
 };
+
+// Téléchargement d'un fichier binaire (ex: PDF) authentifié par le token caisse.
+// Distinct de caisseRequest, qui force res.json() et casserait sur une réponse binaire.
+export async function caisseApiDownload(path: string, filename: string): Promise<void> {
+  const token = getCaisseToken();
+  const res = await fetch(apiUrl(path), {
+    headers: {
+      'Accept': 'application/pdf',
+      ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+    },
+  });
+
+  if (!res.ok) {
+    let message = 'Erreur lors du téléchargement du PDF.';
+    try {
+      const data = await res.json();
+      message = data?.message || message;
+    } catch {
+      // corps non-JSON, on garde le message générique
+    }
+    throw new Error(message);
+  }
+
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}

@@ -1,5 +1,5 @@
 export const API = {
-  BASE_URL: 'https://api.sunufitness.com/api',
+  BASE_URL: import.meta.env.VITE_API_BASE_URL ?? 'https://api.sunufitness.com/api',
   endpoints: {
     // These are appended to BASE_URL
     login: '/login', // POST { email, password }
