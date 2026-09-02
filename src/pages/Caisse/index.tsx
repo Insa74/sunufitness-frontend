@@ -597,8 +597,17 @@ const CaissePage: React.FC = () => {
     if (token && userStr) {
       try {
         const user = JSON.parse(userStr) as CaisseUser;
-        setCaisseUser(user);
-        setScreen('caisse');
+        // Valider le token côté serveur avant de restaurer la session
+        caisseApi.get('/caisse/me')
+          .then(() => {
+            setCaisseUser(user);
+            setScreen('caisse');
+          })
+          .catch(() => {
+            localStorage.removeItem(CAISSE_TOKEN_KEY);
+            localStorage.removeItem(CAISSE_USER_KEY);
+            setScreen('employees');
+          });
       } catch {
         localStorage.removeItem(CAISSE_TOKEN_KEY);
         localStorage.removeItem(CAISSE_USER_KEY);
