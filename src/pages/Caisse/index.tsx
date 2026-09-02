@@ -606,6 +606,17 @@ const CaissePage: React.FC = () => {
     }
   }, []);
 
+  // Redirige vers l'écran employés si la session caisse expire (token invalide / 401)
+  useEffect(() => {
+    const handleSessionExpired = () => {
+      setCaisseUser(null);
+      setSelectedEmp(null);
+      setScreen('employees');
+    };
+    window.addEventListener('caisse:session-expired', handleSessionExpired);
+    return () => window.removeEventListener('caisse:session-expired', handleSessionExpired);
+  }, []);
+
   if (screen === 'employees') {
     return <EmployeeScreen onSelect={e => { setSelectedEmp(e); setScreen('pin'); }} />;
   }

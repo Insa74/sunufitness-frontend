@@ -49,7 +49,14 @@ async function caisseRequest<T>(path: string, options: RequestInit = {}): Promis
     ...options,
   });
   const data = await res.json();
-  if (!res.ok) throw data;
+  if (!res.ok) {
+    if (res.status === 401) {
+      localStorage.removeItem(CAISSE_TOKEN_KEY);
+      localStorage.removeItem(CAISSE_USER_KEY);
+      window.dispatchEvent(new CustomEvent('caisse:session-expired'));
+    }
+    throw data;
+  }
   return data as T;
 }
 
