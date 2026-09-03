@@ -32,7 +32,7 @@ const AppRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<HomePage />} />
         {/* Hub central — point d'entrée admin */}
-        <Route path="/admin" element={<AdminProtectedRoute><HubPage /></AdminProtectedRoute>} />
+        <Route path="/admin" element={<HubPage />} />
         {/* Modules admin */}
         <Route path="/admin/dashboard" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
         <Route path="/admin/subscriptions" element={<AdminProtectedRoute><AdminSubscriptions /></AdminProtectedRoute>} />
