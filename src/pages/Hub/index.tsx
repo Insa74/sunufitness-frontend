@@ -76,7 +76,7 @@ const MODULES: Module[] = [
     tag: 'Planning',
     name: 'SunuPlanning',
     desc: 'Gestion des horaires de cours collectifs, rotations et disponibilités des salles.',
-    route: '/admin/schedule',
+    route: 'https://admin.sunufitness.com/planning',
     color: '#4A9EF5',
     dimColor: 'rgba(74,158,245,0.12)',
     borderColor: 'rgba(74,158,245,0.3)',
@@ -87,7 +87,7 @@ const MODULES: Module[] = [
     tag: 'Coaching',
     name: 'SunuCoach',
     desc: 'Pointage des présences, alertes retard/absence et suivi des performances des coachs.',
-    route: '/admin/coaches',
+    route: 'https://admin.sunufitness.com/coachs',
     color: '#38D98A',
     dimColor: 'rgba(56,217,138,0.12)',
     borderColor: 'rgba(56,217,138,0.3)',
@@ -98,7 +98,7 @@ const MODULES: Module[] = [
     tag: 'Membres',
     name: 'SunuMembre',
     desc: 'Profils, abonnements, QR codes de check-in et historique des accès membres.',
-    route: '/admin/dashboard',
+    route: 'https://admin.sunufitness.com/membres',
     color: '#A78BFA',
     dimColor: 'rgba(167,139,250,0.12)',
     borderColor: 'rgba(167,139,250,0.3)',
@@ -410,9 +410,7 @@ const HubPage: React.FC = () => {
     return () => clearInterval(id);
   }, []);
 
-  const initials = user ? `${user.prenom[0]}${user.nom[0]}`.toUpperCase() : 'AD'
-    ? user.name.split(' ').map((w: string) => w[0]).slice(0, 2).join('').toUpperCase()
-    : 'AD';
+  const initials = user ? `${user.prenom[0]}${user.nom[0]}`.toUpperCase() : 'AD';
 
   return (
     <div style={styles.page}>
@@ -458,7 +456,7 @@ const HubPage: React.FC = () => {
             <ModuleCard
               key={mod.id}
               module={mod}
-              onClick={() => navigate(mod.route)}
+              onClick={() => mod.route.startsWith('http') ? window.location.href = mod.route : navigate(mod.route)}
             />
           ))}
         </div>
