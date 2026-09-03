@@ -13,6 +13,7 @@ import ForgotPasswordPage from './pages/Auth/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 import About from './pages/About';
+import HubPage from './pages/Hub';
 import AdminDashboard from './pages/Admin';
 import AdminSubscriptions from './pages/Admin/Subscriptions';
 import AdminCoaches from './pages/Admin/Coaches';
@@ -30,7 +31,10 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<HomePage />} />
-        <Route path="/admin" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
+        {/* Hub central — point d'entrée admin */}
+        <Route path="/admin" element={<AdminProtectedRoute><HubPage /></AdminProtectedRoute>} />
+        {/* Modules admin */}
+        <Route path="/admin/dashboard" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
         <Route path="/admin/subscriptions" element={<AdminProtectedRoute><AdminSubscriptions /></AdminProtectedRoute>} />
         <Route path="/admin/coaches" element={<AdminProtectedRoute><AdminCoaches /></AdminProtectedRoute>} />
         <Route path="/admin/schedule" element={<AdminProtectedRoute><AdminSchedule /></AdminProtectedRoute>} />
