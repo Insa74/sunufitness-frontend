@@ -13,9 +13,11 @@ interface Employee {
   id: number; nom: string; prenom: string;
   role: string; couleur: string; initiales: string;
 }
+type Etat = 'actif' | 'expire_bientot' | 'expire' | 'aucun';
+interface EtatAbonnement { etat: Etat; jours_restants: number | null; date_fin: string | null }
 interface MembreResult {
   id: number; nom: string; first_name: string; last_name: string;
-  email: string; phone: string; abonne_actif: boolean;
+  email: string; phone: string; abonne_actif: boolean; etat_abonnement?: EtatAbonnement;
 }
 interface Product {
   id: number; slug: string; nom: string; prix: number; devise: string;
@@ -27,6 +29,8 @@ interface Recu {
   produit: { nom: string; type: string; slug: string };
   montant: number; devise: string; mode_paiement: string;
   date_fin: string | null; abonne_actif: boolean; is_renewal: boolean; enregistre_par: string; centre: string;
+  etat_abonnement?: EtatAbonnement; qr_url?: string | null;
+  qr_email_envoye?: boolean; qr_email?: string | null;
 }
 interface TransactionJour {
   id: number; recu_numero: string; membre: string; produit: string;
@@ -48,11 +52,51 @@ const modeColor:  Record<string, string> = {
   wave: 'bg-blue-100 text-blue-700', orange_money: 'bg-orange-100 text-orange-700', cash: 'bg-green-100 text-green-700',
 };
 
-const Badge: React.FC<{ actif: boolean }> = ({ actif }) => (
-  <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${actif ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
-    {actif ? '✓ Abonné actif' : 'Sans abonnement'}
-  </span>
-);
+const Badge: React.FC<{ actif: boolean; etat?: EtatAbonnement }> = ({ actif, etat }) => {
+  if (!etat) {
+    return (
+      <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${actif ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+        {actif ? '✓ Abonné actif' : 'Sans abonnement'}
+      </span>
+    );
+  }
+  const j = etat.jours_restants;
+  const styles: Record<Etat, { cls: string; label: string }> = {
+    actif:          { cls: 'bg-green-100 text-green-700',  label: '✓ Actif' },
+    expire_bientot: { cls: 'bg-orange-100 text-orange-700', label: `⚠ Expire bientôt${j !== null ? ` (${j} j)` : ''}` },
+    expire:         { cls: 'bg-red-100 text-red-700',      label: '✕ Expiré' },
+    aucun:          { cls: 'bg-gray-100 text-gray-500',    label: 'Sans abonnement' },
+  };
+  const st = styles[etat.etat];
+  return (
+    <span
+      className={`text-xs px-2 py-0.5 rounded-full font-semibold ${st.cls}`}
+      title={etat.date_fin ? `Fin : ${etat.date_fin}` : undefined}
+    >
+      {st.label}
+    </span>
+  );
+};
+
+/** Numéro au format international pour wa.me (Sénégal par défaut). */
+const waNumber = (phone?: string | null): string => {
+  let d = (phone ?? '').replace(/\D/g, '');
+  if (d.startsWith('00')) d = d.slice(2);
+  if (d.length === 9) d = '221' + d;
+  return d;
+};
+
+const whatsappQrLink = (recu: Recu): string => {
+  const prenom = recu.membre.nom.split(' ')[0];
+  const lignes = [
+    `Bonjour ${prenom} ! Voici votre QR code d'accès SUNUFITNESS :`,
+    recu.qr_url ?? '',
+    'Présentez-le à l\'entrée de la salle.',
+  ];
+  if (recu.date_fin) lignes.push(`Abonnement valable jusqu'au ${recu.date_fin}.`);
+  const num = waNumber(recu.membre.phone);
+  return `https://wa.me/${num}?text=${encodeURIComponent(lignes.join('\n'))}`;
+};
 const ModeBadge: React.FC<{ mode: string }> = ({ mode }) => (
   <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${modeColor[mode] ?? 'bg-gray-100 text-gray-600'}`}>
     {modeLabel[mode] ?? mode}
@@ -217,8 +261,29 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
           <span className="text-xl font-bold">{fmtXOF(recu.montant)}</span>
         </div>
         <div className="flex justify-between text-xs text-gray-400 pt-1">
-          <span>Par : {recu.enregistre_par}</span><Badge actif={recu.abonne_actif} />
+          <span>Par : {recu.enregistre_par}</span><Badge actif={recu.abonne_actif} etat={recu.etat_abonnement} />
         </div>
+        {recu.qr_url && recu.produit.type === 'duree' && (
+          <div className="border-t pt-3 space-y-2">
+            <p className="text-xs text-gray-400 uppercase">QR d'accès</p>
+            {recu.qr_email_envoye ? (
+              <p className="text-xs text-green-700 bg-green-50 rounded-lg px-3 py-2">✓ QR envoyé par email à {recu.qr_email}</p>
+            ) : (
+              <p className="text-xs text-amber-700 bg-amber-50 rounded-lg px-3 py-2">Pas d'email envoyé : envoyez le QR par WhatsApp.</p>
+            )}
+            <a
+              href={whatsappQrLink(recu)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white rounded-xl py-2.5 font-semibold text-sm hover:opacity-90 transition"
+            >
+              Envoyer le QR sur WhatsApp
+            </a>
+            {!recu.membre.phone && (
+              <p className="text-[11px] text-gray-400 text-center">Aucun numéro enregistré : WhatsApp vous laissera choisir le contact.</p>
+            )}
+          </div>
+        )}
       </div>
       <div className="px-6 pb-5 flex gap-3">
         <button onClick={onNew} className="flex-1 bg-black text-white rounded-xl py-3 font-semibold text-sm hover:bg-gray-800 transition">+ Nouvelle vente</button>
@@ -432,7 +497,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
                       <p className="font-medium text-gray-900 text-sm">{m.nom}</p>
                       <p className="text-xs text-gray-400">{m.phone||m.email}</p>
                     </div>
-                    <Badge actif={m.abonne_actif} />
+                    <Badge actif={m.abonne_actif} etat={m.etat_abonnement} />
                   </button>
                 ))}
               </div>
@@ -456,7 +521,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
                 <p className="font-semibold text-gray-900">{membre.nom}</p>
                 <p className="text-xs text-gray-400">{membre.phone||membre.email}</p>
               </div>
-              <div className="flex items-center gap-2"><Badge actif={membre.abonne_actif} /><button onClick={resetForm} className="text-xs text-gray-400 hover:text-gray-600">✕</button></div>
+              <div className="flex items-center gap-2"><Badge actif={membre.abonne_actif} etat={membre.etat_abonnement} /><button onClick={resetForm} className="text-xs text-gray-400 hover:text-gray-600">✕</button></div>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
               <h2 className="font-semibold text-gray-900 mb-3">Choisir un produit</h2>
