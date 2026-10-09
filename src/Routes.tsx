@@ -18,6 +18,7 @@ import AdminDashboard from './pages/Admin';
 import AdminSubscriptions from './pages/Admin/Subscriptions';
 import AdminCoaches from './pages/Admin/Coaches';
 import AdminSchedule from './pages/Admin/Schedule';
+import AdminCours from './pages/Admin/Cours';
 import CaissePage from './pages/Caisse';
 import ScanPage from './pages/Scan';
 import MyQrPage from './pages/MyQr';
@@ -38,6 +39,7 @@ const AppRoutes = () => {
         <Route path="/admin/subscriptions" element={<AdminProtectedRoute><AdminSubscriptions /></AdminProtectedRoute>} />
         <Route path="/admin/coaches" element={<AdminProtectedRoute><AdminCoaches /></AdminProtectedRoute>} />
         <Route path="/admin/schedule" element={<AdminProtectedRoute><AdminSchedule /></AdminProtectedRoute>} />
+        <Route path="/admin/cours" element={<AdminProtectedRoute><AdminCours /></AdminProtectedRoute>} />
         <Route path="/caisse" element={<CaissePage />} />
         <Route path="/coach/membres" element={<CoachProtectedRoute><MemberWorkspace /></CoachProtectedRoute>} />
         <Route path="/services" element={<ServicesPage />} />

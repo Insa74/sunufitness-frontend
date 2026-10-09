@@ -508,7 +508,7 @@ const MemberPage: React.FC = () => {
 
         {/* Reserve Button */}
         <div className="flex justify-center mt-12">
-          <button onClick={() => navigate('/services')} className="bg-[#05835e] hover:bg-[#3d6d4f] text-white font-bold py-4 px-8 sm:px-12 rounded-lg text-lg sm:text-xl transition-colors duration-200 flex items-center gap-3">
+          <button onClick={() => navigate('/reservation')} className="bg-[#05835e] hover:bg-[#3d6d4f] text-white font-bold py-4 px-8 sm:px-12 rounded-lg text-lg sm:text-xl transition-colors duration-200 flex items-center gap-3">
             Réservez une séance
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
