@@ -31,7 +31,13 @@ interface Recu {
   date_fin: string | null; abonne_actif: boolean; is_renewal: boolean; enregistre_par: string; centre: string;
   etat_abonnement?: EtatAbonnement; qr_url?: string | null;
   qr_email_envoye?: boolean; qr_email?: string | null;
+  partenaire?: {
+    id: number | null; nom: string | null; phone: string | null;
+    qr_url?: string | null; qr_email_envoye?: boolean; qr_email?: string | null;
+  } | null;
 }
+
+const SLUG_COUPLE = 'abonnement_couple';
 interface TransactionJour {
   id: number; recu_numero: string; membre: string; produit: string;
   type_produit: string; montant: number; mode_paiement: string;
@@ -86,15 +92,15 @@ const waNumber = (phone?: string | null): string => {
   return d;
 };
 
-const whatsappQrLink = (recu: Recu): string => {
-  const prenom = recu.membre.nom.split(' ')[0];
+const whatsappQrLink = (recu: Recu, pour?: { nom: string; phone: string | null; qr_url: string }): string => {
+  const prenom = (pour?.nom ?? recu.membre.nom).split(' ')[0];
   const lignes = [
     `Bonjour ${prenom} ! Voici votre QR code d'accès SUNUFITNESS :`,
-    recu.qr_url ?? '',
+    pour?.qr_url ?? recu.qr_url ?? '',
     'Présentez-le à l\'entrée de la salle.',
   ];
   if (recu.date_fin) lignes.push(`Abonnement valable jusqu'au ${recu.date_fin}.`);
-  const num = waNumber(recu.membre.phone);
+  const num = waNumber(pour ? pour.phone : recu.membre.phone);
   return `https://wa.me/${num}?text=${encodeURIComponent(lignes.join('\n'))}`;
 };
 const ModeBadge: React.FC<{ mode: string }> = ({ mode }) => (
@@ -284,6 +290,29 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
             )}
           </div>
         )}
+        {recu.partenaire?.nom && (
+          <div className="border-t pt-3 space-y-2">
+            <p className="text-xs text-gray-400 uppercase">Partenaire (abonnement couple)</p>
+            <p className="text-sm font-semibold">{recu.partenaire.nom}</p>
+            {recu.partenaire.qr_url && (
+              <>
+                {recu.partenaire.qr_email_envoye ? (
+                  <p className="text-xs text-green-700 bg-green-50 rounded-lg px-3 py-2">✓ QR envoyé par email à {recu.partenaire.qr_email}</p>
+                ) : (
+                  <p className="text-xs text-amber-700 bg-amber-50 rounded-lg px-3 py-2">Pas d'email envoyé : envoyez le QR par WhatsApp.</p>
+                )}
+                <a
+                  href={whatsappQrLink(recu, { nom: recu.partenaire.nom, phone: recu.partenaire.phone, qr_url: recu.partenaire.qr_url })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white rounded-xl py-2.5 font-semibold text-sm hover:opacity-90 transition"
+                >
+                  Envoyer le QR du partenaire sur WhatsApp
+                </a>
+              </>
+            )}
+          </div>
+        )}
       </div>
       <div className="px-6 pb-5 flex gap-3">
         <button onClick={onNew} className="flex-1 bg-black text-white rounded-xl py-3 font-semibold text-sm hover:bg-gray-800 transition">+ Nouvelle vente</button>
@@ -373,7 +402,11 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
   const [results, setResults]     = useState<MembreResult[]>([]);
   const [searching, setSearching] = useState(false);
   const [membre, setMembre]       = useState<MembreResult|null>(null);
-  const [products]                = useState<Product[]>(buildProducts());
+  const [products, setProducts]   = useState<Product[]>(buildProducts());
+  const [partenaire, setPartenaire] = useState<MembreResult|null>(null);
+  const [qPart, setQPart]         = useState('');
+  const [resPart, setResPart]     = useState<MembreResult[]>([]);
+  const partTimer = useRef<ReturnType<typeof setTimeout>|null>(null);
   const [prodTab, setProdTab]     = useState<'tous'|'duree'|'seance'>('tous');
   const [product, setProduct]     = useState<Product|null>(null);
   const [mode, setMode]           = useState<'wave'|'orange_money'|'cash'|''>('');
@@ -401,6 +434,27 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
     }, 350);
   };
 
+  // Liste des produits depuis le serveur (la liste intégrée sert de secours hors ligne)
+  useEffect(() => {
+    caisseApi.get<{success:boolean;data:Product[]}>('/caisse/produits')
+      .then(res => { if (res.data?.length) setProducts(res.data); })
+      .catch(() => { /* on garde la liste intégrée */ });
+  }, []);
+
+  const searchPartenaire = (q: string) => {
+    setQPart(q);
+    if (partTimer.current) clearTimeout(partTimer.current);
+    if (q.trim().length < 2) { setResPart([]); return; }
+    partTimer.current = setTimeout(async () => {
+      try {
+        const res = await caisseApi.get<{success:boolean;data:MembreResult[]}>(`/caisse/membres/search?q=${encodeURIComponent(q.trim())}`);
+        setResPart((res.data ?? []).filter(m => m.id !== membre?.id));
+      } catch { setResPart([]); }
+    }, 350);
+  };
+
+  const estCouple = product?.slug === SLUG_COUPLE;
+
   const selectMembre = (m: MembreResult) => { setMembre(m); setResults([]); setQuery(''); setStep('product'); };
   const selectProduct = (p: Product) => { setProduct(p); setStep('payment'); };
 
@@ -410,13 +464,14 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
     try {
       const res = await caisseApi.post<{success:boolean;data:Recu}>('/caisse/transactions',{
         member_id:membre.id, product_id:product.id, mode_paiement:mode, is_renewal:isRenewal,
+        ...(estCouple && partenaire ? { partenaire_id: partenaire.id } : {}),
       });
       setRecu(res.data); setStep('done');
     } catch(e:any){ setError(e?.message??'Erreur lors de la transaction.'); }
     finally { setSubmitting(false); }
   };
 
-  const resetForm = () => { setStep('search');setMembre(null);setProduct(null);setMode('');setIsRenewal(false);setRecu(null);setError(null);setQuery('');setResults([]); };
+  const resetForm = () => { setPartenaire(null);setQPart('');setResPart([]); setStep('search');setMembre(null);setProduct(null);setMode('');setIsRenewal(false);setRecu(null);setError(null);setQuery('');setResults([]); };
 
   const loadJour = async () => {
     try { const r = await caisseApi.get<JourData>('/caisse/transactions/jour'); setJourData(r); setShowJour(true); }
@@ -557,8 +612,39 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-2">
               <div className="flex justify-between text-sm"><span className="text-gray-500">Membre</span><span className="font-medium">{membre.nom}</span></div>
               <div className="flex justify-between text-sm"><span className="text-gray-500">Produit</span><span className="font-medium">{product.nom}</span></div>
+              {estCouple && partenaire && (
+                <div className="flex justify-between text-sm"><span className="text-gray-500">Partenaire</span><span className="font-medium">{partenaire.nom}</span></div>
+              )}
               <div className="flex justify-between text-sm font-bold border-t pt-2"><span>Montant</span><span className="text-lg">{fmtXOF(product.prix)}</span></div>
             </div>
+            {estCouple && (
+              <div className="bg-white rounded-2xl border border-amber-200 shadow-sm p-4 space-y-2">
+                <p className="text-sm font-semibold text-gray-900">2e membre du couple</p>
+                {partenaire ? (
+                  <div className="flex items-center justify-between bg-amber-50 rounded-xl px-3 py-2">
+                    <div>
+                      <p className="text-sm font-medium">{partenaire.nom}</p>
+                      <p className="text-xs text-gray-500">{partenaire.phone || partenaire.email}</p>
+                    </div>
+                    <button onClick={() => setPartenaire(null)} className="text-xs text-gray-500 underline">Changer</button>
+                  </div>
+                ) : (
+                  <>
+                    <input value={qPart} onChange={e => searchPartenaire(e.target.value)}
+                      placeholder="Nom ou téléphone du partenaire…"
+                      className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-black" />
+                    {resPart.map(m => (
+                      <button key={m.id} onClick={() => { setPartenaire(m); setResPart([]); setQPart(''); }}
+                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-50 border border-gray-100">
+                        <span className="text-sm font-medium">{m.nom}</span>
+                        <span className="text-xs text-gray-400 ml-2">{m.phone || m.email}</span>
+                      </button>
+                    ))}
+                    <p className="text-xs text-gray-500">Le partenaire doit déjà être inscrit. Sinon, créez-le d'abord avec « + Nouveau membre ».</p>
+                  </>
+                )}
+              </div>
+            )}
             <label className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex items-center gap-3 cursor-pointer hover:border-gray-300 transition">
               <input type="checkbox" checked={isRenewal} onChange={e => setIsRenewal(e.target.checked)}
                 className="w-5 h-5 rounded border-gray-300 text-black focus:ring-black" />
@@ -576,9 +662,9 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
               </div>
               {error && <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700 mb-4">{error}</div>}
               <div className="flex gap-3">
-                <button onClick={() => {setStep('product');setMode('');setError(null);}}
+                <button onClick={() => {setStep('product');setMode('');setError(null);setPartenaire(null);}}
                   className="flex-1 border border-gray-200 rounded-xl py-3 font-semibold text-sm text-gray-600 hover:bg-gray-50 transition">← Retour</button>
-                <button onClick={submitTransaction} disabled={!mode||submitting}
+                <button onClick={submitTransaction} disabled={!mode||submitting||(estCouple&&!partenaire)}
                   className="flex-2 flex-grow-[2] bg-black text-white rounded-xl py-3 font-semibold text-sm hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition">
                   {submitting?'Traitement…':`Valider · ${fmtXOF(product.prix)}`}
                 </button>
