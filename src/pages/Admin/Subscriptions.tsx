@@ -169,6 +169,9 @@ const AdminSubscriptions: React.FC = () => {
       if (search) params.set('search', search);
       if (date)   params.set('date', date);
       if (statusF) params.set('status', statusF);
+      // Lien « Corriger » depuis la fiche membre : /admin/subscriptions?member_id=123
+      const memberId = new URLSearchParams(window.location.search).get('member_id');
+      if (memberId) params.set('member_id', memberId);
       const res: any = await caisseApi.get(`/admin/subscriptions?${params}`);
       setSubs(res.data?.data ?? res.data ?? []);
     } catch (e: any) {
