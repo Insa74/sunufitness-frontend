@@ -94,6 +94,17 @@ const MODULES: Module[] = [
     icon: <IconPlanning />,
   },
   {
+    id: 'agenda',
+    tag: 'Rendez-vous',
+    name: 'SunuAgenda',
+    desc: 'Disponibilités de l\'équipe et rendez-vous : personal training, coaching nutrition, entretiens.',
+    route: '/agenda',
+    color: '#EC4899',
+    dimColor: 'rgba(236,72,153,0.12)',
+    borderColor: 'rgba(236,72,153,0.3)',
+    icon: <IconPlanning />,
+  },
+  {
     id: 'coach',
     tag: 'Coaching',
     name: 'SunuCoach',
