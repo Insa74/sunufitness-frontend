@@ -61,6 +61,17 @@ const IconArrow = () => (
 /* ── Modules config ── */
 const MODULES: Module[] = [
   {
+    id: 'dashboard',
+    tag: 'Pilotage',
+    name: 'Tableau de bord',
+    desc: 'Chiffres du jour, entrées à la salle, ventes, abonnements à relancer et coachs présents.',
+    route: '/admin/dashboard',
+    color: '#E5E7EB',
+    dimColor: 'rgba(229,231,235,0.10)',
+    borderColor: 'rgba(229,231,235,0.3)',
+    icon: <IconPlanning />,
+  },
+  {
     id: 'caisse',
     tag: 'Caisse',
     name: 'SunuCaisse',

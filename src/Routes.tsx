@@ -20,6 +20,7 @@ import AdminCoaches from './pages/Admin/Coaches';
 import AdminSchedule from './pages/Admin/Schedule';
 import AdminCours from './pages/Admin/Cours';
 import AdminMembres from './pages/Admin/Membres';
+import AdminAccueil from './pages/Admin/Accueil';
 import CaissePage from './pages/Caisse';
 import ScanPage from './pages/Scan';
 import MyQrPage from './pages/MyQr';
@@ -36,7 +37,8 @@ const AppRoutes = () => {
         {/* Hub central — point d'entrée admin */}
         <Route path="/admin" element={<HubPage />} />
         {/* Modules admin */}
-        <Route path="/admin/dashboard" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
+        <Route path="/admin/dashboard" element={<AdminProtectedRoute><AdminAccueil /></AdminProtectedRoute>} />
+        <Route path="/admin/statistiques" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
         <Route path="/admin/subscriptions" element={<AdminProtectedRoute><AdminSubscriptions /></AdminProtectedRoute>} />
         <Route path="/admin/coaches" element={<AdminProtectedRoute><AdminCoaches /></AdminProtectedRoute>} />
         <Route path="/admin/schedule" element={<AdminProtectedRoute><AdminSchedule /></AdminProtectedRoute>} />
