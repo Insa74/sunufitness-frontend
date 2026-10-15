@@ -120,7 +120,7 @@ const MODULES: Module[] = [
     tag: 'Membres',
     name: 'SunuMembre',
     desc: 'Profils, abonnements, QR codes de check-in et historique des accès membres.',
-    route: '/admin/subscriptions',
+    route: '/admin/membres',
     color: '#A78BFA',
     dimColor: 'rgba(167,139,250,0.12)',
     borderColor: 'rgba(167,139,250,0.3)',

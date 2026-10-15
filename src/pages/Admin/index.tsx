@@ -88,6 +88,9 @@ const AdminDashboard: React.FC = () => {
           <span className="font-semibold tracking-wide">SUNUFITNESS — Admin</span>
         </div>
         <div className="flex items-center gap-3">
+          <button onClick={() => navigate('/admin/membres')} className="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-white/20 transition">
+            👥 Membres
+          </button>
           <button onClick={() => navigate('/admin/subscriptions')} className="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-white/20 transition">
             📋 Abonnements
           </button>
