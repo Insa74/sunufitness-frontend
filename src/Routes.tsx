@@ -27,6 +27,7 @@ import MyQrPage from './pages/MyQr';
 import MemberWorkspace from './pages/Coach/MemberWorkspace';
 import CoachProtectedRoute from './components/CoachProtectedRoute';
 import AgendaPage from './pages/Agenda';
+import PreferencesPage from './pages/Preferences';
 
 
 const AppRoutes = () => {
@@ -58,6 +59,7 @@ const AppRoutes = () => {
         <Route path='/about' element={<About />} />
         <Route path="/scan" element={<ScanPage />} />
         <Route path="/mon-qr/:token" element={<MyQrPage />} />
+        <Route path="/preferences" element={<PreferencesPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>
