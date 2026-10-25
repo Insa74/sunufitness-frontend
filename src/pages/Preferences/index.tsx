@@ -116,10 +116,50 @@ const PreferencesPage: React.FC = () => {
 
   const toggleCat = (id: string) => setOpen((prev) => ({ ...prev, [id]: !prev[id] }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    topRef.current?.scrollIntoView({ behavior: 'smooth' });
+    setSending(true);
+    setError('');
+
+    // Construire le résumé des préférences
+    const prefsText = CATEGORIES.map((cat) => {
+      const lines = cat.items.map((item, i) => {
+        const key = `${cat.id}_${i}`;
+        const s = prefs[key];
+        if (!s || s.pref === null) return null;
+        const emoji = s.pref === 'adore' ? '✅' : s.pref === 'tolere' ? '🟡' : '❌';
+        return `  ${emoji} ${item}${s.ballonne ? ' ⚠️ballonne' : ''}`;
+      }).filter(Boolean);
+      if (lines.length === 0) return null;
+      return `${cat.emoji} ${cat.titre}\n${lines.join('\n')}`;
+    }).filter(Boolean).join('\n\n');
+
+    const body = {
+      name: nom || 'Client',
+      email: 'noreply@sunufitness.com',
+      message: `FICHE PRÉFÉRENCES ALIMENTAIRES\n\nNom: ${nom}\nÂge: ${age}\nPoids: ${poids}\nObjectif: ${objectif}\n\n${prefsText}\n\nBALLONNEMENTS: ${ballonnements || 'aucun'}\n\nREMARQUES: ${remarques || 'aucune'}`,
+    };
+
+    try {
+      const res = await fetch('https://formspree.io/f/xrppelvl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        topRef.current?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        setError('Erreur lors de l\'envoi. Réessaie.');
+      }
+    } catch {
+      setError('Erreur réseau. Vérifie ta connexion.');
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -282,10 +322,11 @@ const PreferencesPage: React.FC = () => {
         </div>
 
         {/* Bouton soumettre */}
-        <button type="submit"
-          className="w-full py-4 rounded-xl font-bold text-white text-base shadow-lg transition-all active:scale-95"
+        {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
+        <button type="submit" disabled={sending}
+          className="w-full py-4 rounded-xl font-bold text-white text-base shadow-lg transition-all active:scale-95 disabled:opacity-60"
           style={{ background: 'linear-gradient(135deg, #0F6E56 0%, #0a4f3e 100%)' }}>
-          ✅ Envoyer ma fiche à Coach Insa
+          {sending ? '⏳ Envoi en cours...' : '✅ Envoyer ma fiche à Coach Insa'}
         </button>
 
         <p className="text-center text-xs text-gray-400 mt-4">SUNUFITNESS · Coach Insa Gaye · Saly, Sénégal</p>
