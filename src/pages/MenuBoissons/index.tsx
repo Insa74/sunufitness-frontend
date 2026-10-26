@@ -7,6 +7,11 @@ import { apiUrl } from '../../config/api';
 interface Boisson { id: number; nom: string; description: string | null; prix: number; nouveau: boolean }
 interface Categorie { id: number; nom: string; note: string | null; boissons: Boisson[] }
 
+// Commandes uniquement par téléphone
+const TEL_AFFICHE = '+221 71 019 68 68';
+const TEL_LIEN = 'tel:+221710196868';
+const EMAIL = 'info@sunufitness.com';
+
 const prixF = (n: number) => `${n.toLocaleString('fr-FR').replace(/ | /g, ' ')} F`;
 
 const MenuBoissonsPage: React.FC = () => {
@@ -34,6 +39,11 @@ const MenuBoissonsPage: React.FC = () => {
         </a>
         <h1 className="mt-3 text-2xl font-bold tracking-tight">Menu du bar</h1>
         <p className="text-sm text-[#b89968] font-medium">Mindset, Nutrition &amp; Sport</p>
+        <a href={TEL_LIEN}
+          className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#2c5f4f] text-white px-5 py-2.5 font-semibold shadow-sm">
+          📞 Commander : {TEL_AFFICHE}
+        </a>
+        <p className="mt-2 text-xs text-gray-500">Commandes uniquement par téléphone</p>
       </header>
 
       {categories.length > 1 && (
@@ -49,7 +59,7 @@ const MenuBoissonsPage: React.FC = () => {
         </nav>
       )}
 
-      <main className="max-w-xl mx-auto px-4 py-6 space-y-8">
+      <main className="max-w-xl mx-auto px-4 pt-6 pb-28 space-y-8">
         {chargement && <p className="text-center text-sm text-gray-500">Chargement du menu…</p>}
         {erreur && <p className="text-center text-sm text-gray-500">Le menu n'est pas disponible pour le moment. Demande au bar !</p>}
         {!chargement && !erreur && categories.length === 0 && (
@@ -81,9 +91,31 @@ const MenuBoissonsPage: React.FC = () => {
         ))}
       </main>
 
-      <footer className="text-center text-xs text-gray-500 pb-8">
-        Prix en francs CFA · <a href="/" className="underline">sunufitness.com</a>
-      </footer>
+      <section className="max-w-xl mx-auto px-4 pb-8">
+        <div className="rounded-2xl bg-white border border-[#e8e2d6] p-5 text-center">
+          <h2 className="font-bold text-lg">Envie d'aller plus loin ?</h2>
+          <p className="text-sm text-gray-600 mt-1">Découvrez nos abonnements, cours collectifs, coaching et autres services.</p>
+          <a href="/services"
+            className="mt-4 inline-block rounded-full bg-[#b89968] text-white px-5 py-2.5 font-semibold">
+            Nos abonnements et services →
+          </a>
+          <div className="mt-5 pt-4 border-t border-[#e8e2d6] text-sm space-y-1">
+            <p>📞 <a href={TEL_LIEN} className="font-semibold underline">{TEL_AFFICHE}</a> <span className="text-gray-500">(commandes)</span></p>
+            <p>✉️ <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a></p>
+          </div>
+        </div>
+        <p className="text-center text-xs text-gray-500 mt-4">
+          Prix en francs CFA · <a href="/" className="underline">sunufitness.com</a>
+        </p>
+      </section>
+
+      {/* Barre d'appel fixe en bas de l'écran (téléphone) */}
+      <div className="fixed bottom-0 inset-x-0 z-20 bg-white/95 backdrop-blur border-t border-[#e8e2d6] px-4 py-3">
+        <a href={TEL_LIEN}
+          className="max-w-xl mx-auto flex items-center justify-center gap-2 rounded-full bg-[#2c5f4f] text-white py-3 font-semibold">
+          📞 Appeler pour commander
+        </a>
+      </div>
     </div>
   );
 };
