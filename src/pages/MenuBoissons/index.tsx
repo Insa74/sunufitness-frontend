@@ -4,8 +4,8 @@ import { apiUrl } from '../../config/api';
 // Menu public des boissons du bar (accès par QR code posé au bar).
 // Contenu géré par l'admin sur /admin/menu-boissons.
 
-interface Boisson { id: number; nom: string; prix: number }
-interface Categorie { id: number; nom: string; boissons: Boisson[] }
+interface Boisson { id: number; nom: string; description: string | null; prix: number; nouveau: boolean }
+interface Categorie { id: number; nom: string; note: string | null; boissons: Boisson[] }
 
 const prixF = (n: number) => `${n.toLocaleString('fr-FR').replace(/ | /g, ' ')} F`;
 
@@ -59,12 +59,21 @@ const MenuBoissonsPage: React.FC = () => {
         {categories.map((c) => (
           <section key={c.id} id={`cat-${c.id}`} className="scroll-mt-16">
             <h2 className="text-lg font-bold uppercase tracking-wide border-b-2 border-[#b89968] pb-1 mb-3">{c.nom}</h2>
+            {c.note && (
+              <p className="-mt-1 mb-3 inline-block text-xs font-semibold bg-[#f5c400]/30 text-[#2c5f4f] px-2 py-1 rounded">⏰ {c.note}</p>
+            )}
             <ul className="space-y-3">
               {c.boissons.map((b) => (
-                <li key={b.id} className="flex items-baseline gap-2">
-                  <span className="font-medium">{b.nom}</span>
-                  <span className="flex-1 border-b border-dotted border-[#2c5f4f]/30 translate-y-[-3px]" />
-                  <span className="font-bold whitespace-nowrap">{prixF(b.prix)}</span>
+                <li key={b.id}>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-medium">
+                      {b.nom}
+                      {b.nouveau && <span className="ml-2 align-middle text-[10px] px-1.5 py-0.5 rounded bg-[#e11d74] text-white font-bold">NOUVEAU</span>}
+                    </span>
+                    <span className="flex-1 border-b border-dotted border-[#2c5f4f]/30 translate-y-[-3px]" />
+                    <span className="font-bold whitespace-nowrap">{prixF(b.prix)}</span>
+                  </div>
+                  {b.description && <p className="text-xs text-gray-600 mt-0.5 pr-16">{b.description}</p>}
                 </li>
               ))}
             </ul>

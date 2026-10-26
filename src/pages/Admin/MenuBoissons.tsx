@@ -5,8 +5,8 @@ import { caisseApi } from '../../services/caisseApiClient';
 
 // Gestion du menu des boissons du bar (admin) + QR code à imprimer.
 
-interface Boisson { id: number; nom: string; prix: number; disponible: boolean; ordre: number }
-interface Categorie { id: number; nom: string; ordre: number; boissons: Boisson[] }
+interface Boisson { id: number; nom: string; description: string | null; prix: number; disponible: boolean; nouveau: boolean; ordre: number }
+interface Categorie { id: number; nom: string; note: string | null; ordre: number; boissons: Boisson[] }
 
 const URL_MENU = 'https://sunufitness.com/menu-boissons';
 const champ = 'border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black';
@@ -30,11 +30,12 @@ const LigneBoisson: React.FC<{
   const [edition, setEdition] = useState(false);
   const [nom, setNom] = useState(b.nom);
   const [prix, setPrix] = useState(String(b.prix));
+  const [description, setDescription] = useState(b.description ?? '');
   const [confirmSuppr, setConfirmSuppr] = useState(false);
 
   const enregistrer = async () => {
     try {
-      await caisseApi.put(`/admin/menu-boissons/boissons/${b.id}`, { nom: nom.trim(), prix: Number(prix) });
+      await caisseApi.put(`/admin/menu-boissons/boissons/${b.id}`, { nom: nom.trim(), prix: Number(prix), description: description.trim() || null });
       setEdition(false);
       onChange('Boisson modifiée.');
     } catch (e) { onErreur(msgErreur(e)); }
@@ -43,6 +44,12 @@ const LigneBoisson: React.FC<{
     try {
       await caisseApi.put(`/admin/menu-boissons/boissons/${b.id}`, { disponible: !b.disponible });
       onChange(b.disponible ? 'Marquée épuisée (masquée du menu).' : 'De nouveau disponible.');
+    } catch (e) { onErreur(msgErreur(e)); }
+  };
+  const basculerNouveau = async () => {
+    try {
+      await caisseApi.put(`/admin/menu-boissons/boissons/${b.id}`, { nouveau: !b.nouveau });
+      onChange(b.nouveau ? 'Badge « Nouveau » retiré.' : 'Badge « Nouveau » ajouté.');
     } catch (e) { onErreur(msgErreur(e)); }
   };
   const supprimer = async () => {
@@ -59,7 +66,9 @@ const LigneBoisson: React.FC<{
         <input className={`${champ} w-28`} type="number" min={0} value={prix} onChange={(e) => setPrix(e.target.value)} />
         <span className="text-sm text-gray-500">F</span>
         <button onClick={enregistrer} className="px-3 py-2 rounded-lg bg-black text-white text-sm font-semibold">OK</button>
-        <button onClick={() => { setEdition(false); setNom(b.nom); setPrix(String(b.prix)); }} className="px-3 py-2 rounded-lg border text-sm">Annuler</button>
+        <button onClick={() => { setEdition(false); setNom(b.nom); setPrix(String(b.prix)); setDescription(b.description ?? ''); }} className="px-3 py-2 rounded-lg border text-sm">Annuler</button>
+        <input className={`${champ} w-full`} placeholder="Description (facultatif) : ingrédients, taille…" maxLength={255}
+          value={description} onChange={(e) => setDescription(e.target.value)} />
       </li>
     );
   }
@@ -70,11 +79,15 @@ const LigneBoisson: React.FC<{
         <button disabled={premier} onClick={onMonter} className="text-xs leading-none text-gray-400 disabled:opacity-20" aria-label="Monter">▲</button>
         <button disabled={dernier} onClick={onDescendre} className="text-xs leading-none text-gray-400 disabled:opacity-20" aria-label="Descendre">▼</button>
       </div>
-      <span className="flex-1 min-w-[120px] text-sm font-medium">
-        {b.nom}{!b.disponible && <span className="ml-2 text-xs text-red-600 font-semibold">ÉPUISÉ</span>}
+      <span className="flex-1 min-w-[120px] text-sm">
+        <span className="font-medium">{b.nom}</span>
+        {b.nouveau && <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded bg-pink-600 text-white font-bold">NOUVEAU</span>}
+        {!b.disponible && <span className="ml-2 text-xs text-red-600 font-semibold">ÉPUISÉ</span>}
+        {b.description && <span className="block text-xs text-gray-500">{b.description}</span>}
       </span>
       <span className="text-sm font-bold w-24 text-right">{b.prix.toLocaleString('fr-FR')} F</span>
       <button onClick={basculer} className="text-xs px-2 py-1 rounded-md border">{b.disponible ? 'Épuisé' : 'Disponible'}</button>
+      <button onClick={basculerNouveau} className={`text-xs px-2 py-1 rounded-md border ${b.nouveau ? 'bg-pink-50 border-pink-300 text-pink-700' : ''}`}>{b.nouveau ? '★ Nouveau' : '☆ Nouveau'}</button>
       <button onClick={() => setEdition(true)} className="text-xs px-2 py-1 rounded-md border">Modifier</button>
       {confirmSuppr ? (
         <>
@@ -101,23 +114,25 @@ const BlocCategorie: React.FC<{
 }> = ({ c, premier, dernier, onMonter, onDescendre, onChange, onErreur }) => {
   const [renommer, setRenommer] = useState(false);
   const [nomCat, setNomCat] = useState(c.nom);
+  const [noteCat, setNoteCat] = useState(c.note ?? '');
   const [nom, setNom] = useState('');
   const [prix, setPrix] = useState('');
+  const [description, setDescription] = useState('');
   const [confirmSuppr, setConfirmSuppr] = useState(false);
 
   const ajouter = async () => {
     if (!nom.trim() || prix === '') { onErreur('Indique le nom et le prix de la boisson.'); return; }
     try {
-      await caisseApi.post('/admin/menu-boissons/boissons', { categorie_id: c.id, nom: nom.trim(), prix: Number(prix) });
-      setNom(''); setPrix('');
+      await caisseApi.post('/admin/menu-boissons/boissons', { categorie_id: c.id, nom: nom.trim(), prix: Number(prix), description: description.trim() || null });
+      setNom(''); setPrix(''); setDescription('');
       onChange('Boisson ajoutée.');
     } catch (e) { onErreur(msgErreur(e)); }
   };
   const enregistrerNom = async () => {
     try {
-      await caisseApi.put(`/admin/menu-boissons/categories/${c.id}`, { nom: nomCat.trim() });
+      await caisseApi.put(`/admin/menu-boissons/categories/${c.id}`, { nom: nomCat.trim(), note: noteCat.trim() || null });
       setRenommer(false);
-      onChange('Catégorie renommée.');
+      onChange('Catégorie modifiée.');
     } catch (e) { onErreur(msgErreur(e)); }
   };
   const supprimer = async () => {
@@ -144,14 +159,19 @@ const BlocCategorie: React.FC<{
         </div>
         {renommer ? (
           <>
-            <input className={`${champ} flex-1`} value={nomCat} onChange={(e) => setNomCat(e.target.value)} />
+            <input className={`${champ} flex-1 min-w-[140px]`} value={nomCat} onChange={(e) => setNomCat(e.target.value)} />
+            <input className={`${champ} flex-1 min-w-[180px]`} placeholder="Note (ex. À commander avant 11h00)" maxLength={150}
+              value={noteCat} onChange={(e) => setNoteCat(e.target.value)} />
             <button onClick={enregistrerNom} className="px-3 py-2 rounded-lg bg-black text-white text-sm font-semibold">OK</button>
-            <button onClick={() => { setRenommer(false); setNomCat(c.nom); }} className="px-3 py-2 rounded-lg border text-sm">Annuler</button>
+            <button onClick={() => { setRenommer(false); setNomCat(c.nom); setNoteCat(c.note ?? ''); }} className="px-3 py-2 rounded-lg border text-sm">Annuler</button>
           </>
         ) : (
           <>
-            <h2 className="flex-1 font-bold text-lg">{c.nom} <span className="text-sm font-normal text-gray-400">({c.boissons.length})</span></h2>
-            <button onClick={() => setRenommer(true)} className="text-xs px-2 py-1 rounded-md border">Renommer</button>
+            <h2 className="flex-1 font-bold text-lg">
+              {c.nom} <span className="text-sm font-normal text-gray-400">({c.boissons.length})</span>
+              {c.note && <span className="block text-xs font-medium text-amber-700">⏰ {c.note}</span>}
+            </h2>
+            <button onClick={() => setRenommer(true)} className="text-xs px-2 py-1 rounded-md border">Modifier</button>
             {confirmSuppr ? (
               <>
                 <span className="text-xs text-red-600">Supprimer la catégorie et ses {c.boissons.length} boisson(s) ?</span>
@@ -175,12 +195,14 @@ const BlocCategorie: React.FC<{
       </ul>
 
       <div className="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-dashed">
-        <input className={`${champ} flex-1 min-w-[140px]`} placeholder="Nouvelle boisson (ex. Jus de bissap)" value={nom}
+        <input className={`${champ} flex-1 min-w-[140px]`} placeholder="Nouvel article (ex. Jus de bissap)" value={nom}
           onChange={(e) => setNom(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && ajouter()} />
         <input className={`${champ} w-28`} type="number" min={0} placeholder="Prix" value={prix}
           onChange={(e) => setPrix(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && ajouter()} />
         <span className="text-sm text-gray-500">F</span>
         <button onClick={ajouter} className="px-3 py-2 rounded-lg bg-[#05835e] text-white text-sm font-semibold">+ Ajouter</button>
+        <input className={`${champ} w-full`} placeholder="Description (facultatif) : ingrédients, taille…" maxLength={255} value={description}
+          onChange={(e) => setDescription(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && ajouter()} />
       </div>
     </section>
   );
@@ -305,7 +327,7 @@ const AdminMenuBoissons: React.FC = () => {
           <button onClick={ajouterCategorie} className="px-4 py-2 rounded-lg bg-black text-white text-sm font-semibold">+ Catégorie</button>
         </section>
 
-        <p className="text-xs text-gray-400">« Épuisé » masque la boisson du menu public sans la supprimer. Les flèches ▲▼ changent l'ordre d'affichage.</p>
+        <p className="text-xs text-gray-400">« Épuisé » masque l'article du menu public sans le supprimer. « ☆ Nouveau » affiche un badge NOUVEAU. « Modifier » sur une catégorie permet d'ajouter une note (ex. heure limite de commande). Les flèches ▲▼ changent l'ordre d'affichage.</p>
       </main>
 
       {toast && <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-4 py-2 rounded-lg shadow-lg z-50">{toast}</div>}
