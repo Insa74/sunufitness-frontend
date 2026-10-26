@@ -28,6 +28,8 @@ import MemberWorkspace from './pages/Coach/MemberWorkspace';
 import CoachProtectedRoute from './components/CoachProtectedRoute';
 import AgendaPage from './pages/Agenda';
 import PreferencesPage from './pages/Preferences';
+import MenuBoissonsPage from './pages/MenuBoissons';
+import AdminMenuBoissons from './pages/Admin/MenuBoissons';
 
 
 const AppRoutes = () => {
@@ -46,6 +48,7 @@ const AppRoutes = () => {
         <Route path="/admin/schedule" element={<AdminProtectedRoute><AdminSchedule /></AdminProtectedRoute>} />
         <Route path="/admin/cours" element={<AdminProtectedRoute><AdminCours /></AdminProtectedRoute>} />
         <Route path="/admin/membres" element={<AdminProtectedRoute><AdminMembres /></AdminProtectedRoute>} />
+        <Route path="/admin/menu-boissons" element={<AdminProtectedRoute><AdminMenuBoissons /></AdminProtectedRoute>} />
         <Route path="/caisse" element={<CaissePage />} />
         <Route path="/agenda" element={<CoachProtectedRoute><AgendaPage /></CoachProtectedRoute>} />
         <Route path="/coach/membres" element={<CoachProtectedRoute><MemberWorkspace /></CoachProtectedRoute>} />
@@ -57,6 +60,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path='/about' element={<About />} />
+        <Route path="/menu-boissons" element={<MenuBoissonsPage />} />
         <Route path="/scan" element={<ScanPage />} />
         <Route path="/mon-qr/:token" element={<MyQrPage />} />
         <Route path="/preferences" element={<PreferencesPage />} />

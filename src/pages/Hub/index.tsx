@@ -138,6 +138,17 @@ const MODULES: Module[] = [
     icon: <IconPlanning />,
   },
   {
+    id: 'bar',
+    tag: 'Bar',
+    name: 'SunuBar',
+    desc: 'Menu des boissons du bar : catégories, prix, boissons épuisées et QR code à imprimer.',
+    route: '/admin/menu-boissons',
+    color: '#B89968',
+    dimColor: 'rgba(184,153,104,0.12)',
+    borderColor: 'rgba(184,153,104,0.3)',
+    icon: <IconCaisse />,
+  },
+  {
     id: 'membre',
     tag: 'Membres',
     name: 'SunuMembre',
