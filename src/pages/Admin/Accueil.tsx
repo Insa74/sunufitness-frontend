@@ -99,6 +99,7 @@ const MENU: { label: string; icone: string; route: string }[] = [
   { label: 'Planning', icone: '🗓️', route: '/admin/schedule' },
   { label: 'Agenda', icone: '📅', route: '/agenda' },
   { label: 'Bar', icone: '🥤', route: '/admin/menu-boissons' },
+  { label: 'Inscrits marathon', icone: '🏃', route: '/admin/marathon' },
   { label: 'Statistiques', icone: '📈', route: '/admin/statistiques' },
   { label: 'Caisse', icone: '🏪', route: '/caisse' },
 ];

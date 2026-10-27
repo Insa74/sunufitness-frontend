@@ -81,6 +81,18 @@ const Header: React.FC = () => {
                 >
                   Services
                 </a>
+                <a
+                  href="/prepa-marathon"
+                  role="menuitem"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/prepa-marathon');
+                  }}
+                  className="flex items-center gap-2 text-[16px] font-semibold text-[#d4f25a] hover:text-white transition-colors"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#d4f25a]" aria-hidden="true" />
+                  Prépa Marathon
+                </a>
                 {/* <button
                   role="menuitem"
                   onClick={() => navigate('/services')}
@@ -157,6 +169,19 @@ const Header: React.FC = () => {
                 className="text-left text-global-text5 hover:text-gray-200 transition-colors"
               >
                 Services
+              </a>
+              <a
+                href="/prepa-marathon"
+                role="menuitem"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/prepa-marathon');
+                  setMenuOpen(false);
+                }}
+                className="flex items-center gap-2 text-left font-semibold text-[#d4f25a] hover:text-white transition-colors"
+              >
+                <span className="w-2 h-2 rounded-full bg-[#d4f25a]" aria-hidden="true" />
+                Prépa Marathon
               </a>
               <button
                 role="menuitem"

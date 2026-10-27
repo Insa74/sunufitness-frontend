@@ -149,6 +149,17 @@ const MODULES: Module[] = [
     icon: <IconCaisse />,
   },
   {
+    id: 'marathon',
+    tag: 'Marathon',
+    name: 'SunuMarathon',
+    desc: 'Inscrits à la Prépa Marathon : distances, formules, inscriptions officielles et export CSV.',
+    route: '/admin/marathon',
+    color: '#D4F25A',
+    dimColor: 'rgba(212,242,90,0.12)',
+    borderColor: 'rgba(212,242,90,0.3)',
+    icon: <IconMembre />,
+  },
+  {
     id: 'membre',
     tag: 'Membres',
     name: 'SunuMembre',

@@ -5,6 +5,7 @@ import Button from '../../components/ui/Button';
 import Footer from '../../components/common/Footer';
 import { apiClient } from '../../services/apiClient';
 import { API } from '../../config/api';
+import BlocPrepaMarathon from '../../components/marathon/BlocPrepaMarathon';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -454,6 +455,9 @@ const HomePage: React.FC = () => {
 
       <Header />
       <div className="flex flex-col justify-start items-center w-full pt-[60px]">
+        {/* Campagne Prépa Marathon */}
+        <BlocPrepaMarathon />
+
         {/* Hero Section */}
         <div className="relative w-full h-screen min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] overflow-hidden">
           {/* Hero Background Image with Overlays */}
