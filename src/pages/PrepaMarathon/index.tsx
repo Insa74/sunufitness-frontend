@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import CompteARebours from '../../components/marathon/CompteARebours';
@@ -61,6 +61,21 @@ const PrepaMarathonPage: React.FC = () => {
   const [erreurGlobale, setErreurGlobale] = useState<string | null>(null);
   const [envoi, setEnvoi] = useState(false);
   const [inscrit, setInscrit] = useState<{ prenom: string; distance: Distance } | null>(null);
+  const titreConfirmation = useRef<HTMLHeadingElement>(null);
+
+  // Remonter en haut une fois la confirmation affichée (pas avant : la page est encore longue
+  // et un défilement doux interrompu laissait le visiteur sur le Footer). Le CSS global
+  // « scroll-behavior: smooth » est neutralisé le temps du saut.
+  useLayoutEffect(() => {
+    if (!inscrit) return;
+    const html = document.documentElement;
+    const precedent = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = precedent;
+    titreConfirmation.current?.focus();
+  }, [inscrit]);
+
   const maj = (champ: Champ, valeur: string) => {
     setForm((f) => ({ ...f, [champ]: valeur }));
     if (erreurs[champ]) setErreurs((e) => ({ ...e, [champ]: undefined }));
@@ -106,7 +121,6 @@ const PrepaMarathonPage: React.FC = () => {
 
       if (res.ok) {
         setInscrit({ prenom: form.prenom.trim(), distance: form.distance as Distance });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
@@ -118,6 +132,8 @@ const PrepaMarathonPage: React.FC = () => {
           if (msg) traduites[champ] = traduire(champ, msg);
         }
         setErreurs(traduites);
+        const premier = CHAMPS.find((c) => traduites[c]);
+        if (premier) document.getElementById(`marathon-${premier}`)?.focus();
         if (Object.keys(traduites).length === 0) setErreurGlobale('Ton inscription n\'a pas pu être enregistrée. Vérifie tes informations et réessaie.');
       } else if (res.status === 429) {
         setErreurGlobale('Trop de tentatives. Patiente une minute puis réessaie.');
@@ -147,7 +163,7 @@ const PrepaMarathonPage: React.FC = () => {
         <Header />
         <main className="mx-auto max-w-xl px-4 pb-16 pt-[92px] text-center sm:px-6">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-marathon-lime text-3xl text-marathon-nuit">✓</div>
-          <h1 className="mt-5 font-condensed text-4xl sm:text-5xl font-extrabold uppercase leading-none text-balance">
+          <h1 ref={titreConfirmation} tabIndex={-1} className="mt-5 font-condensed text-4xl sm:text-5xl font-extrabold uppercase leading-none text-balance outline-none">
             Bienvenue dans la team, {inscrit.prenom} !
           </h1>
           <p className="mt-4 text-white/80">
