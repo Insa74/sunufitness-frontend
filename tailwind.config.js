@@ -23,10 +23,15 @@ module.exports = {
         },
         button: {
           text1: "var(--button-text-1)"
+        },
+        marathon: {
+          nuit: "#0c1f17",
+          lime: "#d4f25a"
         }
       },
       fontFamily: {
-        bahnschrift: ['Bahnschrift', 'sans-serif']
+        bahnschrift: ['Bahnschrift', 'sans-serif'],
+        condensed: ['"Barlow Condensed"', 'Oswald', 'sans-serif']
       }
     }
   },

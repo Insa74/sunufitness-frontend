@@ -30,6 +30,8 @@ import AgendaPage from './pages/Agenda';
 import PreferencesPage from './pages/Preferences';
 import MenuBoissonsPage from './pages/MenuBoissons';
 import AdminMenuBoissons from './pages/Admin/MenuBoissons';
+import PrepaMarathonPage from './pages/PrepaMarathon';
+import AdminMarathon from './pages/Admin/Marathon';
 
 
 const AppRoutes = () => {
@@ -49,6 +51,7 @@ const AppRoutes = () => {
         <Route path="/admin/cours" element={<AdminProtectedRoute><AdminCours /></AdminProtectedRoute>} />
         <Route path="/admin/membres" element={<AdminProtectedRoute><AdminMembres /></AdminProtectedRoute>} />
         <Route path="/admin/menu-boissons" element={<AdminProtectedRoute><AdminMenuBoissons /></AdminProtectedRoute>} />
+        <Route path="/admin/marathon" element={<AdminProtectedRoute><AdminMarathon /></AdminProtectedRoute>} />
         <Route path="/caisse" element={<CaissePage />} />
         <Route path="/agenda" element={<CoachProtectedRoute><AgendaPage /></CoachProtectedRoute>} />
         <Route path="/coach/membres" element={<CoachProtectedRoute><MemberWorkspace /></CoachProtectedRoute>} />
@@ -64,6 +67,7 @@ const AppRoutes = () => {
         <Route path="/scan" element={<ScanPage />} />
         <Route path="/mon-qr/:token" element={<MyQrPage />} />
         <Route path="/preferences" element={<PreferencesPage />} />
+        <Route path="/prepa-marathon" element={<PrepaMarathonPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>
