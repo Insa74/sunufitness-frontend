@@ -28,10 +28,13 @@ export const DISTANCES: { value: Distance; label: string; detail: string; lienOf
 ];
 
 export const FORMULES: { value: Formule; titre: string; prix: string; precision: string; enAvant?: boolean }[] = [
-  { value: 'prepa_sans_abonnement', titre: 'Pas encore membre', prix: '25 000 F / mois', precision: 'soit 75 000 F pour les 3 mois de prépa' },
-  { value: 'prepa_membre', titre: 'Déjà membre', prix: '+15 000 F / mois', precision: 'en plus de ton abonnement', enAvant: true },
-  { value: 'course_seule', titre: 'Juste la course', prix: 'Team SUNU', precision: 'cours sous nos couleurs' },
+  { value: 'prepa_sans_abonnement', titre: 'Pas encore membre', prix: '25 000 F / mois', precision: 'Entraînements de préparation · soit 75 000 F pour les 3 mois' },
+  { value: 'prepa_membre', titre: 'Déjà membre', prix: '+15 000 F / mois', precision: 'Entraînements de préparation, en plus de ton abonnement', enAvant: true },
+  { value: 'course_seule', titre: 'Juste la course', prix: 'Team SUNUFITNESS', precision: 'Pas d\'entraînement : tu cours simplement sous nos couleurs.' },
 ];
+
+// Affichée sous les formules : les prix ci-dessus ne comprennent pas l'inscription à la course.
+export const NOTE_TARIFS = 'Les tarifs concernent uniquement les entraînements de la prépa. L\'inscription à la course se fait sur le site officiel du Marathon du Sénégal (de 4 000 F à 10 000 F selon la distance).';
 
 export const WHATSAPP_NUMERO = '221710196868';
 export const WHATSAPP_AFFICHE = '+221 71 019 68 68';

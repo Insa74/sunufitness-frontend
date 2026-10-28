@@ -21,11 +21,11 @@ const BlocPrepaMarathon: React.FC = () => {
         <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-marathon-lime">
           Prépa marathon · 3 mois · 3 séances / semaine
         </p>
-        <h2 className="mt-3 font-condensed text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.95]">
+        <h2 className="mt-3 font-condensed text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.95] text-balance">
           En janvier, Saly court en <span className="text-marathon-lime">vert.</span>
         </h2>
-        <p className="mt-4 max-w-xl text-base sm:text-lg text-white/80">
-          5, 10, 21 ou 42 km : avec ou sans prépa, prends le départ avec la Team SUNU.
+        <p className="mt-4 max-w-xl text-base sm:text-lg text-white/80 text-balance">
+          5, 10, 21 ou 42 km : avec ou sans prépa, prends le départ avec la Team SUNUFITNESS.
         </p>
 
         <CompteARebours className="mt-7" />

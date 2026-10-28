@@ -4,7 +4,7 @@ import Footer from '../../components/common/Footer';
 import CompteARebours from '../../components/marathon/CompteARebours';
 import CompteurCoureurs from '../../components/marathon/CompteurCoureurs';
 import {
-  DATE_COURSE_LIBELLE, DEBUT_PREPA_LIBELLE, DISTANCES, FORMULES, WHATSAPP_AFFICHE,
+  DATE_COURSE_LIBELLE, DEBUT_PREPA_LIBELLE, DISTANCES, FORMULES, NOTE_TARIFS, WHATSAPP_AFFICHE,
   Distance, Formule, libelleDistance, lienWhatsApp, marathonUrl,
 } from '../../config/marathon';
 
@@ -61,7 +61,6 @@ const PrepaMarathonPage: React.FC = () => {
   const [erreurGlobale, setErreurGlobale] = useState<string | null>(null);
   const [envoi, setEnvoi] = useState(false);
   const [inscrit, setInscrit] = useState<{ prenom: string; distance: Distance } | null>(null);
-
   const maj = (champ: Champ, valeur: string) => {
     setForm((f) => ({ ...f, [champ]: valeur }));
     if (erreurs[champ]) setErreurs((e) => ({ ...e, [champ]: undefined }));
@@ -148,7 +147,7 @@ const PrepaMarathonPage: React.FC = () => {
         <Header />
         <main className="mx-auto max-w-xl px-4 pb-16 pt-[92px] text-center sm:px-6">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-marathon-lime text-3xl text-marathon-nuit">✓</div>
-          <h1 className="mt-5 font-condensed text-4xl sm:text-5xl font-extrabold uppercase leading-none">
+          <h1 className="mt-5 font-condensed text-4xl sm:text-5xl font-extrabold uppercase leading-none text-balance">
             Bienvenue dans la team, {inscrit.prenom} !
           </h1>
           <p className="mt-4 text-white/80">
@@ -189,11 +188,11 @@ const PrepaMarathonPage: React.FC = () => {
         <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-marathon-lime">
           Marathon du Sénégal · Saly · {DATE_COURSE_LIBELLE}
         </p>
-        <h1 className="mt-3 font-condensed text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.95]">
+        <h1 className="mt-3 font-condensed text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.95] text-balance">
           Prépa marathon <span className="text-marathon-lime">SUNUFITNESS</span>
         </h1>
-        <p className="mt-4 max-w-xl text-base sm:text-lg text-white/80">
-          3 mois de préparation, 3 séances par semaine, pour prendre le départ du 5, 10, 21 ou 42 km avec la Team SUNU.
+        <p className="mt-4 max-w-xl text-base sm:text-lg text-white/80 text-balance">
+          3 mois de préparation, 3 séances par semaine, pour prendre le départ du 5, 10, 21 ou 42 km avec la Team SUNUFITNESS.
         </p>
         <p className="mt-5 inline-block rounded-full border border-marathon-lime/40 bg-marathon-lime/10 px-4 py-2 text-sm">
           Début de la prépa : <strong className="text-marathon-lime">{DEBUT_PREPA_LIBELLE}</strong>
@@ -209,12 +208,12 @@ const PrepaMarathonPage: React.FC = () => {
       {/* 4 piliers */}
       <section className="border-t border-white/10 bg-black/20">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <h2 className="font-condensed text-3xl sm:text-4xl font-bold uppercase">Les 4 piliers de la prépa</h2>
+          <h2 className="font-condensed text-3xl sm:text-4xl font-bold uppercase text-balance">Les 4 piliers de la prépa</h2>
           <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {PILIERS.map((p) => (
               <div key={p.titre} className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <span className="text-3xl" aria-hidden="true">{p.icone}</span>
-                <h3 className="mt-3 font-semibold text-white">{p.titre}</h3>
+                <h3 className="mt-3 font-semibold text-white text-balance">{p.titre}</h3>
                 <p className="mt-1 text-sm text-white/70">{p.texte}</p>
               </div>
             ))}
@@ -225,7 +224,7 @@ const PrepaMarathonPage: React.FC = () => {
       {/* Formulaire (les formules sont choisies directement dedans) */}
       <section id="inscription" className="scroll-mt-[70px] border-t border-white/10">
         <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
-          <h2 className="font-condensed text-3xl sm:text-4xl font-bold uppercase">Je rejoins la team</h2>
+          <h2 className="font-condensed text-3xl sm:text-4xl font-bold uppercase text-balance">Je rejoins la team</h2>
           <p className="mt-2 text-sm text-white/70">Inscription en 1 minute.</p>
 
           <form onSubmit={envoyer} noValidate className="mt-8 space-y-6">
@@ -248,12 +247,13 @@ const PrepaMarathonPage: React.FC = () => {
                         <span className={`mt-0.5 h-5 w-5 flex-shrink-0 rounded-full border-2 ${choisie ? 'border-marathon-lime bg-marathon-lime' : 'border-white/40'}`} aria-hidden="true" />
                       </span>
                       <span className={`mt-1 block font-condensed text-2xl font-bold uppercase ${f.enAvant || choisie ? 'text-marathon-lime' : 'text-white'}`}>{f.prix}</span>
-                      <span className="block text-sm text-white/70">{f.precision}</span>
+                      <span className="block text-sm text-white/70 text-balance">{f.precision}</span>
                     </label>
                   );
                 })}
               </div>
               <MessageErreur id="marathon-formule-erreur" message={erreurs.formule} />
+              <p className="mt-3 text-xs text-white/60 text-balance">{NOTE_TARIFS}</p>
             </fieldset>
 
             {/* Distance */}
