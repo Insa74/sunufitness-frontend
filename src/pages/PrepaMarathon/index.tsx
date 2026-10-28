@@ -256,7 +256,7 @@ const PrepaMarathonPage: React.FC = () => {
                       className={`relative cursor-pointer rounded-2xl border-2 p-4 transition ${choisie ? 'border-marathon-lime bg-marathon-lime/15' : f.enAvant ? 'border-marathon-lime/50 bg-white/5' : 'border-white/15 bg-white/5'}`}>
                       <input type="radio" name="formule" value={f.value} checked={choisie} onChange={() => maj('formule', f.value)} className="sr-only" />
                       {f.enAvant && (
-                        <span className="absolute -top-3 left-4 rounded-full bg-marathon-lime px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-marathon-nuit">Membres SUNU</span>
+                        <span className="absolute -top-3 left-4 rounded-full bg-marathon-lime px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-marathon-nuit">Membres SUNUFITNESS</span>
                       )}
                       <span className="flex items-start justify-between gap-2">
                         <span className="text-xs font-semibold uppercase tracking-widest text-white/60">{f.titre}</span>

@@ -10,7 +10,7 @@ const CartesFormules: React.FC = () => (
           className={`relative rounded-2xl p-5 text-left ${f.enAvant ? 'border-2 border-marathon-lime bg-marathon-lime/10' : 'border border-white/15 bg-white/5'}`}>
           {f.enAvant && (
             <span className="absolute -top-3 left-5 rounded-full bg-marathon-lime px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-marathon-nuit">
-              Membres SUNU
+              Membres SUNUFITNESS
             </span>
           )}
           <p className="text-xs font-semibold uppercase tracking-widest text-white/60">{f.titre}</p>
