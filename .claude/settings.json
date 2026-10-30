@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git push)",
+      "Bash(git push *)",
+      "Bash(rm -rf *)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean *)",
+      "Bash(curl *-X P*sunufitness.com*)",
+      "Bash(curl *sunufitness.com*-X P*)",
+      "Bash(curl *-X D*sunufitness.com*)",
+      "Bash(curl *sunufitness.com*-X D*)",
+      "Bash(curl *--request P*sunufitness.com*)",
+      "Bash(curl *sunufitness.com*--request P*)",
+      "Bash(curl *--request D*sunufitness.com*)",
+      "Bash(curl *sunufitness.com*--request D*)",
+      "Bash(curl *-d *sunufitness.com*)",
+      "Bash(curl *sunufitness.com*-d *)",
+      "Bash(curl *--data*sunufitness.com*)",
+      "Bash(curl *sunufitness.com*--data*)",
+      "Bash(curl *-F *sunufitness.com*)",
+      "Bash(curl *sunufitness.com*-F *)",
+      "Bash(curl *--form*sunufitness.com*)",
+      "Bash(curl *sunufitness.com*--form*)",
+      "Bash(wget *--post*sunufitness.com*)",
+      "Bash(wget *sunufitness.com*--post*)",
+      "Bash(wget *--method*sunufitness.com*)",
+      "Bash(wget *sunufitness.com*--method*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Bash(cat *.env*)",
+      "Bash(less *.env*)",
+      "Bash(head *.env*)",
+      "Bash(tail *.env*)"
+    ]
+  }
+}
