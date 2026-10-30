@@ -82,4 +82,5 @@ Il n'y a ni ESLint ni tests automatisés pour l'instant.
 1. `npx tsc --noEmit` : 0 erreur.
 2. `npm run build` réussit.
 3. Vérifier à la main les écrans touchés via `npm run dev` (public, membre, caisse, admin selon le cas).
-4. Montrer le diff complet ; ne pas committer ni pousser sans accord.
+4. Faire relire la branche par l'agent `controleur-qualite` ; corriger tout point BLOQUANT avant de proposer la fusion.
+5. Montrer le diff complet ; ne pas committer ni pousser sans accord.
