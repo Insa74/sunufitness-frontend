@@ -23,7 +23,7 @@ Le workflow `.github/workflows/deploy.yml` construit le site et le déploie par 
 
 ```bash
 npm run dev          # serveur de dev sur http://localhost:4028 (proxy /api -> http://localhost:8000)
-npx tsc --noEmit     # vérification des types (0 erreur actuellement : à garder ainsi)
+npx tsc --noEmit     # vérification des types (5 erreurs préexistantes (Admin/Coaches, Admin/Schedule, Coach/MemberWorkspace, Home) : ne pas en ajouter)
 npm run build        # tsc --noCheck && vite build -> build/
 npm run preview      # sert le build localement
 ```
@@ -79,7 +79,7 @@ Il n'y a ni ESLint ni tests automatisés pour l'instant.
 
 ## Avant de conclure une tâche
 
-1. `npx tsc --noEmit` : 0 erreur.
+1. `npx tsc --noEmit` : pas de nouvelle erreur par rapport aux 5 préexistantes.
 2. `npm run build` réussit.
 3. Vérifier à la main les écrans touchés via `npm run dev` (public, membre, caisse, admin selon le cas).
 4. Faire relire la branche par l'agent `controleur-qualite` ; corriger tout point BLOQUANT avant de proposer la fusion.

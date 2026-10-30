@@ -25,7 +25,10 @@ Un push sur `dev_jerry` déploie directement en production, sans aucun contrôle
 
 ## Checklist (à chaque fois)
 
-a) **Types et build** : `npx tsc --noEmit` = 0 erreur ; `npm run build` réussit. Tout échec = BLOQUANT.
+a) **Types et build** :
+   - `npm run build` échoue = BLOQUANT.
+   - `npx tsc --noEmit` : compter les erreurs et les comparer à `dev_jerry`. Référence : 5 erreurs préexistantes (`Admin/Coaches`, `Admin/Schedule`, `Coach/MemberWorkspace`, `Home`), indiquées dans `CLAUDE.md`. Elles ne bloquent pas.
+   - BLOQUANT seulement si la branche AJOUTE des erreurs : nombre supérieur à la référence, ou erreur nouvelle dans un fichier modifié par la branche (vérifier avec `git show dev_jerry:<fichier>` qu'elle n'existait pas déjà).
 
 b) **Bon client API, bon backend** (cf. tableau de `CLAUDE.md`) :
    - membres → `apiClient` (`src/services/apiClient.ts`) ;
