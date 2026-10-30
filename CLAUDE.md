@@ -41,8 +41,18 @@ Il n'y a ni ESLint ni tests automatisés pour l'instant.
 | Tiers | `Preferences` (Formspree), `Payment` (liens Wave) | — | — |
 
 - Le CI ne définit aucune variable `VITE_*` : en production, ce sont les valeurs par défaut ci-dessus qui s'appliquent.
-- Le backend Laravel des fonctions admin/caisse/marathon est un dépôt séparé : `~/Downloads/admin_sunufitness_backend`. **À clarifier** : `api.sunufitness.com` sert aussi une partie de ces routes, mais dans une version différente (par ex. `/marathon/compteur` y répond 404). En cas de doute sur le backend visé, demander avant d'agir.
 - Les rôles staff (`coach`, `admin`, `super_admin`) sont vérifiés côté client par `AdminProtectedRoute`/`CoachProtectedRoute`, mais la vraie barrière est côté backend (`check.role`).
+
+### Déploiement du backend (vérifié sur le serveur)
+
+- **Un seul backend Laravel** : dépôt `Insa74/sunufitness-backend-`, branche `dev_jerry` (clone local : `~/Downloads/admin_sunufitness_backend`), avec **une seule base MySQL partagée**.
+- **Deux copies du code sur le serveur**, au même commit :
+  - `~/api.sunufitness.com/sunu_fitness` → servie sur `api.sunufitness.com` (utilisée par presque tout le frontend) ;
+  - `~/admin.sunufitness.com` → servie sur `admin.sunufitness.com` (utilisée par la Prépa Marathon).
+- Toute mise à jour du backend = `git pull` dans **les deux** dossiers, puis `php artisan route:clear` dans chacun.
+- Une migration ne se lance **qu'une seule fois** (la base est partagée).
+- C'est Insa qui fait ces opérations sur le serveur : ne jamais les lancer soi-même. Les rappeler à la fin d'une tâche qui touche le backend.
+- Une nouvelle fonctionnalité doit fonctionner sur **les deux domaines**.
 
 ### Règle réseau
 
