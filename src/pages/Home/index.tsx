@@ -6,6 +6,7 @@ import Footer from '../../components/common/Footer';
 import { apiClient } from '../../services/apiClient';
 import { API } from '../../config/api';
 import BlocPrepaMarathon from '../../components/marathon/BlocPrepaMarathon';
+import AvisGoogleSection from '../../components/common/AvisGoogle';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -698,6 +699,9 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Avis Google */}
+        <AvisGoogleSection />
 
         {/* About Section */}
         <div ref={addToRefs} id="about" className="w-full bg-global-background4  ">
