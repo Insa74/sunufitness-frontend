@@ -197,7 +197,7 @@ const AnamneseTab: React.FC<{ member: MembreResult }> = ({ member }) => {
       setSuccess(true);
       loadHistory();
     } catch (e: any) {
-      setError(e?.message || Object.values(e?.errors ?? {})[0]?.[0] || 'Erreur lors de l’enregistrement.');
+      setError(e?.message || Object.values<string[]>(e?.errors ?? {})[0]?.[0] || 'Erreur lors de l’enregistrement.');
     } finally {
       setSaving(false);
     }
@@ -437,7 +437,7 @@ const ProgramBuilder: React.FC<{
         applyProgram(fresh.data);
       }
     } catch (e: any) {
-      setError(e?.message || Object.values(e?.errors ?? {})[0]?.[0] || 'Erreur lors de l’enregistrement du programme.');
+      setError(e?.message || Object.values<string[]>(e?.errors ?? {})[0]?.[0] || 'Erreur lors de l’enregistrement du programme.');
     } finally {
       setSaving(false);
     }

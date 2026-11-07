@@ -50,7 +50,7 @@ const AddModal: React.FC<{ onClose: () => void; onSaved: () => void }> = ({ onCl
       onSaved();
       onClose();
     } catch (e: any) {
-      setError(e?.message || Object.values(e?.errors ?? {})[0]?.[0] || 'Erreur lors de la création.');
+      setError(e?.message || Object.values<string[]>(e?.errors ?? {})[0]?.[0] || 'Erreur lors de la création.');
     } finally {
       setSaving(false);
     }

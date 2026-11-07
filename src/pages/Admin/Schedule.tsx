@@ -87,7 +87,7 @@ const ShiftModal: React.FC<{
       onSaved();
       onClose();
     } catch (e: any) {
-      setError(e?.message || Object.values(e?.errors ?? {})[0]?.[0] || 'Erreur lors de l\'enregistrement.');
+      setError(e?.message || Object.values<string[]>(e?.errors ?? {})[0]?.[0] || 'Erreur lors de l\'enregistrement.');
     } finally {
       setSaving(false);
     }

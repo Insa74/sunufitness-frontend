@@ -206,7 +206,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="w-full bg-global-background8 overflow-hidden">
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%,
           100% {
