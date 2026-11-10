@@ -36,7 +36,7 @@ Il n'y a ni ESLint ni tests automatisés pour l'instant.
 |---|---|---|---|
 | `apiClient` (session membre) | `src/services/apiClient.ts` | `API.BASE_URL` → `https://api.sunufitness.com/api` | auth membre, profil, abonnements, réservations, services, newsletter |
 | `caisseApi` / `caisseApiDownload` (session staff, PIN) | `src/services/caisseApiClient.ts` | `API.BASE_URL` → `https://api.sunufitness.com/api` | caisse, admin, agenda, espace coach |
-| `fetch` direct | `Scan`, `MyQr`, `MenuBoissons`, `tokenService` | `API.BASE_URL` via `apiUrl()` | check-in QR, menu public, tokens |
+| `fetch` direct | `Scan`, `MyQr`, `MenuBoissons`, `NosCoaches`, `tokenService` | `API.BASE_URL` via `apiUrl()` | check-in QR, menu public, page publique /nos-coaches, tokens |
 | `fetch` direct | `PrepaMarathon`, `Admin/Marathon`, `components/marathon/*` | `MARATHON_API_BASE` → `https://admin.sunufitness.com/api` (`src/config/marathon.ts`) | Prépa Marathon |
 | Tiers | `Preferences` (Formspree), `Payment` (liens Wave) | — | — |
 

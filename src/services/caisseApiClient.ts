@@ -43,7 +43,8 @@ async function caisseRequest<T>(path: string, options: RequestInit = {}): Promis
     method: options.method ?? 'GET',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      // Multipart (FormData) : le navigateur pose lui-même le Content-Type avec la boundary
+      ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
       ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
     },
     ...options,
@@ -65,6 +66,9 @@ export const caisseApi = {
   post: <T,>(path: string, body?: any) => caisseRequest<T>(path, { method: 'POST', body: body ? JSON.stringify(body) : undefined }),
   put: <T,>(path: string, body?: any) => caisseRequest<T>(path, { method: 'PUT', body: body ? JSON.stringify(body) : undefined }),
   del: <T,>(path: string) => caisseRequest<T>(path, { method: 'DELETE' }),
+  patch: <T,>(path: string, body?: any) => caisseRequest<T>(path, { method: 'PATCH', body: body ? JSON.stringify(body) : undefined }),
+  // Envoi multipart (ex. photo). Pour une modification, ajouter _method=PUT au FormData.
+  postForm: <T,>(path: string, form: FormData) => caisseRequest<T>(path, { method: 'POST', body: form }),
 };
 
 // Téléchargement d'un fichier binaire (ex: PDF) authentifié par le token caisse.

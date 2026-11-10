@@ -149,6 +149,17 @@ const MODULES: Module[] = [
     icon: <IconCaisse />,
   },
   {
+    id: 'coaches-site',
+    tag: 'Site',
+    name: 'Nos coaches (site)',
+    desc: 'Profils publics de la page Nos coaches : photo, présentation, ordre et publication.',
+    route: '/admin/coaches-site',
+    color: '#B89968',
+    dimColor: 'rgba(184,153,104,0.12)',
+    borderColor: 'rgba(184,153,104,0.3)',
+    icon: <IconCoach />,
+  },
+  {
     id: 'marathon',
     tag: 'Marathon',
     name: 'SunuMarathon',
