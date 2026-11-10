@@ -82,6 +82,17 @@ const Header: React.FC = () => {
                   Services
                 </a>
                 <a
+                  href="/nos-coaches"
+                  role="menuitem"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/nos-coaches');
+                  }}
+                  className="text-[16px]  text-white hover:text-gray-200 transition-colors"
+                >
+                  Nos coaches
+                </a>
+                <a
                   href="/prepa-marathon"
                   role="menuitem"
                   onClick={(e) => {
@@ -169,6 +180,18 @@ const Header: React.FC = () => {
                 className="text-left text-global-text5 hover:text-gray-200 transition-colors"
               >
                 Services
+              </a>
+              <a
+                href="/nos-coaches"
+                role="menuitem"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/nos-coaches');
+                  setMenuOpen(false);
+                }}
+                className="text-left text-global-text5 hover:text-gray-200 transition-colors"
+              >
+                Nos coaches
               </a>
               <a
                 href="/prepa-marathon"
