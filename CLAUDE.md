@@ -4,7 +4,7 @@ Instructions pour Claude Code dans ce dépôt : le **frontend** de SUNUFITNESS (
 
 ## ⚠️ Règle n°1 : push sur `dev_jerry` = mise en production
 
-Le workflow `.github/workflows/deploy.yml` construit le site et le déploie par FTPS sur Namecheap **à chaque push sur `dev_jerry`**, sans aucun contrôle (pas de type-check, pas de lint, pas de tests).
+Le workflow `.github/workflows/deploy.yml` construit le site et le déploie par FTPS sur Namecheap **à chaque push sur `dev_jerry`**. Avant le build, le workflow lance `npm ci` puis `npx tsc --noEmit` : une erreur TypeScript bloque le déploiement. Il n'y a ni lint ni tests : un code qui compile peut quand même casser le site.
 
 - Toujours travailler sur une branche `feature/*` créée depuis `dev_jerry`.
 - Ne jamais pousser (`git push`), ni fusionner dans `dev_jerry`, sans l'accord explicite d'Insa pour cette opération précise.
