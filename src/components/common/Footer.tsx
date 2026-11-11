@@ -14,6 +14,7 @@ export const Footer: React.FC = () => {
     type: 'success' | 'error';
     text: string;
   } | null>(null);
+  const annee = new Date().getFullYear();
 
   const handleMobileSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -281,11 +282,7 @@ export const Footer: React.FC = () => {
       {/* Copyright */}
       <div className="w-full bg-[linear-gradient(90deg,#05835e_0%,_#05835e_100%)] px-4 sm:px-6 md:px-8 lg:px-[34px] py-[12px] sm:py-[14px] md:py-[16px] lg:py-[10px]">
         <p className="text-[13px] sm:text-[15px] md:text-[14px] lg:text-[14px] font-kanit font-light leading-[18px] sm:leading-[20px] md:leading-[22px] lg:leading-[27px] text-center text-global-text5 w-full  mx-auto">
-          <span className="text-global-text5">© 2025 SUNUFITNESS. Tous droits réservés</span>
-          <span className="block sm:inline text-global-text5"> | Design By </span>
-          <a href="https://maisoft-group.com/" className="text-global-text5 underline">
-            Maisoft.
-          </a>
+          <span className="text-global-text5">© {annee} SUNUFITNESS. Tous droits réservés</span>
         </p>
       </div>
     </div>
