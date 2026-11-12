@@ -97,6 +97,7 @@ const MENU: { label: string; icone: string; route: string }[] = [
   { label: 'Cours', icone: '🏋️', route: '/admin/cours' },
   { label: 'Coachs', icone: '🧑‍🏫', route: '/admin/coaches' },
   { label: 'Coaches (site)', icone: '🌟', route: '/admin/coaches-site' },
+  { label: 'Fondateur (site)', icone: '👤', route: '/admin/fondateur' },
   { label: 'Planning', icone: '🗓️', route: '/admin/schedule' },
   { label: 'Agenda', icone: '📅', route: '/agenda' },
   { label: 'Bar', icone: '🥤', route: '/admin/menu-boissons' },
