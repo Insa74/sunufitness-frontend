@@ -34,6 +34,7 @@ import PrepaMarathonPage from './pages/PrepaMarathon';
 import AdminMarathon from './pages/Admin/Marathon';
 import NosCoachesPage from './pages/NosCoaches';
 import AdminCoachesSite from './pages/Admin/CoachesSite';
+import AdminFondateur from './pages/Admin/Fondateur';
 
 
 const AppRoutes = () => {
@@ -55,6 +56,7 @@ const AppRoutes = () => {
         <Route path="/admin/menu-boissons" element={<AdminProtectedRoute><AdminMenuBoissons /></AdminProtectedRoute>} />
         <Route path="/admin/marathon" element={<AdminProtectedRoute><AdminMarathon /></AdminProtectedRoute>} />
         <Route path="/admin/coaches-site" element={<AdminProtectedRoute><AdminCoachesSite /></AdminProtectedRoute>} />
+        <Route path="/admin/fondateur" element={<AdminProtectedRoute><AdminFondateur /></AdminProtectedRoute>} />
         <Route path="/caisse" element={<CaissePage />} />
         <Route path="/agenda" element={<CoachProtectedRoute><AgendaPage /></CoachProtectedRoute>} />
         <Route path="/coach/membres" element={<CoachProtectedRoute><MemberWorkspace /></CoachProtectedRoute>} />

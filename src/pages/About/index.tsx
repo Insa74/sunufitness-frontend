@@ -2,6 +2,13 @@ import Footer from '../../components/common/Footer';
 import Header from '../../components/common/Header';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
+import {
+  CLE_FONDATEUR,
+  FONDATEUR_DEFAUT,
+  PHOTO_FONDATEUR_DEFAUT,
+  SiteBlockPublic,
+} from '../../utils/fondateur';
 
 const About: React.FC = () => {
   const navigate = useNavigate();
@@ -88,6 +95,40 @@ const About: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Fondateur : contenu géré sur /admin/fondateur ; texte statique en repli (404, erreur, délai)
+  const [fondateur, setFondateur] = useState<SiteBlockPublic>(FONDATEUR_DEFAUT);
+  const [fondateurPret, setFondateurPret] = useState(false);
+  const [photoFondateurEchec, setPhotoFondateurEchec] = useState(false);
+
+  useEffect(() => {
+    const controleur = new AbortController();
+    const delai = setTimeout(() => controleur.abort(), 3000);
+    fetch(apiUrl(`/site-blocks/${CLE_FONDATEUR}`), {
+      headers: { Accept: 'application/json' },
+      signal: controleur.signal,
+    })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d) => {
+        const bloc = d?.data;
+        if (bloc && typeof bloc.title === 'string' && typeof bloc.body === 'string') {
+          setFondateur(bloc as SiteBlockPublic);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        clearTimeout(delai);
+        setFondateurPret(true);
+      });
+    return () => {
+      clearTimeout(delai);
+      controleur.abort();
+    };
+  }, []);
+
+  const photoFondateur =
+    !photoFondateurEchec && fondateur.photo_url ? fondateur.photo_url : PHOTO_FONDATEUR_DEFAUT;
+  const transitionFondateur = `transition-opacity duration-500 ${fondateurPret ? 'opacity-100' : 'opacity-0'}`;
 
   const addToRefs = (el: HTMLDivElement | null) => {
     if (el && !sectionRefs.current.includes(el)) {
@@ -328,11 +369,12 @@ const About: React.FC = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Founder Image with Animation */}
-            <div className="lg:w-2/5">
+            <div className={`lg:w-2/5 ${transitionFondateur}`}>
               <div className="relative animate-slide-in-left">
                 <img
-                  src="/images/pf.png"
-                  alt="Insa Gaye - Fondateur de SUNUFITNESS"
+                  src={photoFondateur}
+                  alt={`${fondateur.title} - ${fondateur.subtitle || 'Fondateur de SUNUFITNESS'}`}
+                  onError={() => setPhotoFondateurEchec(true)}
                   className="w-full h-[500px] object-cover rounded-2xl shadow-xl animate-glow hover:animate-shake cursor-pointer"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-[#05835e] text-white p-6 rounded-xl shadow-2xl animate-bounce-in delay-400">
@@ -344,33 +386,24 @@ const About: React.FC = () => {
 
             {/* Founder Info with Animations */}
             <div ref={addToRefs} className="lg:w-3/5">
-              <div className="mb-8 animate-slide-in-right delay-200">
-                <span className="text-[#05835e] font-semibold text-lg mb-2 block animate-scale-in">
-                  Fondateur
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 animate-typewriter">
-                  Insa Gaye
-                </h2>
-                <p className="text-xl text-[#05835e] font-semibold mb-8 border-l-4 border-[#05835e] pl-4 animate-slide-in-right delay-300">
-                  Fondateur de SUNUFITNESS
-                </p>
-                <p className="text-gray-600 text-lg leading-relaxed text-justify mb-8 animate-slide-in-up delay-400">
-                  Depuis plus de 20 ans, je consacre ma vie au sport, à la santé et au bien-être.
-                  Mon parcours est le fruit d’une passion profonde pour l’activité physique,
-                  soutenue par des diplômes et certifications en préparation physique, nutrition et
-                  coaching mental. Mon histoire commence au Sénégal, où le sport m’a très tôt forgé
-                  discipline et détermination. En arrivant en Europe, j’ai dû tout recommencer : me
-                  former, apprendre, observer, et travailler dur pour transformer cette passion en
-                  expertise. J’ai passé des années à perfectionner mes connaissances et mes
-                  méthodes, en combinant la rigueur de la science du sport et l’expérience pratique
-                  du terrain. Au fil du temps, j’ai eu le privilège d’accompagner des centaines de
-                  personnes – hommes, femmes, débutants ou athlètes confirmés – à atteindre leurs
-                  objectifs : retrouver la forme, améliorer leurs performances, rééquilibrer leur
-                  alimentation et développer une force mentale solide. Aujourd’hui, avec SUNU
-                  Fitness, je veux transmettre cette expérience et cette vision : créer un espace
-                  unique, professionnel et bienveillant, où chaque individu peut progresser
-                  durablement et révéler la meilleure version de lui-même.
-                </p>
+              {/* Enveloppe sans animation : l'opacité de chargement n'est pas écrasée par les keyframes */}
+              <div className={transitionFondateur}>
+                <div className="mb-8 animate-slide-in-right delay-200">
+                  <span className="text-[#05835e] font-semibold text-lg mb-2 block animate-scale-in">
+                    Fondateur
+                  </span>
+                  <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 animate-typewriter">
+                    {fondateur.title}
+                  </h2>
+                  {fondateur.subtitle && (
+                    <p className="text-xl text-[#05835e] font-semibold mb-8 border-l-4 border-[#05835e] pl-4 animate-slide-in-right delay-300">
+                      {fondateur.subtitle}
+                    </p>
+                  )}
+                  <p className="text-gray-600 text-lg leading-relaxed text-justify whitespace-pre-line break-words mb-8 animate-slide-in-up delay-400">
+                    {fondateur.body}
+                  </p>
+                </div>
               </div>
 
               {/* Contact Info with Animation */}

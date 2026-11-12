@@ -160,6 +160,17 @@ const MODULES: Module[] = [
     icon: <IconCoach />,
   },
   {
+    id: 'fondateur-site',
+    tag: 'Site',
+    name: 'Fondateur (site)',
+    desc: 'Section Fondateur de la page À propos : nom, présentation, photo et publication.',
+    route: '/admin/fondateur',
+    color: '#B89968',
+    dimColor: 'rgba(184,153,104,0.12)',
+    borderColor: 'rgba(184,153,104,0.3)',
+    icon: <IconCoach />,
+  },
+  {
     id: 'marathon',
     tag: 'Marathon',
     name: 'SunuMarathon',
