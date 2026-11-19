@@ -25,6 +25,20 @@ interface Product {
   prix_reference?: number | null; // prix « au lieu de », affiché barré (promotions)
 }
 
+// Produits vendables sur plusieurs mois en une vente (prix × nombre de mois). Doit rester
+// aligné avec ProductCatalog::MULTI_MOIS_SLUGS / MULTI_MOIS_MAX côté backend.
+const MULTI_MOIS_SLUGS = ['mensuel'];
+const MULTI_MOIS_MAX = 12;
+
+// Date de fin estimée : aujourd'hui + n mois, sans déborder sur le mois suivant (31/10 + 4 mois = 28/02).
+const finEstimee = (nombreMois: number): string => {
+  const auj = new Date();
+  const cible = new Date(auj.getFullYear(), auj.getMonth() + nombreMois, 1);
+  const dernierJour = new Date(cible.getFullYear(), cible.getMonth() + 1, 0).getDate();
+  cible.setDate(Math.min(auj.getDate(), dernierJour));
+  return cible.toLocaleDateString('fr-FR');
+};
+
 // Une promotion = un produit dont le slug commence par « promo_ » ou qui a un prix barré.
 const estPromo = (p: Product) => p.slug.startsWith('promo_') || (p.prix_reference ?? 0) > p.prix;
 interface Recu {
@@ -415,6 +429,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
   const [product, setProduct]     = useState<Product|null>(null);
   const [mode, setMode]           = useState<'wave'|'orange_money'|'cash'|''>('');
   const [isRenewal, setIsRenewal] = useState(false);
+  const [nombreMois, setNombreMois] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError]         = useState<string|null>(null);
   const [recu, setRecu]           = useState<Recu|null>(null);
@@ -458,9 +473,12 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
   };
 
   const estCouple = product?.slug === SLUG_COUPLE;
+  const multiMois = !!product && MULTI_MOIS_SLUGS.includes(product.slug);
+  const moisVendus = multiMois ? nombreMois : 1;
+  const montantTotal = product ? product.prix * moisVendus : 0;
 
   const selectMembre = (m: MembreResult) => { setMembre(m); setResults([]); setQuery(''); setStep('product'); };
-  const selectProduct = (p: Product) => { setProduct(p); setStep('payment'); };
+  const selectProduct = (p: Product) => { setProduct(p); setNombreMois(1); setStep('payment'); };
 
   const submitTransaction = async () => {
     if (!membre||!product||!mode) return;
@@ -469,13 +487,14 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
       const res = await caisseApi.post<{success:boolean;data:Recu}>('/caisse/transactions',{
         member_id:membre.id, product_id:product.id, mode_paiement:mode, is_renewal:isRenewal,
         ...(estCouple && partenaire ? { partenaire_id: partenaire.id } : {}),
+        ...(multiMois && nombreMois > 1 ? { nombre_mois: nombreMois } : {}),
       });
       setRecu(res.data); setStep('done');
     } catch(e:any){ setError(e?.message??'Erreur lors de la transaction.'); }
     finally { setSubmitting(false); }
   };
 
-  const resetForm = () => { setPartenaire(null);setQPart('');setResPart([]); setStep('search');setMembre(null);setProduct(null);setMode('');setIsRenewal(false);setRecu(null);setError(null);setQuery('');setResults([]); };
+  const resetForm = () => { setPartenaire(null);setQPart('');setResPart([]); setStep('search');setMembre(null);setProduct(null);setMode('');setIsRenewal(false);setNombreMois(1);setRecu(null);setError(null);setQuery('');setResults([]); };
 
   const loadJour = async () => {
     try { const r = await caisseApi.get<JourData>('/caisse/transactions/jour'); setJourData(r); setShowJour(true); }
@@ -628,12 +647,40 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
           <>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-2">
               <div className="flex justify-between text-sm"><span className="text-gray-500">Membre</span><span className="font-medium">{membre.nom}</span></div>
-              <div className="flex justify-between text-sm"><span className="text-gray-500">Produit</span><span className="font-medium">{product.nom}</span></div>
+              <div className="flex justify-between text-sm"><span className="text-gray-500">Produit</span><span className="font-medium">{product.nom}{moisVendus > 1 && ` × ${moisVendus} mois`}</span></div>
               {estCouple && partenaire && (
                 <div className="flex justify-between text-sm"><span className="text-gray-500">Partenaire</span><span className="font-medium">{partenaire.nom}</span></div>
               )}
-              <div className="flex justify-between text-sm font-bold border-t pt-2"><span>Montant</span><span className="text-lg">{fmtXOF(product.prix)}</span></div>
+              {moisVendus > 1 && (
+                <div className="flex justify-between text-sm"><span className="text-gray-500">Détail</span><span className="font-medium">{moisVendus} × {fmtXOF(product.prix)}</span></div>
+              )}
+              <div className="flex justify-between text-sm font-bold border-t pt-2"><span>Montant</span><span className="text-lg">{fmtXOF(montantTotal)}</span></div>
             </div>
+            {multiMois && (
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-semibold text-gray-900">Nombre de mois</p>
+                  <div className="flex items-center gap-3">
+                    <button type="button" aria-label="Un mois de moins"
+                      onClick={() => setNombreMois(n => Math.max(1, n - 1))} disabled={nombreMois <= 1}
+                      className="w-10 h-10 rounded-full border border-gray-200 text-lg font-semibold text-gray-700 hover:border-black disabled:opacity-30 transition">−</button>
+                    <span className="w-8 text-center text-lg font-bold">{nombreMois}</span>
+                    <button type="button" aria-label="Un mois de plus"
+                      onClick={() => setNombreMois(n => Math.min(MULTI_MOIS_MAX, n + 1))} disabled={nombreMois >= MULTI_MOIS_MAX}
+                      className="w-10 h-10 rounded-full border border-gray-200 text-lg font-semibold text-gray-700 hover:border-black disabled:opacity-30 transition">+</button>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {[1, 2, 3, 4, 6, 12].map(n => (
+                    <button key={n} type="button" onClick={() => setNombreMois(n)}
+                      className={`text-xs px-3 py-1.5 rounded-full font-medium transition ${nombreMois===n?'bg-black text-white':'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+                      {n} mois
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-500">Accès jusqu'au <span className="font-semibold text-gray-800">{finEstimee(nombreMois)}</span> (à partir d'aujourd'hui).</p>
+              </div>
+            )}
             {estCouple && (
               <div className="bg-white rounded-2xl border border-amber-200 shadow-sm p-4 space-y-2">
                 <p className="text-sm font-semibold text-gray-900">2e membre du couple</p>
@@ -679,11 +726,11 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
               </div>
               {error && <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700 mb-4">{error}</div>}
               <div className="flex gap-3">
-                <button onClick={() => {setStep('product');setMode('');setError(null);setPartenaire(null);}}
+                <button onClick={() => {setStep('product');setMode('');setError(null);setPartenaire(null);setNombreMois(1);}}
                   className="flex-1 border border-gray-200 rounded-xl py-3 font-semibold text-sm text-gray-600 hover:bg-gray-50 transition">← Retour</button>
                 <button onClick={submitTransaction} disabled={!mode||submitting||(estCouple&&!partenaire)}
                   className="flex-2 flex-grow-[2] bg-black text-white rounded-xl py-3 font-semibold text-sm hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition">
-                  {submitting?'Traitement…':`Valider · ${fmtXOF(product.prix)}`}
+                  {submitting?'Traitement…':`Valider · ${fmtXOF(montantTotal)}`}
                 </button>
               </div>
             </div>
