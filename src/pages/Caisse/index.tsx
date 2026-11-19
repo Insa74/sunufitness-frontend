@@ -22,7 +22,11 @@ interface MembreResult {
 interface Product {
   id: number; slug: string; nom: string; prix: number; devise: string;
   type: 'duree' | 'seance'; duree_valeur: number | null; duree_unite: string | null;
+  prix_reference?: number | null; // prix « au lieu de », affiché barré (promotions)
 }
+
+// Une promotion = un produit dont le slug commence par « promo_ » ou qui a un prix barré.
+const estPromo = (p: Product) => p.slug.startsWith('promo_') || (p.prix_reference ?? 0) > p.prix;
 interface Recu {
   recu_numero: string; date: string; statut: string;
   membre: { id: number; nom: string; email: string; phone: string };
@@ -485,7 +489,10 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
     onLogout();
   };
 
-  const produitsFiltres = products.filter(p => prodTab==='tous'||p.type===prodTab);
+  // Les promotions s'affichent en tête de liste (l'ordre des autres produits ne change pas).
+  const produitsFiltres = products
+    .filter(p => prodTab==='tous'||p.type===prodTab)
+    .sort((a, b) => Number(estPromo(b)) - Number(estPromo(a)));
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -591,14 +598,24 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
               <div className="space-y-2">
                 {produitsFiltres.map(p => (
                   <button key={p.id} onClick={() => selectProduct(p)}
-                    className="w-full flex items-center justify-between px-4 py-3 border border-gray-100 rounded-xl hover:border-black hover:shadow-sm text-left transition">
+                    className={`w-full flex items-center justify-between px-4 py-3 border rounded-xl hover:border-black hover:shadow-sm text-left transition ${estPromo(p)?'border-emerald-300 bg-emerald-50/40':'border-gray-100'}`}>
                     <div>
                       <p className="font-medium text-sm text-gray-900">{p.nom}</p>
-                      <span className={`text-xs px-1.5 py-0.5 rounded ${p.type==='duree'?'bg-blue-50 text-blue-600':'bg-purple-50 text-purple-600'}`}>
-                        {p.type==='duree'?'Accès':'Séance'}
-                      </span>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <span className={`text-xs px-1.5 py-0.5 rounded ${p.type==='duree'?'bg-blue-50 text-blue-600':'bg-purple-50 text-purple-600'}`}>
+                          {p.type==='duree'?'Accès':'Séance'}
+                        </span>
+                        {estPromo(p) && (
+                          <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-600 text-white font-semibold">PROMO</span>
+                        )}
+                      </div>
                     </div>
-                    <span className="font-bold text-gray-900 text-sm">{fmtXOF(p.prix)}</span>
+                    <div className="text-right">
+                      {p.prix_reference != null && p.prix_reference > p.prix && (
+                        <span className="block text-xs text-gray-400 line-through">{fmtXOF(p.prix_reference)}</span>
+                      )}
+                      <span className="font-bold text-gray-900 text-sm">{fmtXOF(p.prix)}</span>
+                    </div>
                   </button>
                 ))}
               </div>
