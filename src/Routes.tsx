@@ -25,6 +25,7 @@ import CaissePage from './pages/Caisse';
 import ScanPage from './pages/Scan';
 import MyQrPage from './pages/MyQr';
 import MemberWorkspace from './pages/Coach/MemberWorkspace';
+import CoachsExternesPage from './pages/CoachsExternes';
 import CoachProtectedRoute from './components/CoachProtectedRoute';
 import AgendaPage from './pages/Agenda';
 import PreferencesPage from './pages/Preferences';
@@ -60,6 +61,7 @@ const AppRoutes = () => {
         <Route path="/caisse" element={<CaissePage />} />
         <Route path="/agenda" element={<CoachProtectedRoute><AgendaPage /></CoachProtectedRoute>} />
         <Route path="/coach/membres" element={<CoachProtectedRoute><MemberWorkspace /></CoachProtectedRoute>} />
+        <Route path="/coachs-externes" element={<CoachProtectedRoute><CoachsExternesPage /></CoachProtectedRoute>} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/reservation" element={<ProtectedRoute><ReservationPage /></ProtectedRoute>} />

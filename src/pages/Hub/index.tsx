@@ -171,6 +171,17 @@ const MODULES: Module[] = [
     icon: <IconCoach />,
   },
   {
+    id: 'coachs-externes',
+    tag: 'Accès',
+    name: 'Coachs externes',
+    desc: 'Coachs qui louent l\'espace : contrat du mois, créneaux fixes, clients autorisés et rapport mensuel.',
+    route: '/coachs-externes',
+    color: '#38D98A',
+    dimColor: 'rgba(56,217,138,0.12)',
+    borderColor: 'rgba(56,217,138,0.3)',
+    icon: <IconCoach />,
+  },
+  {
     id: 'marathon',
     tag: 'Marathon',
     name: 'SunuMarathon',

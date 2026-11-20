@@ -48,6 +48,7 @@ interface Recu {
   montant: number; devise: string; mode_paiement: string;
   date_fin: string | null; abonne_actif: boolean; is_renewal: boolean; enregistre_par: string; centre: string;
   etat_abonnement?: EtatAbonnement; qr_url?: string | null;
+  carnet?: { entrees_total: number; valable_jusqu_au: string | null; statut: string } | null;
   qr_email_envoye?: boolean; qr_email?: string | null;
   partenaire?: {
     id: number | null; nom: string | null; phone: string | null;
@@ -277,6 +278,20 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
             <span className="font-semibold text-orange-600">{recu.date_fin}</span>
           </div>
         )}
+        {recu.carnet && (
+          <div className="border-t pt-3 space-y-1">
+            <div className="flex justify-between">
+              <span className="text-gray-500">Séances</span>
+              <span className="font-semibold">{recu.carnet.entrees_total} (1 cours par jour, 1 heure)</span>
+            </div>
+            {recu.carnet.valable_jusqu_au && (
+              <div className="flex justify-between">
+                <span className="text-gray-500">Valable jusqu'au</span>
+                <span className="font-semibold text-orange-600">{recu.carnet.valable_jusqu_au}</span>
+              </div>
+            )}
+          </div>
+        )}
         <div className="border-t pt-3 flex justify-between items-center">
           <span className="text-gray-500">Paiement</span><ModeBadge mode={recu.mode_paiement} />
         </div>
@@ -285,9 +300,12 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
           <span className="text-xl font-bold">{fmtXOF(recu.montant)}</span>
         </div>
         <div className="flex justify-between text-xs text-gray-400 pt-1">
-          <span>Par : {recu.enregistre_par}</span><Badge actif={recu.abonne_actif} etat={recu.etat_abonnement} />
+          <span>Par : {recu.enregistre_par}</span>
+          {recu.carnet && !recu.abonne_actif
+            ? <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-100 text-green-800">Pack actif</span>
+            : <Badge actif={recu.abonne_actif} etat={recu.etat_abonnement} />}
         </div>
-        {recu.qr_url && recu.produit.type === 'duree' && (
+        {recu.qr_url && (recu.produit.type === 'duree' || !!recu.carnet) && (
           <div className="border-t pt-3 space-y-2">
             <p className="text-xs text-gray-400 uppercase">QR d'accès</p>
             {recu.qr_email_envoye ? (
@@ -524,6 +542,8 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
         <div className="flex gap-2">
           <button onClick={loadJour} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Journal</button>
           <button onClick={() => navigate('/coach/membres')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">🏋️ Membres</button>
+          <button onClick={() => navigate('/coachs-externes')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Coachs externes</button>
+          <button onClick={() => navigate('/scan')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Scan</button>
           {isAdmin && (
             <button onClick={() => navigate('/admin')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Dashboard</button>
           )}
@@ -805,6 +825,11 @@ const CaissePage: React.FC = () => {
   const [screen, setScreen]       = useState<'employees'|'pin'|'caisse'>('employees');
   const [selectedEmp, setSelectedEmp] = useState<Employee|null>(null);
   const [caisseUser, setCaisseUser]   = useState<CaisseUser|null>(null);
+  const navigatePage = useNavigate();
+
+  // Retour après connexion (ex. /caisse?retour=/scan depuis la page de scan). Liste blanche : pas de redirection libre.
+  const retour = new URLSearchParams(window.location.search).get('retour');
+  const allerApresConnexion = () => { if (retour === '/scan') navigatePage('/scan', { replace: true }); };
 
   useEffect(() => {
     const token = localStorage.getItem(CAISSE_TOKEN_KEY);
@@ -817,6 +842,7 @@ const CaissePage: React.FC = () => {
           .then(() => {
             setCaisseUser(user);
             setScreen('caisse');
+            allerApresConnexion();
           })
           .catch(() => {
             localStorage.removeItem(CAISSE_TOKEN_KEY);
@@ -846,7 +872,7 @@ const CaissePage: React.FC = () => {
   }
 
   if (screen === 'pin' && selectedEmp) {
-    return <PinScreen employee={selectedEmp} onSuccess={(user) => { setCaisseUser(user); setScreen('caisse'); }} onBack={() => setScreen('employees')} />;
+    return <PinScreen employee={selectedEmp} onSuccess={(user) => { setCaisseUser(user); setScreen('caisse'); allerApresConnexion(); }} onBack={() => setScreen('employees')} />;
   }
 
   if (screen === 'caisse' && caisseUser) {

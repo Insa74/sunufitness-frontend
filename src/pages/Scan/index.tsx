@@ -1,26 +1,73 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Html5Qrcode } from 'html5-qrcode';
-import { apiUrl } from '../../config/api';
+import { caisseApi, getCaisseUser, isCaisseStaff } from '../../services/caisseApiClient';
+
+// Décision renvoyée par POST /acces/scan (employé connecté par PIN).
+type Decision = {
+  autorise: boolean;
+  alerte: boolean;
+  motif: string;
+  titre: string;
+  message: string;
+  details: Record<string, string | number | null>;
+};
 
 type CheckinResult = {
   success: boolean;
+  decision?: Decision;
   member?: {
     id: number;
     nom: string;
     phone: string | null;
-    actif: boolean;
-    statut_abonnement: string;
-    expiration: string | null;
-    titre_abonnement: string | null;
+    etat_abonnement?: { etat: string; jours_restants: number | null; date_fin: string | null };
   };
   message?: string;
+  introuvable?: boolean; // QR inconnu (404) : seul cas affiché « QR invalide »
 };
 
 type ScanState = 'scanning' | 'loading' | 'result' | 'error';
 
 const RESULT_DISPLAY_MS = 4000;
 
+// Le scan est réservé au personnel connecté (même session PIN que la Caisse) :
+// c'est lui qui enregistre l'entrée et décompte les packs.
 const ScanPage: React.FC = () => {
+  const [connecte, setConnecte] = useState(isCaisseStaff());
+
+  useEffect(() => {
+    const onExpire = () => setConnecte(false);
+    window.addEventListener('caisse:session-expired', onExpire);
+    return () => window.removeEventListener('caisse:session-expired', onExpire);
+  }, []);
+
+  if (!connecte) return <ConnexionRequise />;
+  return <Scanner />;
+};
+
+const ConnexionRequise: React.FC = () => {
+  const navigate = useNavigate();
+  return (
+    <div style={styles.page}>
+      <div style={styles.card}>
+        <div style={styles.header}>
+          <span style={styles.logo}>SUNUFITNESS</span>
+          <p style={styles.subtitle}>Scan QR Code membre</p>
+        </div>
+        <div style={styles.feedbackBox}>
+          <p style={{ ...styles.memberName, color: '#1a202c' }}>Connexion requise</p>
+          <p style={styles.detail}>Le scan des entrées est réservé à l'équipe. Connectez-vous avec votre code PIN.</p>
+          <button style={{ ...styles.resetBtn, backgroundColor: '#059669' }} onClick={() => navigate('/caisse?retour=/scan')}>
+            Se connecter
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Scanner: React.FC = () => {
+  const employe = getCaisseUser();
   const scannerRef  = useRef<Html5Qrcode | null>(null);
   const timerRef    = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isScanningRef = useRef(false);
@@ -65,15 +112,18 @@ const ScanPage: React.FC = () => {
     setState('loading');
 
     try {
-      const res  = await fetch(apiUrl(`/checkin/${token}`), {
-        headers: { Accept: 'application/json' },
-      });
-      const data: CheckinResult = await res.json();
-
+      const data = await caisseApi.post<CheckinResult>('/acces/scan', { token });
       setResult(data);
       setState(data.success ? 'result' : 'error');
-    } catch {
-      setResult({ success: false, message: 'Erreur réseau. Réessayez.' });
+    } catch (e: unknown) {
+      // Réponse de l'API (success: false) : on garde son message en français (ex. « QR invalide ou inconnu. »).
+      // Sinon (réseau coupé, session expirée, trop de scans) : message clair, jamais « QR invalide ».
+      const err = e as { success?: boolean; message?: string };
+      if (err?.success === false && err.message) {
+        setResult({ success: false, message: err.message, introuvable: err.message.startsWith('QR invalide') });
+      } else {
+        setResult({ success: false, message: 'Problème de connexion. Réessayez de scanner ce QR.' });
+      }
       setState('error');
     }
 
@@ -105,6 +155,7 @@ const ScanPage: React.FC = () => {
         <div style={styles.header}>
           <span style={styles.logo}>SUNUFITNESS</span>
           <p style={styles.subtitle}>Scan QR Code membre</p>
+          {employe && <p style={styles.employe}>Scan par {employe.prenom || employe.nom}</p>}
         </div>
 
         {/* Viewfinder caméra — toujours dans le DOM pour Html5Qrcode */}
@@ -136,33 +187,35 @@ const ScanPage: React.FC = () => {
 };
 
 const ResultCard: React.FC<{ result: CheckinResult; onReset: () => void }> = ({ result, onReset }) => {
-  const actif  = result.success && result.member?.actif;
-  const color  = actif ? '#16a34a' : '#dc2626';
-  const bgColor = actif ? '#f0fdf4' : '#fef2f2';
-  const border  = actif ? '#bbf7d0' : '#fecaca';
+  const decision = result.success ? result.decision : undefined;
+  const autorise = !!decision?.autorise;
+  const alerte   = autorise && !!decision?.alerte;
+  // Vert : autorisé — orange : autorisé avec alerte (ex. forfait du coach dépassé) — rouge : refusé
+  const color   = alerte ? '#d97706' : autorise ? '#16a34a' : '#dc2626';
+  const bgColor = alerte ? '#fffbeb' : autorise ? '#f0fdf4' : '#fef2f2';
+  const border  = alerte ? '#fde68a' : autorise ? '#bbf7d0' : '#fecaca';
+  const details = decision?.details ?? {};
 
   return (
     <div style={{ ...styles.resultBox, backgroundColor: bgColor, borderColor: border }}>
       <div style={{ ...styles.statusIcon, backgroundColor: color }}>
-        {actif ? '✓' : '✗'}
+        {alerte ? '!' : autorise ? '✓' : '✗'}
       </div>
 
-      {result.success && result.member ? (
+      {decision && result.member ? (
         <>
           <h2 style={{ ...styles.memberName, color }}>{result.member.nom}</h2>
 
-          <p style={{ ...styles.statusBadge, color, borderColor: color }}>
-            {actif ? 'Abonnement actif' : 'Abonnement expiré'}
-          </p>
+          <p style={{ ...styles.statusBadge, color, borderColor: color }}>{decision.titre}</p>
 
-          {result.member.titre_abonnement && (
-            <p style={styles.detail}>{result.member.titre_abonnement}</p>
+          <p style={styles.detail}>{decision.message}</p>
+
+          {details.valable_jusqu_au && (
+            <p style={styles.detail}>Pack valable jusqu'au <strong>{details.valable_jusqu_au}</strong></p>
           )}
 
-          {result.member.expiration && (
-            <p style={styles.detail}>
-              {actif ? 'Expire le' : 'Expiré le'} : <strong>{result.member.expiration}</strong>
-            </p>
+          {decision.motif === 'abonnement' && result.member.etat_abonnement?.date_fin && (
+            <p style={styles.detail}>Expire le : <strong>{result.member.etat_abonnement.date_fin}</strong></p>
           )}
 
           {result.member.phone && (
@@ -171,7 +224,7 @@ const ResultCard: React.FC<{ result: CheckinResult; onReset: () => void }> = ({ 
         </>
       ) : (
         <>
-          <h2 style={{ ...styles.memberName, color: '#dc2626' }}>QR invalide</h2>
+          <h2 style={{ ...styles.memberName, color: '#dc2626' }}>{result.introuvable ? 'QR invalide' : 'Scan non vérifié'}</h2>
           <p style={styles.detail}>{result.message ?? 'Ce QR code n\'est pas reconnu.'}</p>
         </>
       )}
@@ -216,6 +269,12 @@ const styles: Record<string, React.CSSProperties> = {
     color: 'rgba(255,255,255,0.85)',
     fontSize: 14,
     marginTop: 4,
+    fontFamily: 'sans-serif',
+  },
+  employe: {
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: 12,
+    marginTop: 6,
     fontFamily: 'sans-serif',
   },
   reader: {

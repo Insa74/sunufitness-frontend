@@ -10,6 +10,8 @@ type CheckinMember = {
   statut_abonnement: string;
   expiration: string | null;
   titre_abonnement: string | null;
+  // Pack de cours collectifs en cours (lecture seule, rien n'est décompté ici)
+  pack?: { titre: string; entrees_restantes: number; entrees_total: number; valable_jusqu_au: string | null } | null;
 };
 
 type State = 'loading' | 'ready' | 'error';
@@ -67,15 +69,26 @@ const MyQrPage: React.FC = () => {
           {state === 'ready' && member && (
             <div className="flex flex-col items-center">
               <h2 className="text-lg font-bold text-gray-900 mb-1">{member.nom}</h2>
-              <span
-                className={`text-xs font-semibold px-3 py-1 rounded-full mb-6 ${
-                  member.actif
-                    ? 'bg-green-100 text-green-800'
-                    : 'bg-red-100 text-red-700'
-                }`}
-              >
-                {member.actif ? 'Abonnement actif' : 'Abonnement expiré'}
-              </span>
+              {member.pack && !member.actif ? (
+                <div className="text-center mb-6">
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-green-100 text-green-800">
+                    {member.pack.titre} : {member.pack.entrees_restantes} séance(s) restante(s)
+                  </span>
+                  {member.pack.valable_jusqu_au && (
+                    <p className="text-xs text-gray-500 mt-2">Valable jusqu'au {member.pack.valable_jusqu_au} · 1 cours par jour</p>
+                  )}
+                </div>
+              ) : (
+                <span
+                  className={`text-xs font-semibold px-3 py-1 rounded-full mb-6 ${
+                    member.actif
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-red-100 text-red-700'
+                  }`}
+                >
+                  {member.actif ? 'Abonnement actif' : 'Abonnement expiré'}
+                </span>
+              )}
 
               <MemberQrCode token={token} size={220} />
 
