@@ -515,9 +515,11 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
   const multiMois = !!product && MULTI_MOIS_SLUGS.includes(product.slug);
   const moisVendus = multiMois ? nombreMois : 1;
   const prixAvantRemise = product ? product.prix * moisVendus : 0;
-  const montantRemise = peutRemiser ? Math.min(Math.max(parseInt(remise, 10) || 0, 0), prixAvantRemise) : 0;
-  const montantTotal = prixAvantRemise - montantRemise;
-  const remiseIncomplete = montantRemise > 0 && remiseMotif.trim() === '';
+  const montantRemise = peutRemiser ? Math.max(parseInt(remise, 10) || 0, 0) : 0;
+  // Une remise égale ou supérieure au prix est une faute de frappe : on bloque au lieu de vendre à 0 F.
+  const remiseTropGrande = montantRemise > 0 && montantRemise >= prixAvantRemise;
+  const montantTotal = remiseTropGrande ? prixAvantRemise : prixAvantRemise - montantRemise;
+  const remiseIncomplete = montantRemise > 0 && (remiseMotif.trim() === '' || remiseTropGrande);
 
   const selectMembre = (m: MembreResult) => { setMembre(m); setResults([]); setQuery(''); setStep('product'); };
   const selectProduct = (p: Product) => { setProduct(p); setNombreMois(1); setRemise(''); setRemiseMotif(''); setStep('payment'); };
@@ -719,7 +721,8 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
                       className={`text-xs px-2.5 py-1 rounded-full ${remiseMotif === m ? 'bg-black text-white' : 'bg-gray-100 text-gray-600'}`}>{m}</button>
                   ))}
                 </div>
-                {remiseIncomplete && <p className="text-xs text-red-600">Indiquez le motif de la remise.</p>}
+                {remiseTropGrande && <p className="text-xs text-red-600">La remise doit être inférieure au prix.</p>}
+                {!remiseTropGrande && remiseIncomplete && <p className="text-xs text-red-600">Indiquez le motif de la remise.</p>}
               </div>
             )}
             {multiMois && (
