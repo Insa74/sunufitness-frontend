@@ -4,6 +4,7 @@ import {
   CAISSE_TOKEN_KEY,
   CAISSE_USER_KEY,
   caisseApi,
+  isCaisseAdmin,
   type CaisseUser,
 } from '../../services/caisseApiClient';
 
@@ -49,6 +50,7 @@ interface Recu {
   date_fin: string | null; abonne_actif: boolean; is_renewal: boolean; enregistre_par: string; centre: string;
   etat_abonnement?: EtatAbonnement; qr_url?: string | null;
   carnet?: { type?: string; entrees_total: number; valable_jusqu_au: string | null; statut: string } | null;
+  remise?: { prix_normal: number; montant: number; motif: string | null } | null;
   qr_email_envoye?: boolean; qr_email?: string | null;
   partenaire?: {
     id: number | null; nom: string | null; phone: string | null;
@@ -272,6 +274,12 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
             <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 ml-1">Renouvellement</span>
           )}
         </div>
+        {recu.remise && (
+          <div className="border-t pt-3 space-y-1">
+            <div className="flex justify-between"><span className="text-gray-500">Prix normal</span><span>{fmtXOF(recu.remise.prix_normal)}</span></div>
+            <div className="flex justify-between text-emerald-700"><span>Remise{recu.remise.motif ? ` (${recu.remise.motif})` : ''}</span><span>− {fmtXOF(recu.remise.montant)}</span></div>
+          </div>
+        )}
         {recu.date_fin && (
           <div className="border-t pt-3 flex justify-between">
             <span className="text-gray-500">Expire le</span>
@@ -457,6 +465,10 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
   const [mode, setMode]           = useState<'wave'|'orange_money'|'cash'|''>('');
   const [isRenewal, setIsRenewal] = useState(false);
   const [nombreMois, setNombreMois] = useState(1);
+  // Remise (admins uniquement) : montant retiré du prix et motif obligatoire
+  const [remise, setRemise] = useState('');
+  const [remiseMotif, setRemiseMotif] = useState('');
+  const peutRemiser = isCaisseAdmin();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError]         = useState<string|null>(null);
   const [recu, setRecu]           = useState<Recu|null>(null);
@@ -502,10 +514,13 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
   const estCouple = product?.slug === SLUG_COUPLE;
   const multiMois = !!product && MULTI_MOIS_SLUGS.includes(product.slug);
   const moisVendus = multiMois ? nombreMois : 1;
-  const montantTotal = product ? product.prix * moisVendus : 0;
+  const prixAvantRemise = product ? product.prix * moisVendus : 0;
+  const montantRemise = peutRemiser ? Math.min(Math.max(parseInt(remise, 10) || 0, 0), prixAvantRemise) : 0;
+  const montantTotal = prixAvantRemise - montantRemise;
+  const remiseIncomplete = montantRemise > 0 && remiseMotif.trim() === '';
 
   const selectMembre = (m: MembreResult) => { setMembre(m); setResults([]); setQuery(''); setStep('product'); };
-  const selectProduct = (p: Product) => { setProduct(p); setNombreMois(1); setStep('payment'); };
+  const selectProduct = (p: Product) => { setProduct(p); setNombreMois(1); setRemise(''); setRemiseMotif(''); setStep('payment'); };
 
   const submitTransaction = async () => {
     if (!membre||!product||!mode) return;
@@ -515,13 +530,14 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
         member_id:membre.id, product_id:product.id, mode_paiement:mode, is_renewal:isRenewal,
         ...(estCouple && partenaire ? { partenaire_id: partenaire.id } : {}),
         ...(multiMois && nombreMois > 1 ? { nombre_mois: nombreMois } : {}),
+        ...(montantRemise > 0 ? { remise_montant: montantRemise, remise_motif: remiseMotif.trim() } : {}),
       });
       setRecu(res.data); setStep('done');
     } catch(e:any){ setError(e?.message??'Erreur lors de la transaction.'); }
     finally { setSubmitting(false); }
   };
 
-  const resetForm = () => { setPartenaire(null);setQPart('');setResPart([]); setStep('search');setMembre(null);setProduct(null);setMode('');setIsRenewal(false);setNombreMois(1);setRecu(null);setError(null);setQuery('');setResults([]); };
+  const resetForm = () => { setPartenaire(null);setQPart('');setResPart([]); setStep('search');setMembre(null);setProduct(null);setMode('');setIsRenewal(false);setNombreMois(1);setRemise('');setRemiseMotif('');setRecu(null);setError(null);setQuery('');setResults([]); };
 
   const loadJour = async () => {
     try { const r = await caisseApi.get<JourData>('/caisse/transactions/jour'); setJourData(r); setShowJour(true); }
@@ -683,8 +699,29 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
               {moisVendus > 1 && (
                 <div className="flex justify-between text-sm"><span className="text-gray-500">Détail</span><span className="font-medium">{moisVendus} × {fmtXOF(product.prix)}</span></div>
               )}
+              {montantRemise > 0 && (
+                <div className="flex justify-between text-sm text-emerald-700"><span>Remise</span><span className="font-medium">− {fmtXOF(montantRemise)}</span></div>
+              )}
               <div className="flex justify-between text-sm font-bold border-t pt-2"><span>Montant</span><span className="text-lg">{fmtXOF(montantTotal)}</span></div>
             </div>
+            {peutRemiser && (
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-2">
+                <p className="text-sm font-semibold text-gray-900">Remise <span className="text-xs font-normal text-gray-400">(admin)</span></p>
+                <div className="flex gap-2">
+                  <input type="number" min={0} inputMode="numeric" value={remise} onChange={e => setRemise(e.target.value)}
+                    placeholder="Montant retiré (F)" className="w-1/2 border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+                  <input value={remiseMotif} onChange={e => setRemiseMotif(e.target.value)} maxLength={150}
+                    placeholder="Motif (obligatoire)" className="w-1/2 border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {['Fidélité', 'Famille / ami', 'Geste commercial', 'Partenaire'].map(m => (
+                    <button key={m} type="button" onClick={() => setRemiseMotif(m)}
+                      className={`text-xs px-2.5 py-1 rounded-full ${remiseMotif === m ? 'bg-black text-white' : 'bg-gray-100 text-gray-600'}`}>{m}</button>
+                  ))}
+                </div>
+                {remiseIncomplete && <p className="text-xs text-red-600">Indiquez le motif de la remise.</p>}
+              </div>
+            )}
             {multiMois && (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-3">
                 <div className="flex items-center justify-between">
@@ -755,9 +792,9 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
               </div>
               {error && <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700 mb-4">{error}</div>}
               <div className="flex gap-3">
-                <button onClick={() => {setStep('product');setMode('');setError(null);setPartenaire(null);setNombreMois(1);}}
+                <button onClick={() => {setStep('product');setMode('');setError(null);setPartenaire(null);setNombreMois(1);setRemise('');setRemiseMotif('');}}
                   className="flex-1 border border-gray-200 rounded-xl py-3 font-semibold text-sm text-gray-600 hover:bg-gray-50 transition">← Retour</button>
-                <button onClick={submitTransaction} disabled={!mode||submitting||(estCouple&&!partenaire)}
+                <button onClick={submitTransaction} disabled={!mode||submitting||(estCouple&&!partenaire) || remiseIncomplete}
                   className="flex-2 flex-grow-[2] bg-black text-white rounded-xl py-3 font-semibold text-sm hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition">
                   {submitting?'Traitement…':`Valider · ${fmtXOF(montantTotal)}`}
                 </button>

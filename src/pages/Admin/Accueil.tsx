@@ -8,6 +8,8 @@ interface Kpis {
   membres_total: number; abonnes_actifs: number; expirent_bientot: number;
   revenu_jour: number; revenu_mois: number; revenu_mois_precedent: number;
   evolution_pct: number | null; passages_jour: number;
+  remises_mois?: number; remises_mois_nombre?: number;
+  remises_par_admin?: { nom: string; nombre: number; total: number }[];
 }
 interface Jour { date: string; libelle: string; ventes: number; nb_ventes: number; entrees: number; refus: number }
 interface Relance { id: number; nom: string; prenom: string; phone: string | null; date_fin: string | null; jours_restants: number | null }
@@ -188,6 +190,17 @@ const AdminAccueil: React.FC = () => {
                     )}
                   </>} />
               </div>
+
+              {!!k.remises_mois_nombre && (
+                <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 text-sm">
+                  <p className="font-semibold text-amber-900">
+                    Remises accordées ce mois : {fmtXOF(k.remises_mois ?? 0)} ({k.remises_mois_nombre} vente{k.remises_mois_nombre > 1 ? 's' : ''})
+                  </p>
+                  <p className="text-xs text-amber-800 mt-1">
+                    {(k.remises_par_admin ?? []).map(r => `${r.nom} : ${fmtXOF(r.total)} (${r.nombre})`).join(' · ')}
+                  </p>
+                </div>
+              )}
 
               {/* Actions rapides */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
