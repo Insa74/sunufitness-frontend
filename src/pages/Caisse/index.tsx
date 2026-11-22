@@ -48,7 +48,7 @@ interface Recu {
   montant: number; devise: string; mode_paiement: string;
   date_fin: string | null; abonne_actif: boolean; is_renewal: boolean; enregistre_par: string; centre: string;
   etat_abonnement?: EtatAbonnement; qr_url?: string | null;
-  carnet?: { entrees_total: number; valable_jusqu_au: string | null; statut: string } | null;
+  carnet?: { type?: string; entrees_total: number; valable_jusqu_au: string | null; statut: string } | null;
   qr_email_envoye?: boolean; qr_email?: string | null;
   partenaire?: {
     id: number | null; nom: string | null; phone: string | null;
@@ -282,8 +282,17 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
           <div className="border-t pt-3 space-y-1">
             <div className="flex justify-between">
               <span className="text-gray-500">Séances</span>
-              <span className="font-semibold">{recu.carnet.entrees_total} (1 cours par jour, 1 heure)</span>
+              <span className="font-semibold">
+                {recu.carnet.type === 'pack_pt'
+                  ? `${recu.carnet.entrees_total} Personal Training`
+                  : `${recu.carnet.entrees_total} (1 cours par jour, 1 heure)`}
+              </span>
             </div>
+            {recu.carnet.type === 'pack_pt' && (
+              <p className="text-xs text-gray-500">
+                Décomptées au scan pendant les séances prévues dans l'Agenda{!recu.carnet.valable_jusqu_au && ' · sans limite de durée'}.
+              </p>
+            )}
             {recu.carnet.valable_jusqu_au && (
               <div className="flex justify-between">
                 <span className="text-gray-500">Valable jusqu'au</span>
@@ -302,7 +311,7 @@ const RecuModal: React.FC<{ recu: Recu; onNew: () => void; onClose: () => void }
         <div className="flex justify-between text-xs text-gray-400 pt-1">
           <span>Par : {recu.enregistre_par}</span>
           {recu.carnet && !recu.abonne_actif
-            ? <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-100 text-green-800">Pack actif</span>
+            ? <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-100 text-green-800">{recu.carnet.type === 'pack_pt' ? 'Personal Training' : 'Pack actif'}</span>
             : <Badge actif={recu.abonne_actif} etat={recu.etat_abonnement} />}
         </div>
         {recu.qr_url && (recu.produit.type === 'duree' || !!recu.carnet) && (

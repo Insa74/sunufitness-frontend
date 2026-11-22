@@ -12,6 +12,7 @@ type CheckinMember = {
   titre_abonnement: string | null;
   // Pack de cours collectifs en cours (lecture seule, rien n'est décompté ici)
   pack?: { titre: string; entrees_restantes: number; entrees_total: number; valable_jusqu_au: string | null } | null;
+  personal_training?: { entrees_restantes: number } | null;
 };
 
 type State = 'loading' | 'ready' | 'error';
@@ -69,7 +70,14 @@ const MyQrPage: React.FC = () => {
           {state === 'ready' && member && (
             <div className="flex flex-col items-center">
               <h2 className="text-lg font-bold text-gray-900 mb-1">{member.nom}</h2>
-              {member.pack && !member.actif ? (
+              {member.personal_training && (
+                <p className="text-xs font-semibold px-3 py-1 rounded-full mb-3 bg-emerald-50 text-emerald-800">
+                  Personal Training : {member.personal_training.entrees_restantes} séance(s) restante(s)
+                </p>
+              )}
+              {member.personal_training && !member.actif && !member.pack ? (
+                <p className="text-xs text-gray-500 mb-6">Accès pendant vos séances de Personal Training</p>
+              ) : member.pack && !member.actif ? (
                 <div className="text-center mb-6">
                   <span className="text-xs font-semibold px-3 py-1 rounded-full bg-green-100 text-green-800">
                     {member.pack.titre} : {member.pack.entrees_restantes} séance(s) restante(s)
