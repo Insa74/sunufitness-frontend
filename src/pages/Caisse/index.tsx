@@ -756,7 +756,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
                   ))}
                 </div>
                 {multiSeances ? (
-                  <p className="text-xs text-gray-500">{nombreMois} × {fmtXOF(product.prix)} — séances à faire dans le mois (jusqu'au <span className="font-semibold text-gray-800">{finEstimee(1)}</span>).</p>
+                  <p className="text-xs text-gray-500">{nombreMois} × {fmtXOF(product.prix)} — séances sans date limite.</p>
                 ) : (
                 <p className="text-xs text-gray-500">Accès jusqu'au <span className="font-semibold text-gray-800">{finEstimee(nombreMois)}</span> (à partir d'aujourd'hui).</p>
                 )}
