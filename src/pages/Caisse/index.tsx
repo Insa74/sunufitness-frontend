@@ -30,6 +30,10 @@ interface Product {
 // aligné avec ProductCatalog::MULTI_MOIS_SLUGS / MULTI_MOIS_MAX côté backend.
 const MULTI_MOIS_SLUGS = ['mensuel'];
 const MULTI_MOIS_MAX = 12;
+// Séance PT vendue en plusieurs exemplaires (prix × nombre de séances), aligné avec
+// ProductCatalog::MULTI_SEANCES_SLUGS / MULTI_SEANCES_MAX.
+const MULTI_SEANCES_SLUGS = ['seance_personal_training'];
+const MULTI_SEANCES_MAX = 20;
 
 // Date de fin estimée : aujourd'hui + n mois, sans déborder sur le mois suivant (31/10 + 4 mois = 28/02).
 const finEstimee = (nombreMois: number): string => {
@@ -513,8 +517,11 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
 
   const estCouple = product?.slug === SLUG_COUPLE;
   const multiMois = !!product && MULTI_MOIS_SLUGS.includes(product.slug);
+  const multiSeances = !!product && MULTI_SEANCES_SLUGS.includes(product.slug);
   const moisVendus = multiMois ? nombreMois : 1;
-  const prixAvantRemise = product ? product.prix * moisVendus : 0;
+  const seancesVendues = multiSeances ? nombreMois : 1;
+  const quantiteMax = multiSeances ? MULTI_SEANCES_MAX : MULTI_MOIS_MAX;
+  const prixAvantRemise = product ? product.prix * moisVendus * seancesVendues : 0;
   const montantRemise = peutRemiser ? Math.max(parseInt(remise, 10) || 0, 0) : 0;
   // Une remise égale ou supérieure au prix est une faute de frappe : on bloque au lieu de vendre à 0 F.
   const remiseTropGrande = montantRemise > 0 && montantRemise >= prixAvantRemise;
@@ -532,6 +539,7 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
         member_id:membre.id, product_id:product.id, mode_paiement:mode, is_renewal:isRenewal,
         ...(estCouple && partenaire ? { partenaire_id: partenaire.id } : {}),
         ...(multiMois && nombreMois > 1 ? { nombre_mois: nombreMois } : {}),
+        ...(multiSeances && nombreMois > 1 ? { nombre_seances: nombreMois } : {}),
         ...(montantRemise > 0 ? { remise_montant: montantRemise, remise_motif: remiseMotif.trim() } : {}),
       });
       setRecu(res.data); setStep('done');
@@ -694,12 +702,12 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
           <>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-2">
               <div className="flex justify-between text-sm"><span className="text-gray-500">Membre</span><span className="font-medium">{membre.nom}</span></div>
-              <div className="flex justify-between text-sm"><span className="text-gray-500">Produit</span><span className="font-medium">{product.nom}{moisVendus > 1 && ` × ${moisVendus} mois`}</span></div>
+              <div className="flex justify-between text-sm"><span className="text-gray-500">Produit</span><span className="font-medium">{product.nom}{moisVendus > 1 && ` × ${moisVendus} mois`}{seancesVendues > 1 && ` × ${seancesVendues}`}</span></div>
               {estCouple && partenaire && (
                 <div className="flex justify-between text-sm"><span className="text-gray-500">Partenaire</span><span className="font-medium">{partenaire.nom}</span></div>
               )}
-              {moisVendus > 1 && (
-                <div className="flex justify-between text-sm"><span className="text-gray-500">Détail</span><span className="font-medium">{moisVendus} × {fmtXOF(product.prix)}</span></div>
+              {(moisVendus > 1 || seancesVendues > 1) && (
+                <div className="flex justify-between text-sm"><span className="text-gray-500">Détail</span><span className="font-medium">{moisVendus * seancesVendues} × {fmtXOF(product.prix)}</span></div>
               )}
               {montantRemise > 0 && (
                 <div className="flex justify-between text-sm text-emerald-700"><span>Remise</span><span className="font-medium">− {fmtXOF(montantRemise)}</span></div>
@@ -725,29 +733,33 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
                 {!remiseTropGrande && remiseIncomplete && <p className="text-xs text-red-600">Indiquez le motif de la remise.</p>}
               </div>
             )}
-            {multiMois && (
+            {(multiMois || multiSeances) && (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-gray-900">Nombre de mois</p>
+                  <p className="text-sm font-semibold text-gray-900">{multiSeances ? 'Nombre de séances' : 'Nombre de mois'}</p>
                   <div className="flex items-center gap-3">
-                    <button type="button" aria-label="Un mois de moins"
+                    <button type="button" aria-label={multiSeances ? 'Une séance de moins' : 'Un mois de moins'}
                       onClick={() => setNombreMois(n => Math.max(1, n - 1))} disabled={nombreMois <= 1}
                       className="w-10 h-10 rounded-full border border-gray-200 text-lg font-semibold text-gray-700 hover:border-black disabled:opacity-30 transition">−</button>
                     <span className="w-8 text-center text-lg font-bold">{nombreMois}</span>
-                    <button type="button" aria-label="Un mois de plus"
-                      onClick={() => setNombreMois(n => Math.min(MULTI_MOIS_MAX, n + 1))} disabled={nombreMois >= MULTI_MOIS_MAX}
+                    <button type="button" aria-label={multiSeances ? 'Une séance de plus' : 'Un mois de plus'}
+                      onClick={() => setNombreMois(n => Math.min(quantiteMax, n + 1))} disabled={nombreMois >= quantiteMax}
                       className="w-10 h-10 rounded-full border border-gray-200 text-lg font-semibold text-gray-700 hover:border-black disabled:opacity-30 transition">+</button>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {[1, 2, 3, 4, 6, 12].map(n => (
+                  {(multiSeances ? [1, 2, 4, 5, 8, 10] : [1, 2, 3, 4, 6, 12]).map(n => (
                     <button key={n} type="button" onClick={() => setNombreMois(n)}
                       className={`text-xs px-3 py-1.5 rounded-full font-medium transition ${nombreMois===n?'bg-black text-white':'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-                      {n} mois
+                      {multiSeances ? `${n} séance${n > 1 ? 's' : ''}` : `${n} mois`}
                     </button>
                   ))}
                 </div>
+                {multiSeances ? (
+                  <p className="text-xs text-gray-500">{nombreMois} × {fmtXOF(product.prix)} — séances à faire dans le mois (jusqu'au <span className="font-semibold text-gray-800">{finEstimee(1)}</span>).</p>
+                ) : (
                 <p className="text-xs text-gray-500">Accès jusqu'au <span className="font-semibold text-gray-800">{finEstimee(nombreMois)}</span> (à partir d'aujourd'hui).</p>
+                )}
               </div>
             )}
             {estCouple && (
