@@ -128,8 +128,21 @@ const TablettePage: React.FC = () => {
     setEtape('accueil'); setType('nouveau'); setMembre(null); setProduit(null); setQuantite(1);
     setForm({ first_name: '', last_name: '', phone: '', email: '', address: '' });
     setApte(false); setRemarques(''); setAccepteContrat(false); setAccepteReglement(false);
-    setSignature(null); setMode(null); setErreur(null); setFin(null);
+    setSignature(null); setMode(null); setErreur(null); setFin(null); setSortie(false); setPin('');
   }, []);
+
+  // Le bouton « retour » du navigateur ou d'Android ne doit pas faire quitter la tablette.
+  useEffect(() => {
+    window.history.pushState(null, '', window.location.href);
+    const bloquer = () => window.history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', bloquer);
+    return () => window.removeEventListener('popstate', bloquer);
+  }, []);
+
+  // En revenant à l'étape du contrat, le cadre de signature est vide : on redemande la signature.
+  useEffect(() => {
+    if (etape === 'contrat') setSignature(null);
+  }, [etape]);
 
   // Jeton retiré ou révoqué : la tablette n'est plus activée.
   useEffect(() => {
@@ -151,8 +164,10 @@ const TablettePage: React.FC = () => {
     };
     relancer();
     window.addEventListener('pointerdown', relancer);
+    window.addEventListener('keydown', relancer);
     return () => {
       window.removeEventListener('pointerdown', relancer);
+      window.removeEventListener('keydown', relancer);
       if (inactivite.current) clearTimeout(inactivite.current);
     };
   }, [etape, recommencer]);

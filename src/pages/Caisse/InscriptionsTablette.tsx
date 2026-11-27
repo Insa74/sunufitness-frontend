@@ -31,7 +31,7 @@ export const InscriptionsTablette: React.FC<{ onRecu: (recu: unknown) => void }>
 
   useEffect(() => {
     charger();
-    const t = setInterval(charger, 20000);
+    const t = setInterval(() => { if (!document.hidden) charger(); }, 20000);
     return () => clearInterval(t);
   }, [charger]);
 
@@ -97,7 +97,7 @@ export const InscriptionsTablette: React.FC<{ onRecu: (recu: unknown) => void }>
                     ))}
                   </div>
                   <div className="flex gap-2">
-                    <button onClick={() => annuler(i)} className="px-3 py-2 text-sm rounded-lg bg-gray-100">Annuler</button>
+                    <button disabled={enCours !== null} onClick={() => annuler(i)} className="px-3 py-2 text-sm rounded-lg bg-gray-100 disabled:opacity-40">Annuler</button>
                     <button disabled={enCours !== null} onClick={() => encaisser(i)}
                       className="flex-1 py-2 text-sm font-semibold rounded-lg bg-black text-white disabled:opacity-40">
                       {enCours === i.id ? 'Encaissement…' : `Paiement reçu · ${fmtF(i.montant)}`}
