@@ -23,6 +23,7 @@ import AdminMembres from './pages/Admin/Membres';
 import AdminAccueil from './pages/Admin/Accueil';
 import CaissePage from './pages/Caisse';
 import ScanPage from './pages/Scan';
+import TablettePage from './pages/Tablette';
 import MyQrPage from './pages/MyQr';
 import MemberWorkspace from './pages/Coach/MemberWorkspace';
 import CoachsExternesPage from './pages/CoachsExternes';
@@ -72,6 +73,7 @@ const AppRoutes = () => {
         <Route path='/about' element={<About />} />
         <Route path="/menu-boissons" element={<MenuBoissonsPage />} />
         <Route path="/scan" element={<ScanPage />} />
+        <Route path="/tablette" element={<TablettePage />} />
         <Route path="/mon-qr/:token" element={<MyQrPage />} />
         <Route path="/preferences" element={<PreferencesPage />} />
         <Route path="/prepa-marathon" element={<PrepaMarathonPage />} />

@@ -7,6 +7,7 @@ import {
   isCaisseAdmin,
   type CaisseUser,
 } from '../../services/caisseApiClient';
+import { ActiverTablette, InscriptionsTablette } from './InscriptionsTablette';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -578,7 +579,9 @@ const CaisseInterface: React.FC<{ caisseUser: CaisseUser; onLogout: () => void }
           <button onClick={loadJour} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Journal</button>
           <button onClick={() => navigate('/coach/membres')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">🏋️ Membres</button>
           <button onClick={() => navigate('/coachs-externes')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Coachs externes</button>
+          <InscriptionsTablette onRecu={r => { setRecu(r as Recu); setStep('done'); }} />
           <button onClick={() => navigate('/scan')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Scan</button>
+          <ActiverTablette />
           {isAdmin && (
             <button onClick={() => navigate('/admin')} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">Dashboard</button>
           )}
